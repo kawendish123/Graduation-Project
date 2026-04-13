@@ -11,17 +11,17 @@
     "edge_node_count": 154,
     "cloud_node_count": 0,
     "transmission_node_count": 0,
-    "dsl_estimated_edge_ms": 29.99151999999441,
+    "dsl_estimated_edge_ms": 29.962000000028866,
     "dsl_estimated_transfer_ms": 0,
     "dsl_estimated_cloud_ms": 0,
-    "dsl_estimated_total_ms": 29.99151999999441,
-    "all_edge_estimated_ms": 29.99151999999441
+    "dsl_estimated_total_ms": 29.962000000028866,
+    "all_edge_estimated_ms": 29.962000000028866
   },
   "partition": {
     "model_name": "mobilenet_v2",
     "bandwidth_mbps": 50.0,
-    "total_inference_ms": 29.99151999999441,
-    "edge_stage_ms": 29.99151999999441,
+    "total_inference_ms": 29.962000000028866,
+    "edge_stage_ms": 29.962000000028866,
     "transmission_stage_ms": 0,
     "cloud_stage_ms": 0,
     "edge_nodes": [
@@ -821,8 +821,8 @@
       "succ_ids": [
         "features_0_1"
       ],
-      "edge_ms": 0.725379999999376,
-      "cloud_ms": 0.12877999999929557,
+      "edge_ms": 0.694980000008627,
+      "cloud_ms": 0.2262000000008868,
       "transmission_ms": 256.90112,
       "output_bytes": 1605632,
       "partition": "edge",
@@ -834,8 +834,8 @@
       "succ_ids": [
         "features_0_2"
       ],
-      "edge_ms": 0.23540000000110695,
-      "cloud_ms": 0.1360400000002926,
+      "edge_ms": 0.2799200000026758,
+      "cloud_ms": 0.1303399999997623,
       "transmission_ms": 256.90112,
       "output_bytes": 1605632,
       "partition": "edge",
@@ -847,8 +847,8 @@
       "succ_ids": [
         "features_1_conv_0_0"
       ],
-      "edge_ms": 0.09671999999909531,
-      "cloud_ms": 0.08622000000073626,
+      "edge_ms": 0.10574000000929118,
+      "cloud_ms": 0.08593999999959578,
       "transmission_ms": 256.90112,
       "output_bytes": 1605632,
       "partition": "edge",
@@ -860,8 +860,8 @@
       "succ_ids": [
         "features_1_conv_0_1"
       ],
-      "edge_ms": 0.6819600000000037,
-      "cloud_ms": 0.12129999999999086,
+      "edge_ms": 0.6113600000048791,
+      "cloud_ms": 0.15059999999991192,
       "transmission_ms": 256.90112,
       "output_bytes": 1605632,
       "partition": "edge",
@@ -873,8 +873,8 @@
       "succ_ids": [
         "features_1_conv_0_2"
       ],
-      "edge_ms": 0.18864000000036185,
-      "cloud_ms": 0.23837999999969384,
+      "edge_ms": 0.1286600000071303,
+      "cloud_ms": 0.2737199999998552,
       "transmission_ms": 256.90112,
       "output_bytes": 1605632,
       "partition": "edge",
@@ -886,8 +886,8 @@
       "succ_ids": [
         "features_1_conv_1"
       ],
-      "edge_ms": 0.06779999999935171,
-      "cloud_ms": 0.0825399999989429,
+      "edge_ms": 0.07231999999248728,
+      "cloud_ms": 0.0794199999994305,
       "transmission_ms": 256.90112,
       "output_bytes": 1605632,
       "partition": "edge",
@@ -899,8 +899,8 @@
       "succ_ids": [
         "features_1_conv_2"
       ],
-      "edge_ms": 0.34572000000068215,
-      "cloud_ms": 0.1143600000013123,
+      "edge_ms": 0.35506000000395943,
+      "cloud_ms": 0.1254400000000544,
       "transmission_ms": 128.45056,
       "output_bytes": 802816,
       "partition": "edge",
@@ -912,8 +912,8 @@
       "succ_ids": [
         "features_2_conv_0_0"
       ],
-      "edge_ms": 0.11304000000080805,
-      "cloud_ms": 0.11254000000064934,
+      "edge_ms": 0.13946000000828462,
+      "cloud_ms": 0.11315999999936821,
       "transmission_ms": 128.45056,
       "output_bytes": 802816,
       "partition": "edge",
@@ -925,8 +925,8 @@
       "succ_ids": [
         "features_2_conv_0_1"
       ],
-      "edge_ms": 1.7047200000007479,
-      "cloud_ms": 0.1337800000001721,
+      "edge_ms": 2.2854599999959646,
+      "cloud_ms": 0.1555200000005641,
       "transmission_ms": 770.70336,
       "output_bytes": 4816896,
       "partition": "edge",
@@ -938,8 +938,8 @@
       "succ_ids": [
         "features_2_conv_0_2"
       ],
-      "edge_ms": 0.5465199999996173,
-      "cloud_ms": 0.14609999999990464,
+      "edge_ms": 0.5170600000042214,
+      "cloud_ms": 0.16154000000057067,
       "transmission_ms": 770.70336,
       "output_bytes": 4816896,
       "partition": "edge",
@@ -951,8 +951,8 @@
       "succ_ids": [
         "features_2_conv_1_0"
       ],
-      "edge_ms": 0.20833999999894104,
-      "cloud_ms": 0.11921999999913169,
+      "edge_ms": 0.1725000000021737,
+      "cloud_ms": 0.13605999999981577,
       "transmission_ms": 770.70336,
       "output_bytes": 4816896,
       "partition": "edge",
@@ -964,8 +964,8 @@
       "succ_ids": [
         "features_2_conv_1_1"
       ],
-      "edge_ms": 1.3431600000004096,
-      "cloud_ms": 0.11536000000020863,
+      "edge_ms": 1.191140000003088,
+      "cloud_ms": 0.14649999999889474,
       "transmission_ms": 192.67584,
       "output_bytes": 1204224,
       "partition": "edge",
@@ -977,8 +977,8 @@
       "succ_ids": [
         "features_2_conv_1_2"
       ],
-      "edge_ms": 0.21522000000047115,
-      "cloud_ms": 0.11318000000031248,
+      "edge_ms": 0.1931399999932637,
+      "cloud_ms": 0.11630000000053542,
       "transmission_ms": 192.67584,
       "output_bytes": 1204224,
       "partition": "edge",
@@ -990,8 +990,8 @@
       "succ_ids": [
         "features_2_conv_2"
       ],
-      "edge_ms": 0.15311999999951809,
-      "cloud_ms": 0.07933999999920616,
+      "edge_ms": 0.08005999999909363,
+      "cloud_ms": 0.08897999999959438,
       "transmission_ms": 192.67584,
       "output_bytes": 1204224,
       "partition": "edge",
@@ -1003,8 +1003,8 @@
       "succ_ids": [
         "features_2_conv_3"
       ],
-      "edge_ms": 0.48110000000036734,
-      "cloud_ms": 0.10930000000044515,
+      "edge_ms": 0.48093999999991865,
+      "cloud_ms": 0.12496000000012941,
       "transmission_ms": 48.16896,
       "output_bytes": 301056,
       "partition": "edge",
@@ -1017,8 +1017,8 @@
         "add",
         "features_3_conv_0_0"
       ],
-      "edge_ms": 0.11252000000041562,
-      "cloud_ms": 0.14155999999942992,
+      "edge_ms": 0.10874000000171691,
+      "cloud_ms": 0.1130400000000975,
       "transmission_ms": 48.16896,
       "output_bytes": 301056,
       "partition": "edge",
@@ -1030,8 +1030,8 @@
       "succ_ids": [
         "features_3_conv_0_1"
       ],
-      "edge_ms": 0.6397799999994902,
-      "cloud_ms": 0.10315999999903624,
+      "edge_ms": 0.6483600000024126,
+      "cloud_ms": 0.2012399999998138,
       "transmission_ms": 289.01376,
       "output_bytes": 1806336,
       "partition": "edge",
@@ -1043,8 +1043,8 @@
       "succ_ids": [
         "features_3_conv_0_2"
       ],
-      "edge_ms": 0.255379999998695,
-      "cloud_ms": 0.10711999999983846,
+      "edge_ms": 0.2280000000041582,
+      "cloud_ms": 0.12731999999999744,
       "transmission_ms": 289.01376,
       "output_bytes": 1806336,
       "partition": "edge",
@@ -1056,8 +1056,8 @@
       "succ_ids": [
         "features_3_conv_1_0"
       ],
-      "edge_ms": 0.10433999999932553,
-      "cloud_ms": 0.0831999999995503,
+      "edge_ms": 0.1422600000012153,
+      "cloud_ms": 0.0983999999995433,
       "transmission_ms": 289.01376,
       "output_bytes": 1806336,
       "partition": "edge",
@@ -1069,8 +1069,8 @@
       "succ_ids": [
         "features_3_conv_1_1"
       ],
-      "edge_ms": 0.7177399999996226,
-      "cloud_ms": 0.12168000000016832,
+      "edge_ms": 0.7708999999977095,
+      "cloud_ms": 0.16183999999981324,
       "transmission_ms": 289.01376,
       "output_bytes": 1806336,
       "partition": "edge",
@@ -1082,8 +1082,8 @@
       "succ_ids": [
         "features_3_conv_1_2"
       ],
-      "edge_ms": 0.2026800000002993,
-      "cloud_ms": 0.10643999999970788,
+      "edge_ms": 0.16796000000454114,
+      "cloud_ms": 0.12194000000036453,
       "transmission_ms": 289.01376,
       "output_bytes": 1806336,
       "partition": "edge",
@@ -1095,8 +1095,8 @@
       "succ_ids": [
         "features_3_conv_2"
       ],
-      "edge_ms": 0.08560000000130685,
-      "cloud_ms": 0.08116000000057966,
+      "edge_ms": 0.083319999998821,
+      "cloud_ms": 0.09252000000117278,
       "transmission_ms": 289.01376,
       "output_bytes": 1806336,
       "partition": "edge",
@@ -1108,8 +1108,8 @@
       "succ_ids": [
         "features_3_conv_3"
       ],
-      "edge_ms": 0.38737999999867156,
-      "cloud_ms": 0.10950000000065074,
+      "edge_ms": 0.32509999999774664,
+      "cloud_ms": 0.12935999999967862,
       "transmission_ms": 48.16896,
       "output_bytes": 301056,
       "partition": "edge",
@@ -1121,8 +1121,8 @@
       "succ_ids": [
         "add"
       ],
-      "edge_ms": 0.09359999999887236,
-      "cloud_ms": 0.1072000000000628,
+      "edge_ms": 0.140119999991839,
+      "cloud_ms": 0.11334000000076117,
       "transmission_ms": 48.16896,
       "output_bytes": 301056,
       "partition": "edge",
@@ -1134,8 +1134,8 @@
       "succ_ids": [
         "features_4_conv_0_0"
       ],
-      "edge_ms": 0.06437999999917565,
-      "cloud_ms": 0.07085999999958403,
+      "edge_ms": 0.058200000000852015,
+      "cloud_ms": 0.07042000000012649,
       "transmission_ms": 48.16896,
       "output_bytes": 301056,
       "partition": "edge",
@@ -1147,8 +1147,8 @@
       "succ_ids": [
         "features_4_conv_0_1"
       ],
-      "edge_ms": 0.4481999999995878,
-      "cloud_ms": 0.10314000000022361,
+      "edge_ms": 0.45846000000437925,
+      "cloud_ms": 0.12204000000011206,
       "transmission_ms": 289.01376,
       "output_bytes": 1806336,
       "partition": "edge",
@@ -1160,8 +1160,8 @@
       "succ_ids": [
         "features_4_conv_0_2"
       ],
-      "edge_ms": 0.33317999999979975,
-      "cloud_ms": 0.10621999999997911,
+      "edge_ms": 0.2514199999950506,
+      "cloud_ms": 0.1183400000002166,
       "transmission_ms": 289.01376,
       "output_bytes": 1806336,
       "partition": "edge",
@@ -1173,8 +1173,8 @@
       "succ_ids": [
         "features_4_conv_1_0"
       ],
-      "edge_ms": 0.11781999999982418,
-      "cloud_ms": 0.08235999999897103,
+      "edge_ms": 0.09209999998915919,
+      "cloud_ms": 0.0978999999979635,
       "transmission_ms": 289.01376,
       "output_bytes": 1806336,
       "partition": "edge",
@@ -1186,8 +1186,8 @@
       "succ_ids": [
         "features_4_conv_1_1"
       ],
-      "edge_ms": 0.4032199999983277,
-      "cloud_ms": 0.09435999999993783,
+      "edge_ms": 0.37542000000030384,
+      "cloud_ms": 0.11237999999877957,
       "transmission_ms": 72.25344,
       "output_bytes": 451584,
       "partition": "edge",
@@ -1199,8 +1199,8 @@
       "succ_ids": [
         "features_4_conv_1_2"
       ],
-      "edge_ms": 0.10860000000008085,
-      "cloud_ms": 0.10865999999936093,
+      "edge_ms": 0.11087999999972453,
+      "cloud_ms": 0.11364000000000374,
       "transmission_ms": 72.25344,
       "output_bytes": 451584,
       "partition": "edge",
@@ -1212,8 +1212,8 @@
       "succ_ids": [
         "features_4_conv_2"
       ],
-      "edge_ms": 0.06599999999963302,
-      "cloud_ms": 0.07873999999929993,
+      "edge_ms": 0.05700000000388172,
+      "cloud_ms": 0.09195999999960236,
       "transmission_ms": 72.25344,
       "output_bytes": 451584,
       "partition": "edge",
@@ -1225,8 +1225,8 @@
       "succ_ids": [
         "features_4_conv_3"
       ],
-      "edge_ms": 0.30477999999973804,
-      "cloud_ms": 0.10741999999979157,
+      "edge_ms": 0.3383600000063325,
+      "cloud_ms": 0.13675999999946953,
       "transmission_ms": 16.05632,
       "output_bytes": 100352,
       "partition": "edge",
@@ -1239,8 +1239,8 @@
         "add_1",
         "features_5_conv_0_0"
       ],
-      "edge_ms": 0.08904000000029555,
-      "cloud_ms": 0.10578000000052157,
+      "edge_ms": 0.08288000000220563,
+      "cloud_ms": 0.14602000000039084,
       "transmission_ms": 16.05632,
       "output_bytes": 100352,
       "partition": "edge",
@@ -1252,8 +1252,8 @@
       "succ_ids": [
         "features_5_conv_0_1"
       ],
-      "edge_ms": 0.3230600000009076,
-      "cloud_ms": 0.10958000000016455,
+      "edge_ms": 0.30696000000034473,
+      "cloud_ms": 0.15099999999961256,
       "transmission_ms": 96.33792,
       "output_bytes": 602112,
       "partition": "edge",
@@ -1265,8 +1265,8 @@
       "succ_ids": [
         "features_5_conv_0_2"
       ],
-      "edge_ms": 0.10637999999971726,
-      "cloud_ms": 0.10690000000010969,
+      "edge_ms": 0.11101999999709733,
+      "cloud_ms": 0.14099999999999113,
       "transmission_ms": 96.33792,
       "output_bytes": 602112,
       "partition": "edge",
@@ -1278,8 +1278,8 @@
       "succ_ids": [
         "features_5_conv_1_0"
       ],
-      "edge_ms": 0.10891999999955715,
-      "cloud_ms": 0.08041999999974792,
+      "edge_ms": 0.06121999999777472,
+      "cloud_ms": 0.10229999999964434,
       "transmission_ms": 96.33792,
       "output_bytes": 602112,
       "partition": "edge",
@@ -1291,8 +1291,8 @@
       "succ_ids": [
         "features_5_conv_1_1"
       ],
-      "edge_ms": 0.37075999999913734,
-      "cloud_ms": 0.09016000000059421,
+      "edge_ms": 0.2962599999932536,
+      "cloud_ms": 0.1306200000009028,
       "transmission_ms": 96.33792,
       "output_bytes": 602112,
       "partition": "edge",
@@ -1304,8 +1304,8 @@
       "succ_ids": [
         "features_5_conv_1_2"
       ],
-      "edge_ms": 0.12076000000007525,
-      "cloud_ms": 0.12932000000063226,
+      "edge_ms": 0.11495999999624473,
+      "cloud_ms": 0.12964000000152964,
       "transmission_ms": 96.33792,
       "output_bytes": 602112,
       "partition": "edge",
@@ -1317,8 +1317,8 @@
       "succ_ids": [
         "features_5_conv_2"
       ],
-      "edge_ms": 0.07195999999893843,
-      "cloud_ms": 0.10066000000037434,
+      "edge_ms": 0.0708999999972093,
+      "cloud_ms": 0.09365999999957353,
       "transmission_ms": 96.33792,
       "output_bytes": 602112,
       "partition": "edge",
@@ -1330,8 +1330,8 @@
       "succ_ids": [
         "features_5_conv_3"
       ],
-      "edge_ms": 0.2921600000000524,
-      "cloud_ms": 0.1229000000002145,
+      "edge_ms": 0.2707800000109728,
+      "cloud_ms": 0.1348399999997696,
       "transmission_ms": 16.05632,
       "output_bytes": 100352,
       "partition": "edge",
@@ -1343,8 +1343,8 @@
       "succ_ids": [
         "add_1"
       ],
-      "edge_ms": 0.08163999999837301,
-      "cloud_ms": 0.11700000000018917,
+      "edge_ms": 0.07782000000133849,
+      "cloud_ms": 0.13579999999890902,
       "transmission_ms": 16.05632,
       "output_bytes": 100352,
       "partition": "edge",
@@ -1357,8 +1357,8 @@
         "add_2",
         "features_6_conv_0_0"
       ],
-      "edge_ms": 0.057660000000225864,
-      "cloud_ms": 0.07385999999982573,
+      "edge_ms": 0.054240000002891975,
+      "cloud_ms": 0.08710000000107243,
       "transmission_ms": 16.05632,
       "output_bytes": 100352,
       "partition": "edge",
@@ -1370,8 +1370,8 @@
       "succ_ids": [
         "features_6_conv_0_1"
       ],
-      "edge_ms": 0.2923199999997905,
-      "cloud_ms": 0.13955999999950564,
+      "edge_ms": 0.29368000000431493,
+      "cloud_ms": 0.1403200000005711,
       "transmission_ms": 96.33792,
       "output_bytes": 602112,
       "partition": "edge",
@@ -1383,8 +1383,8 @@
       "succ_ids": [
         "features_6_conv_0_2"
       ],
-      "edge_ms": 0.11239999999972383,
-      "cloud_ms": 0.11382000000068615,
+      "edge_ms": 0.09927999999490567,
+      "cloud_ms": 0.214679999999845,
       "transmission_ms": 96.33792,
       "output_bytes": 602112,
       "partition": "edge",
@@ -1396,8 +1396,8 @@
       "succ_ids": [
         "features_6_conv_1_0"
       ],
-      "edge_ms": 0.0641799999996806,
-      "cloud_ms": 0.09349999999983538,
+      "edge_ms": 0.05962000000181433,
+      "cloud_ms": 0.18008000000051538,
       "transmission_ms": 96.33792,
       "output_bytes": 602112,
       "partition": "edge",
@@ -1409,8 +1409,8 @@
       "succ_ids": [
         "features_6_conv_1_1"
       ],
-      "edge_ms": 0.29901999999921713,
-      "cloud_ms": 0.10936000000043578,
+      "edge_ms": 0.2747199999987515,
+      "cloud_ms": 0.11960000000001969,
       "transmission_ms": 96.33792,
       "output_bytes": 602112,
       "partition": "edge",
@@ -1422,8 +1422,8 @@
       "succ_ids": [
         "features_6_conv_1_2"
       ],
-      "edge_ms": 0.11177999999958388,
-      "cloud_ms": 0.15898000000049706,
+      "edge_ms": 0.0954799999988154,
+      "cloud_ms": 0.12643999999966127,
       "transmission_ms": 96.33792,
       "output_bytes": 602112,
       "partition": "edge",
@@ -1435,8 +1435,8 @@
       "succ_ids": [
         "features_6_conv_2"
       ],
-      "edge_ms": 0.06949999999932288,
-      "cloud_ms": 0.08511999999996078,
+      "edge_ms": 0.058000000001356966,
+      "cloud_ms": 0.0920399999998267,
       "transmission_ms": 96.33792,
       "output_bytes": 602112,
       "partition": "edge",
@@ -1448,8 +1448,8 @@
       "succ_ids": [
         "features_6_conv_3"
       ],
-      "edge_ms": 0.2965199999998447,
-      "cloud_ms": 0.15441999999978862,
+      "edge_ms": 0.24401999999099644,
+      "cloud_ms": 0.13271999999915352,
       "transmission_ms": 16.05632,
       "output_bytes": 100352,
       "partition": "edge",
@@ -1461,8 +1461,8 @@
       "succ_ids": [
         "add_2"
       ],
-      "edge_ms": 0.07963999999986981,
-      "cloud_ms": 0.13638000000071315,
+      "edge_ms": 0.07254000000216365,
+      "cloud_ms": 0.12550000000004502,
       "transmission_ms": 16.05632,
       "output_bytes": 100352,
       "partition": "edge",
@@ -1474,8 +1474,8 @@
       "succ_ids": [
         "features_7_conv_0_0"
       ],
-      "edge_ms": 0.05462000000093781,
-      "cloud_ms": 0.07103999999884536,
+      "edge_ms": 0.046180000003914756,
+      "cloud_ms": 0.074700000000405,
       "transmission_ms": 16.05632,
       "output_bytes": 100352,
       "partition": "edge",
@@ -1487,8 +1487,8 @@
       "succ_ids": [
         "features_7_conv_0_1"
       ],
-      "edge_ms": 0.33348000000117395,
-      "cloud_ms": 0.14292000000040161,
+      "edge_ms": 0.2543399999979101,
+      "cloud_ms": 0.12892000000164217,
       "transmission_ms": 96.33792,
       "output_bytes": 602112,
       "partition": "edge",
@@ -1500,8 +1500,8 @@
       "succ_ids": [
         "features_7_conv_0_2"
       ],
-      "edge_ms": 0.10539999999963356,
-      "cloud_ms": 0.11140000000011696,
+      "edge_ms": 0.10824000000866363,
+      "cloud_ms": 0.12684000000007245,
       "transmission_ms": 96.33792,
       "output_bytes": 602112,
       "partition": "edge",
@@ -1513,8 +1513,8 @@
       "succ_ids": [
         "features_7_conv_1_0"
       ],
-      "edge_ms": 0.0590799999997671,
-      "cloud_ms": 0.08473999999978332,
+      "edge_ms": 0.061579999999139545,
+      "cloud_ms": 0.09268000000020038,
       "transmission_ms": 96.33792,
       "output_bytes": 602112,
       "partition": "edge",
@@ -1526,8 +1526,8 @@
       "succ_ids": [
         "features_7_conv_1_1"
       ],
-      "edge_ms": 0.25413999999983616,
-      "cloud_ms": 0.09766000000084318,
+      "edge_ms": 0.25880000000029213,
+      "cloud_ms": 0.1089999999997815,
       "transmission_ms": 24.08448,
       "output_bytes": 150528,
       "partition": "edge",
@@ -1539,8 +1539,8 @@
       "succ_ids": [
         "features_7_conv_1_2"
       ],
-      "edge_ms": 0.08673999999899706,
-      "cloud_ms": 0.11079999999878964,
+      "edge_ms": 0.08348000000637512,
+      "cloud_ms": 0.12401999999909208,
       "transmission_ms": 24.08448,
       "output_bytes": 150528,
       "partition": "edge",
@@ -1552,8 +1552,8 @@
       "succ_ids": [
         "features_7_conv_2"
       ],
-      "edge_ms": 0.05368000000061102,
-      "cloud_ms": 0.0827799999989054,
+      "edge_ms": 0.05260000000362197,
+      "cloud_ms": 0.093559999999826,
       "transmission_ms": 24.08448,
       "output_bytes": 150528,
       "partition": "edge",
@@ -1565,8 +1565,8 @@
       "succ_ids": [
         "features_7_conv_3"
       ],
-      "edge_ms": 0.2505399999989777,
-      "cloud_ms": 0.11871999999968352,
+      "edge_ms": 0.26973999999881926,
+      "cloud_ms": 0.12765999999970745,
       "transmission_ms": 8.02816,
       "output_bytes": 50176,
       "partition": "edge",
@@ -1579,8 +1579,8 @@
         "add_3",
         "features_8_conv_0_0"
       ],
-      "edge_ms": 0.07948000000013167,
-      "cloud_ms": 0.11060000000000514,
+      "edge_ms": 0.08029999999621396,
+      "cloud_ms": 0.12455999999971823,
       "transmission_ms": 8.02816,
       "output_bytes": 50176,
       "partition": "edge",
@@ -1592,8 +1592,8 @@
       "succ_ids": [
         "features_8_conv_0_1"
       ],
-      "edge_ms": 0.18914000000052056,
-      "cloud_ms": 0.14608000000038146,
+      "edge_ms": 0.18767999999340645,
+      "cloud_ms": 0.126079999999007,
       "transmission_ms": 48.16896,
       "output_bytes": 301056,
       "partition": "edge",
@@ -1605,8 +1605,8 @@
       "succ_ids": [
         "features_8_conv_0_2"
       ],
-      "edge_ms": 0.09150000000062164,
-      "cloud_ms": 0.11192000000050939,
+      "edge_ms": 0.09753999999588814,
+      "cloud_ms": 0.12460000000018567,
       "transmission_ms": 48.16896,
       "output_bytes": 301056,
       "partition": "edge",
@@ -1618,8 +1618,8 @@
       "succ_ids": [
         "features_8_conv_1_0"
       ],
-      "edge_ms": 0.05528000000083466,
-      "cloud_ms": 0.08337999999952217,
+      "edge_ms": 0.056160000002591914,
+      "cloud_ms": 0.09439999999969473,
       "transmission_ms": 48.16896,
       "output_bytes": 301056,
       "partition": "edge",
@@ -1631,8 +1631,8 @@
       "succ_ids": [
         "features_8_conv_1_1"
       ],
-      "edge_ms": 0.259079999999301,
-      "cloud_ms": 0.09592000000040457,
+      "edge_ms": 0.2500600000018949,
+      "cloud_ms": 0.11063999999976204,
       "transmission_ms": 48.16896,
       "output_bytes": 301056,
       "partition": "edge",
@@ -1644,8 +1644,8 @@
       "succ_ids": [
         "features_8_conv_1_2"
       ],
-      "edge_ms": 0.08948000000046363,
-      "cloud_ms": 0.1107000000004632,
+      "edge_ms": 0.09086000000024796,
+      "cloud_ms": 0.12535999999983005,
       "transmission_ms": 48.16896,
       "output_bytes": 301056,
       "partition": "edge",
@@ -1657,8 +1657,8 @@
       "succ_ids": [
         "features_8_conv_2"
       ],
-      "edge_ms": 0.05524000000036722,
-      "cloud_ms": 0.08332000000095263,
+      "edge_ms": 0.0546000000042568,
+      "cloud_ms": 0.09097999999880813,
       "transmission_ms": 48.16896,
       "output_bytes": 301056,
       "partition": "edge",
@@ -1670,8 +1670,8 @@
       "succ_ids": [
         "features_8_conv_3"
       ],
-      "edge_ms": 0.25680000000036785,
-      "cloud_ms": 0.12132000000093512,
+      "edge_ms": 0.5722600000069633,
+      "cloud_ms": 0.13893999999936568,
       "transmission_ms": 8.02816,
       "output_bytes": 50176,
       "partition": "edge",
@@ -1683,8 +1683,8 @@
       "succ_ids": [
         "add_3"
       ],
-      "edge_ms": 0.07469999999969446,
-      "cloud_ms": 0.10997999999915464,
+      "edge_ms": 0.09022000000413755,
+      "cloud_ms": 0.12354000000058818,
       "transmission_ms": 8.02816,
       "output_bytes": 50176,
       "partition": "edge",
@@ -1697,8 +1697,8 @@
         "add_4",
         "features_9_conv_0_0"
       ],
-      "edge_ms": 0.04328000000057841,
-      "cloud_ms": 0.07054000000152882,
+      "edge_ms": 0.04787999999393833,
+      "cloud_ms": 0.13936000000072113,
       "transmission_ms": 8.02816,
       "output_bytes": 50176,
       "partition": "edge",
@@ -1710,8 +1710,8 @@
       "succ_ids": [
         "features_9_conv_0_1"
       ],
-      "edge_ms": 0.14252000000070097,
-      "cloud_ms": 0.11505999999954497,
+      "edge_ms": 0.1630400000010468,
+      "cloud_ms": 0.11990000000068335,
       "transmission_ms": 48.16896,
       "output_bytes": 301056,
       "partition": "edge",
@@ -1723,8 +1723,8 @@
       "succ_ids": [
         "features_9_conv_0_2"
       ],
-      "edge_ms": 0.11468000000007805,
-      "cloud_ms": 0.1116000000010331,
+      "edge_ms": 0.10143999999172593,
+      "cloud_ms": 0.12421999999929767,
       "transmission_ms": 48.16896,
       "output_bytes": 301056,
       "partition": "edge",
@@ -1736,8 +1736,8 @@
       "succ_ids": [
         "features_9_conv_1_0"
       ],
-      "edge_ms": 0.060760000000215086,
-      "cloud_ms": 0.08368000000018583,
+      "edge_ms": 0.060559999997167324,
+      "cloud_ms": 0.0987400000006744,
       "transmission_ms": 48.16896,
       "output_bytes": 301056,
       "partition": "edge",
@@ -1749,8 +1749,8 @@
       "succ_ids": [
         "features_9_conv_1_1"
       ],
-      "edge_ms": 0.2597399999999084,
-      "cloud_ms": 0.09508000000053585,
+      "edge_ms": 0.24779999999964275,
+      "cloud_ms": 0.11380000000045243,
       "transmission_ms": 48.16896,
       "output_bytes": 301056,
       "partition": "edge",
@@ -1762,8 +1762,8 @@
       "succ_ids": [
         "features_9_conv_1_2"
       ],
-      "edge_ms": 0.10192000000017742,
-      "cloud_ms": 0.1120399999997801,
+      "edge_ms": 0.09519999999838547,
+      "cloud_ms": 0.12024000000039337,
       "transmission_ms": 48.16896,
       "output_bytes": 301056,
       "partition": "edge",
@@ -1775,8 +1775,8 @@
       "succ_ids": [
         "features_9_conv_2"
       ],
-      "edge_ms": 0.06371999999998934,
-      "cloud_ms": 0.0868200000006425,
+      "edge_ms": 0.054159999996272745,
+      "cloud_ms": 0.09221999999979857,
       "transmission_ms": 48.16896,
       "output_bytes": 301056,
       "partition": "edge",
@@ -1788,8 +1788,8 @@
       "succ_ids": [
         "features_9_conv_3"
       ],
-      "edge_ms": 0.30703999999985854,
-      "cloud_ms": 0.12181999999967275,
+      "edge_ms": 0.2364999999997508,
+      "cloud_ms": 0.15113999999911698,
       "transmission_ms": 8.02816,
       "output_bytes": 50176,
       "partition": "edge",
@@ -1801,8 +1801,8 @@
       "succ_ids": [
         "add_4"
       ],
-      "edge_ms": 0.08580000000009136,
-      "cloud_ms": 0.11060000000000514,
+      "edge_ms": 0.07599999999570173,
+      "cloud_ms": 0.13547999999943272,
       "transmission_ms": 8.02816,
       "output_bytes": 50176,
       "partition": "edge",
@@ -1815,8 +1815,8 @@
         "add_5",
         "features_10_conv_0_0"
       ],
-      "edge_ms": 0.043079999998951735,
-      "cloud_ms": 0.06961999999930413,
+      "edge_ms": 0.03935999999384876,
+      "cloud_ms": 0.07796000000013237,
       "transmission_ms": 8.02816,
       "output_bytes": 50176,
       "partition": "edge",
@@ -1828,8 +1828,8 @@
       "succ_ids": [
         "features_10_conv_0_1"
       ],
-      "edge_ms": 0.15488000000019042,
-      "cloud_ms": 0.12519999999938136,
+      "edge_ms": 0.1352399999973386,
+      "cloud_ms": 0.13441999999983523,
       "transmission_ms": 48.16896,
       "output_bytes": 301056,
       "partition": "edge",
@@ -1841,8 +1841,8 @@
       "succ_ids": [
         "features_10_conv_0_2"
       ],
-      "edge_ms": 0.0877999999993051,
-      "cloud_ms": 0.11339999999862016,
+      "edge_ms": 0.08321999999907348,
+      "cloud_ms": 0.1295999999996411,
       "transmission_ms": 48.16896,
       "output_bytes": 301056,
       "partition": "edge",
@@ -1854,8 +1854,8 @@
       "succ_ids": [
         "features_10_conv_1_0"
       ],
-      "edge_ms": 0.05757999999858043,
-      "cloud_ms": 0.08450000000053137,
+      "edge_ms": 0.05254000000718406,
+      "cloud_ms": 0.09643999999937591,
       "transmission_ms": 48.16896,
       "output_bytes": 301056,
       "partition": "edge",
@@ -1867,8 +1867,8 @@
       "succ_ids": [
         "features_10_conv_1_1"
       ],
-      "edge_ms": 0.24053999999864573,
-      "cloud_ms": 0.09738000000041325,
+      "edge_ms": 0.2304200000082801,
+      "cloud_ms": 0.11790000000075906,
       "transmission_ms": 48.16896,
       "output_bytes": 301056,
       "partition": "edge",
@@ -1880,8 +1880,8 @@
       "succ_ids": [
         "features_10_conv_1_2"
       ],
-      "edge_ms": 0.09021999999987429,
-      "cloud_ms": 0.1300399999983881,
+      "edge_ms": 0.08895999999936066,
+      "cloud_ms": 0.21617999999961057,
       "transmission_ms": 48.16896,
       "output_bytes": 301056,
       "partition": "edge",
@@ -1893,8 +1893,8 @@
       "succ_ids": [
         "features_10_conv_2"
       ],
-      "edge_ms": 0.057980000001123244,
-      "cloud_ms": 0.09070000000050982,
+      "edge_ms": 0.05312000000117223,
+      "cloud_ms": 0.09276000000042472,
       "transmission_ms": 48.16896,
       "output_bytes": 301056,
       "partition": "edge",
@@ -1906,8 +1906,8 @@
       "succ_ids": [
         "features_10_conv_3"
       ],
-      "edge_ms": 0.24945999999914648,
-      "cloud_ms": 0.1278800000008573,
+      "edge_ms": 0.22167999999282983,
+      "cloud_ms": 0.1679199999990999,
       "transmission_ms": 8.02816,
       "output_bytes": 50176,
       "partition": "edge",
@@ -1919,8 +1919,8 @@
       "succ_ids": [
         "add_5"
       ],
-      "edge_ms": 0.07959999999940237,
-      "cloud_ms": 0.16133999999823345,
+      "edge_ms": 0.07972000000222579,
+      "cloud_ms": 0.16555999999994242,
       "transmission_ms": 8.02816,
       "output_bytes": 50176,
       "partition": "edge",
@@ -1932,8 +1932,8 @@
       "succ_ids": [
         "features_11_conv_0_0"
       ],
-      "edge_ms": 0.040019999999429956,
-      "cloud_ms": 0.11766000000008603,
+      "edge_ms": 0.03592000000480766,
+      "cloud_ms": 0.1145600000000968,
       "transmission_ms": 8.02816,
       "output_bytes": 50176,
       "partition": "edge",
@@ -1945,8 +1945,8 @@
       "succ_ids": [
         "features_11_conv_0_1"
       ],
-      "edge_ms": 0.13980000000017867,
-      "cloud_ms": 0.12142000000068265,
+      "edge_ms": 0.1276399999937894,
+      "cloud_ms": 0.15229999999917254,
       "transmission_ms": 48.16896,
       "output_bytes": 301056,
       "partition": "edge",
@@ -1958,8 +1958,8 @@
       "succ_ids": [
         "features_11_conv_0_2"
       ],
-      "edge_ms": 0.08901999999935128,
-      "cloud_ms": 0.11618000000055417,
+      "edge_ms": 0.08031999999502659,
+      "cloud_ms": 0.13336000000023773,
       "transmission_ms": 48.16896,
       "output_bytes": 301056,
       "partition": "edge",
@@ -1971,8 +1971,8 @@
       "succ_ids": [
         "features_11_conv_1_0"
       ],
-      "edge_ms": 0.05626000000020781,
-      "cloud_ms": 0.10803999999922098,
+      "edge_ms": 0.05227999999988242,
+      "cloud_ms": 0.10056000000062681,
       "transmission_ms": 48.16896,
       "output_bytes": 301056,
       "partition": "edge",
@@ -1984,8 +1984,8 @@
       "succ_ids": [
         "features_11_conv_1_1"
       ],
-      "edge_ms": 0.23404000000013525,
-      "cloud_ms": 0.10209999999943875,
+      "edge_ms": 0.2081199999963701,
+      "cloud_ms": 0.1105599999995377,
       "transmission_ms": 48.16896,
       "output_bytes": 301056,
       "partition": "edge",
@@ -1997,8 +1997,8 @@
       "succ_ids": [
         "features_11_conv_1_2"
       ],
-      "edge_ms": 0.0896200000006786,
-      "cloud_ms": 0.1132000000005462,
+      "edge_ms": 0.08763999999246153,
+      "cloud_ms": 0.13921999999979562,
       "transmission_ms": 48.16896,
       "output_bytes": 301056,
       "partition": "edge",
@@ -2010,8 +2010,8 @@
       "succ_ids": [
         "features_11_conv_2"
       ],
-      "edge_ms": 0.05582000000075027,
-      "cloud_ms": 0.08263999999940097,
+      "edge_ms": 0.05399999998871863,
+      "cloud_ms": 0.09602000000086264,
       "transmission_ms": 48.16896,
       "output_bytes": 301056,
       "partition": "edge",
@@ -2023,8 +2023,8 @@
       "succ_ids": [
         "features_11_conv_3"
       ],
-      "edge_ms": 0.2809600000006185,
-      "cloud_ms": 0.11524000000093793,
+      "edge_ms": 0.2757599999995364,
+      "cloud_ms": 0.14144000000015922,
       "transmission_ms": 12.04224,
       "output_bytes": 75264,
       "partition": "edge",
@@ -2037,8 +2037,8 @@
         "add_6",
         "features_12_conv_0_0"
       ],
-      "edge_ms": 0.07772000000088042,
-      "cloud_ms": 0.11095999999923833,
+      "edge_ms": 0.07538000000977263,
+      "cloud_ms": 0.2682200000009516,
       "transmission_ms": 12.04224,
       "output_bytes": 75264,
       "partition": "edge",
@@ -2050,8 +2050,8 @@
       "succ_ids": [
         "features_12_conv_0_1"
       ],
-      "edge_ms": 0.25758000000024595,
-      "cloud_ms": 0.1163599999998155,
+      "edge_ms": 0.2576200000021345,
+      "cloud_ms": 0.23760000000052628,
       "transmission_ms": 72.25344,
       "output_bytes": 451584,
       "partition": "edge",
@@ -2063,8 +2063,8 @@
       "succ_ids": [
         "features_12_conv_0_2"
       ],
-      "edge_ms": 0.10033999999947696,
-      "cloud_ms": 0.11096000000136996,
+      "edge_ms": 0.15062000001080378,
+      "cloud_ms": 0.13327999999930285,
       "transmission_ms": 72.25344,
       "output_bytes": 451584,
       "partition": "edge",
@@ -2076,8 +2076,8 @@
       "succ_ids": [
         "features_12_conv_1_0"
       ],
-      "edge_ms": 0.06571999999991363,
-      "cloud_ms": 0.07931999999897243,
+      "edge_ms": 0.057999999995672624,
+      "cloud_ms": 0.09439999999969473,
       "transmission_ms": 72.25344,
       "output_bytes": 451584,
       "partition": "edge",
@@ -2089,8 +2089,8 @@
       "succ_ids": [
         "features_12_conv_1_1"
       ],
-      "edge_ms": 0.34944000000152187,
-      "cloud_ms": 0.08758000000099742,
+      "edge_ms": 0.3258200000004763,
+      "cloud_ms": 0.1123800000009112,
       "transmission_ms": 72.25344,
       "output_bytes": 451584,
       "partition": "edge",
@@ -2102,8 +2102,8 @@
       "succ_ids": [
         "features_12_conv_1_2"
       ],
-      "edge_ms": 0.12737999999998806,
-      "cloud_ms": 0.10566000000054032,
+      "edge_ms": 0.10155999999597043,
+      "cloud_ms": 0.12521999999961508,
       "transmission_ms": 72.25344,
       "output_bytes": 451584,
       "partition": "edge",
@@ -2115,8 +2115,8 @@
       "succ_ids": [
         "features_12_conv_2"
       ],
-      "edge_ms": 0.0710399999995559,
-      "cloud_ms": 0.07773999999969305,
+      "edge_ms": 0.0588000000050215,
+      "cloud_ms": 0.08802000000045496,
       "transmission_ms": 72.25344,
       "output_bytes": 451584,
       "partition": "edge",
@@ -2128,8 +2128,8 @@
       "succ_ids": [
         "features_12_conv_3"
       ],
-      "edge_ms": 0.35581999999934055,
-      "cloud_ms": 0.11575999999990927,
+      "edge_ms": 0.3359599999953389,
+      "cloud_ms": 0.127180000000493,
       "transmission_ms": 12.04224,
       "output_bytes": 75264,
       "partition": "edge",
@@ -2141,8 +2141,8 @@
       "succ_ids": [
         "add_6"
       ],
-      "edge_ms": 0.08044000000069218,
-      "cloud_ms": 0.1635000000000275,
+      "edge_ms": 0.07931999999755135,
+      "cloud_ms": 0.11907999999962726,
       "transmission_ms": 12.04224,
       "output_bytes": 75264,
       "partition": "edge",
@@ -2155,8 +2155,8 @@
         "add_7",
         "features_13_conv_0_0"
       ],
-      "edge_ms": 0.04645999999937089,
-      "cloud_ms": 0.06776000000030535,
+      "edge_ms": 0.04586000001154389,
+      "cloud_ms": 0.07804000000035671,
       "transmission_ms": 12.04224,
       "output_bytes": 75264,
       "partition": "edge",
@@ -2168,8 +2168,8 @@
       "succ_ids": [
         "features_13_conv_0_1"
       ],
-      "edge_ms": 0.21604000000152723,
-      "cloud_ms": 0.11078000000068755,
+      "edge_ms": 0.2116599999965274,
+      "cloud_ms": 0.11988000000116017,
       "transmission_ms": 72.25344,
       "output_bytes": 451584,
       "partition": "edge",
@@ -2181,8 +2181,8 @@
       "succ_ids": [
         "features_13_conv_0_2"
       ],
-      "edge_ms": 0.10206000000039239,
-      "cloud_ms": 0.11026000000100566,
+      "edge_ms": 0.09537999999338354,
+      "cloud_ms": 0.11521999999928312,
       "transmission_ms": 72.25344,
       "output_bytes": 451584,
       "partition": "edge",
@@ -2194,8 +2194,8 @@
       "succ_ids": [
         "features_13_conv_1_0"
       ],
-      "edge_ms": 0.058600000000552654,
-      "cloud_ms": 0.08114000000034594,
+      "edge_ms": 0.05494000000680899,
+      "cloud_ms": 0.0913399999994624,
       "transmission_ms": 72.25344,
       "output_bytes": 451584,
       "partition": "edge",
@@ -2207,8 +2207,8 @@
       "succ_ids": [
         "features_13_conv_1_1"
       ],
-      "edge_ms": 0.2725199999993322,
-      "cloud_ms": 0.09575999999924534,
+      "edge_ms": 0.25734000000170454,
+      "cloud_ms": 0.11212000000000444,
       "transmission_ms": 72.25344,
       "output_bytes": 451584,
       "partition": "edge",
@@ -2220,8 +2220,8 @@
       "succ_ids": [
         "features_13_conv_1_2"
       ],
-      "edge_ms": 0.10426000000052227,
-      "cloud_ms": 0.1084000000005858,
+      "edge_ms": 0.0944800000070245,
+      "cloud_ms": 0.12272000000024263,
       "transmission_ms": 72.25344,
       "output_bytes": 451584,
       "partition": "edge",
@@ -2233,8 +2233,8 @@
       "succ_ids": [
         "features_13_conv_2"
       ],
-      "edge_ms": 0.07051999999916347,
-      "cloud_ms": 0.07883999999975799,
+      "edge_ms": 0.05643999999733751,
+      "cloud_ms": 0.08987999999945373,
       "transmission_ms": 72.25344,
       "output_bytes": 451584,
       "partition": "edge",
@@ -2246,8 +2246,8 @@
       "succ_ids": [
         "features_13_conv_3"
       ],
-      "edge_ms": 0.35200000000088494,
-      "cloud_ms": 0.16454000000010183,
+      "edge_ms": 0.3090799999995397,
+      "cloud_ms": 0.1239200000000551,
       "transmission_ms": 12.04224,
       "output_bytes": 75264,
       "partition": "edge",
@@ -2259,8 +2259,8 @@
       "succ_ids": [
         "add_7"
       ],
-      "edge_ms": 0.09420000000019968,
-      "cloud_ms": 0.1082999999994172,
+      "edge_ms": 0.10089999999536303,
+      "cloud_ms": 0.11438000000012494,
       "transmission_ms": 12.04224,
       "output_bytes": 75264,
       "partition": "edge",
@@ -2272,8 +2272,8 @@
       "succ_ids": [
         "features_14_conv_0_0"
       ],
-      "edge_ms": 0.050420000000173104,
-      "cloud_ms": 0.06601999999986674,
+      "edge_ms": 0.04918000000770917,
+      "cloud_ms": 0.07232000000030325,
       "transmission_ms": 12.04224,
       "output_bytes": 75264,
       "partition": "edge",
@@ -2285,8 +2285,8 @@
       "succ_ids": [
         "features_14_conv_0_1"
       ],
-      "edge_ms": 0.25318000000069674,
-      "cloud_ms": 0.11124000000037881,
+      "edge_ms": 0.23445999999580636,
+      "cloud_ms": 0.12035999999966407,
       "transmission_ms": 72.25344,
       "output_bytes": 451584,
       "partition": "edge",
@@ -2298,8 +2298,8 @@
       "succ_ids": [
         "features_14_conv_0_2"
       ],
-      "edge_ms": 0.11789999999933798,
-      "cloud_ms": 0.11089999999924771,
+      "edge_ms": 0.12648000000581305,
+      "cloud_ms": 0.11544000000043297,
       "transmission_ms": 72.25344,
       "output_bytes": 451584,
       "partition": "edge",
@@ -2311,8 +2311,8 @@
       "succ_ids": [
         "features_14_conv_1_0"
       ],
-      "edge_ms": 0.06325999999958754,
-      "cloud_ms": 0.08030000000047721,
+      "edge_ms": 0.06614000000695341,
+      "cloud_ms": 0.09074000000026672,
       "transmission_ms": 72.25344,
       "output_bytes": 451584,
       "partition": "edge",
@@ -2324,8 +2324,8 @@
       "succ_ids": [
         "features_14_conv_1_1"
       ],
-      "edge_ms": 0.2694799999993336,
-      "cloud_ms": 0.09322000000153707,
+      "edge_ms": 0.25102000000174485,
+      "cloud_ms": 0.10385999999940054,
       "transmission_ms": 18.06336,
       "output_bytes": 112896,
       "partition": "edge",
@@ -2337,8 +2337,8 @@
       "succ_ids": [
         "features_14_conv_1_2"
       ],
-      "edge_ms": 0.08551999999966142,
-      "cloud_ms": 0.10502000000016665,
+      "edge_ms": 0.08465999999884843,
+      "cloud_ms": 0.1236400000003357,
       "transmission_ms": 18.06336,
       "output_bytes": 112896,
       "partition": "edge",
@@ -2350,8 +2350,8 @@
       "succ_ids": [
         "features_14_conv_2"
       ],
-      "edge_ms": 0.054160000000536,
-      "cloud_ms": 0.07918000000017855,
+      "edge_ms": 0.053600000001097214,
+      "cloud_ms": 0.08895999999936066,
       "transmission_ms": 18.06336,
       "output_bytes": 112896,
       "partition": "edge",
@@ -2363,8 +2363,8 @@
       "succ_ids": [
         "features_14_conv_3"
       ],
-      "edge_ms": 0.3705199999998854,
-      "cloud_ms": 0.11620000000007735,
+      "edge_ms": 0.3218399999923349,
+      "cloud_ms": 0.13082000000039784,
       "transmission_ms": 5.0176,
       "output_bytes": 31360,
       "partition": "edge",
@@ -2377,8 +2377,8 @@
         "add_8",
         "features_15_conv_0_0"
       ],
-      "edge_ms": 0.08371999999994273,
-      "cloud_ms": 0.1045400000009522,
+      "edge_ms": 0.08137999999462409,
+      "cloud_ms": 0.12567999999930635,
       "transmission_ms": 5.0176,
       "output_bytes": 31360,
       "partition": "edge",
@@ -2390,8 +2390,8 @@
       "succ_ids": [
         "features_15_conv_0_1"
       ],
-      "edge_ms": 0.4533999999999594,
-      "cloud_ms": 0.11332000000052744,
+      "edge_ms": 0.31718000000182656,
+      "cloud_ms": 0.13420000000010646,
       "transmission_ms": 30.1056,
       "output_bytes": 188160,
       "partition": "edge",
@@ -2403,8 +2403,8 @@
       "succ_ids": [
         "features_15_conv_0_2"
       ],
-      "edge_ms": 0.09346000000007848,
-      "cloud_ms": 0.11193999999861148,
+      "edge_ms": 0.16951999999719192,
+      "cloud_ms": 0.12055999999915912,
       "transmission_ms": 30.1056,
       "output_bytes": 188160,
       "partition": "edge",
@@ -2416,8 +2416,8 @@
       "succ_ids": [
         "features_15_conv_1_0"
       ],
-      "edge_ms": 0.05778000000020711,
-      "cloud_ms": 0.08959999999973434,
+      "edge_ms": 0.07436000000211607,
+      "cloud_ms": 0.08295999999958781,
       "transmission_ms": 30.1056,
       "output_bytes": 188160,
       "partition": "edge",
@@ -2429,8 +2429,8 @@
       "succ_ids": [
         "features_15_conv_1_1"
       ],
-      "edge_ms": 0.23222000000018284,
-      "cloud_ms": 0.09729999999947836,
+      "edge_ms": 0.3045000000042819,
+      "cloud_ms": 0.09638000000009583,
       "transmission_ms": 30.1056,
       "output_bytes": 188160,
       "partition": "edge",
@@ -2442,8 +2442,8 @@
       "succ_ids": [
         "features_15_conv_1_2"
       ],
-      "edge_ms": 0.0884999999996694,
-      "cloud_ms": 0.10553999999984853,
+      "edge_ms": 0.1289199999973789,
+      "cloud_ms": 0.11963999999977659,
       "transmission_ms": 30.1056,
       "output_bytes": 188160,
       "partition": "edge",
@@ -2455,8 +2455,8 @@
       "succ_ids": [
         "features_15_conv_2"
       ],
-      "edge_ms": 0.05290000000144346,
-      "cloud_ms": 0.08299999999863417,
+      "edge_ms": 0.0691200000005665,
+      "cloud_ms": 0.08531999999945583,
       "transmission_ms": 30.1056,
       "output_bytes": 188160,
       "partition": "edge",
@@ -2468,8 +2468,8 @@
       "succ_ids": [
         "features_15_conv_3"
       ],
-      "edge_ms": 0.37128000000095085,
-      "cloud_ms": 0.11860000000112336,
+      "edge_ms": 0.5731799999978193,
+      "cloud_ms": 0.13325999999977967,
       "transmission_ms": 5.0176,
       "output_bytes": 31360,
       "partition": "edge",
@@ -2481,8 +2481,8 @@
       "succ_ids": [
         "add_8"
       ],
-      "edge_ms": 0.07378000000102247,
-      "cloud_ms": 0.10540000000034411,
+      "edge_ms": 0.13699999999516876,
+      "cloud_ms": 0.11660000000048854,
       "transmission_ms": 5.0176,
       "output_bytes": 31360,
       "partition": "edge",
@@ -2495,8 +2495,8 @@
         "add_9",
         "features_16_conv_0_0"
       ],
-      "edge_ms": 0.03372000000041453,
-      "cloud_ms": 0.06455999999914752,
+      "edge_ms": 0.04604000000085762,
+      "cloud_ms": 0.06804000000002475,
       "transmission_ms": 5.0176,
       "output_bytes": 31360,
       "partition": "edge",
@@ -2508,8 +2508,8 @@
       "succ_ids": [
         "features_16_conv_0_1"
       ],
-      "edge_ms": 0.24033999999986122,
-      "cloud_ms": 0.11302000000057433,
+      "edge_ms": 0.3798400000050606,
+      "cloud_ms": 0.12322000000040134,
       "transmission_ms": 30.1056,
       "output_bytes": 188160,
       "partition": "edge",
@@ -2521,8 +2521,8 @@
       "succ_ids": [
         "features_16_conv_0_2"
       ],
-      "edge_ms": 0.08497999999974581,
-      "cloud_ms": 0.10651999999993222,
+      "edge_ms": 0.12017999999898166,
+      "cloud_ms": 0.12187999999966337,
       "transmission_ms": 30.1056,
       "output_bytes": 188160,
       "partition": "edge",
@@ -2534,8 +2534,8 @@
       "succ_ids": [
         "features_16_conv_1_0"
       ],
-      "edge_ms": 0.05538000000129273,
-      "cloud_ms": 0.08038000000070156,
+      "edge_ms": 0.07075999999415217,
+      "cloud_ms": 0.08324000000072829,
       "transmission_ms": 30.1056,
       "output_bytes": 188160,
       "partition": "edge",
@@ -2547,8 +2547,8 @@
       "succ_ids": [
         "features_16_conv_1_1"
       ],
-      "edge_ms": 0.21227999999950953,
-      "cloud_ms": 0.09205999999934988,
+      "edge_ms": 0.24876000000517706,
+      "cloud_ms": 0.09647999999913281,
       "transmission_ms": 30.1056,
       "output_bytes": 188160,
       "partition": "edge",
@@ -2560,8 +2560,8 @@
       "succ_ids": [
         "features_16_conv_1_2"
       ],
-      "edge_ms": 0.09735999999946898,
-      "cloud_ms": 0.1041600000000642,
+      "edge_ms": 0.09987999999339081,
+      "cloud_ms": 0.12012000000041212,
       "transmission_ms": 30.1056,
       "output_bytes": 188160,
       "partition": "edge",
@@ -2573,8 +2573,8 @@
       "succ_ids": [
         "features_16_conv_2"
       ],
-      "edge_ms": 0.05363999999943303,
-      "cloud_ms": 0.12337999999942895,
+      "edge_ms": 0.05690000000981854,
+      "cloud_ms": 0.09012000000012677,
       "transmission_ms": 30.1056,
       "output_bytes": 188160,
       "partition": "edge",
@@ -2586,8 +2586,8 @@
       "succ_ids": [
         "features_16_conv_3"
       ],
-      "edge_ms": 0.31018000000102575,
-      "cloud_ms": 0.11280000000013501,
+      "edge_ms": 0.33100000000558794,
+      "cloud_ms": 0.17498000000131242,
       "transmission_ms": 5.0176,
       "output_bytes": 31360,
       "partition": "edge",
@@ -2599,8 +2599,8 @@
       "succ_ids": [
         "add_9"
       ],
-      "edge_ms": 0.07497999999941385,
-      "cloud_ms": 0.10511999999991417,
+      "edge_ms": 0.07412000000499575,
+      "cloud_ms": 0.12557999999955882,
       "transmission_ms": 5.0176,
       "output_bytes": 31360,
       "partition": "edge",
@@ -2612,8 +2612,8 @@
       "succ_ids": [
         "features_17_conv_0_0"
       ],
-      "edge_ms": 0.03686000000016065,
-      "cloud_ms": 0.06429999999895131,
+      "edge_ms": 0.03341999999406653,
+      "cloud_ms": 0.0658999999998855,
       "transmission_ms": 5.0176,
       "output_bytes": 31360,
       "partition": "edge",
@@ -2625,8 +2625,8 @@
       "succ_ids": [
         "features_17_conv_0_1"
       ],
-      "edge_ms": 0.2624999999987665,
-      "cloud_ms": 0.11114000000134183,
+      "edge_ms": 0.21817999999598214,
+      "cloud_ms": 0.13432000000079825,
       "transmission_ms": 30.1056,
       "output_bytes": 188160,
       "partition": "edge",
@@ -2638,8 +2638,8 @@
       "succ_ids": [
         "features_17_conv_0_2"
       ],
-      "edge_ms": 0.24377999999956046,
-      "cloud_ms": 0.1097799999996596,
+      "edge_ms": 0.08113999999181942,
+      "cloud_ms": 0.17801999999988993,
       "transmission_ms": 30.1056,
       "output_bytes": 188160,
       "partition": "edge",
@@ -2651,8 +2651,8 @@
       "succ_ids": [
         "features_17_conv_1_0"
       ],
-      "edge_ms": 0.07381999999935829,
-      "cloud_ms": 0.07911999999947739,
+      "edge_ms": 0.052119999998012645,
+      "cloud_ms": 0.1618600000007575,
       "transmission_ms": 30.1056,
       "output_bytes": 188160,
       "partition": "edge",
@@ -2664,8 +2664,8 @@
       "succ_ids": [
         "features_17_conv_1_1"
       ],
-      "edge_ms": 0.2513399999990895,
-      "cloud_ms": 0.09045999999912624,
+      "edge_ms": 0.23224000000254819,
+      "cloud_ms": 0.10360000000062541,
       "transmission_ms": 30.1056,
       "output_bytes": 188160,
       "partition": "edge",
@@ -2677,8 +2677,8 @@
       "succ_ids": [
         "features_17_conv_1_2"
       ],
-      "edge_ms": 0.10467999999974609,
-      "cloud_ms": 0.10435999999955925,
+      "edge_ms": 0.09234000000333253,
+      "cloud_ms": 0.11992000000020653,
       "transmission_ms": 30.1056,
       "output_bytes": 188160,
       "partition": "edge",
@@ -2690,8 +2690,8 @@
       "succ_ids": [
         "features_17_conv_2"
       ],
-      "edge_ms": 0.05775999999997339,
-      "cloud_ms": 0.07912000000018793,
+      "edge_ms": 0.051479999996217884,
+      "cloud_ms": 0.08252000000013027,
       "transmission_ms": 30.1056,
       "output_bytes": 188160,
       "partition": "edge",
@@ -2703,8 +2703,8 @@
       "succ_ids": [
         "features_17_conv_3"
       ],
-      "edge_ms": 0.6903200000010656,
-      "cloud_ms": 0.11469999999889069,
+      "edge_ms": 0.6448799999986932,
+      "cloud_ms": 0.22711999999955879,
       "transmission_ms": 10.0352,
       "output_bytes": 62720,
       "partition": "edge",
@@ -2716,8 +2716,8 @@
       "succ_ids": [
         "features_18_0"
       ],
-      "edge_ms": 0.09115999999949054,
-      "cloud_ms": 0.10647999999946478,
+      "edge_ms": 0.08208000000422544,
+      "cloud_ms": 0.1526800000007711,
       "transmission_ms": 10.0352,
       "output_bytes": 62720,
       "partition": "edge",
@@ -2729,8 +2729,8 @@
       "succ_ids": [
         "features_18_1"
       ],
-      "edge_ms": 0.48151999999959116,
-      "cloud_ms": 0.11771999999865557,
+      "edge_ms": 0.4924199999948087,
+      "cloud_ms": 0.13995999999920627,
       "transmission_ms": 40.1408,
       "output_bytes": 250880,
       "partition": "edge",
@@ -2742,8 +2742,8 @@
       "succ_ids": [
         "features_18_2"
       ],
-      "edge_ms": 0.10420000000053165,
-      "cloud_ms": 0.10405999999960613,
+      "edge_ms": 0.12597999999570675,
+      "cloud_ms": 0.19170000000059417,
       "transmission_ms": 40.1408,
       "output_bytes": 250880,
       "partition": "edge",
@@ -2755,8 +2755,8 @@
       "succ_ids": [
         "adaptive_avg_pool2d"
       ],
-      "edge_ms": 0.06564000000111037,
-      "cloud_ms": 0.07543999999981565,
+      "edge_ms": 0.059659999999439606,
+      "cloud_ms": 0.10025999999996316,
       "transmission_ms": 40.1408,
       "output_bytes": 250880,
       "partition": "edge",
@@ -2768,8 +2768,8 @@
       "succ_ids": [
         "flatten"
       ],
-      "edge_ms": 0.11423999999990997,
-      "cloud_ms": 0.09247999999999479,
+      "edge_ms": 0.13919999999529864,
+      "cloud_ms": 0.11087999999972453,
       "transmission_ms": 0.8191999999999999,
       "output_bytes": 5120,
       "partition": "edge",
@@ -2781,8 +2781,8 @@
       "succ_ids": [
         "classifier_0"
       ],
-      "edge_ms": 0.03890000000055238,
-      "cloud_ms": 0.03683999999992693,
+      "edge_ms": 0.03752000000645239,
+      "cloud_ms": 0.04884000000018318,
       "transmission_ms": 0.8191999999999999,
       "output_bytes": 5120,
       "partition": "edge",
@@ -2794,8 +2794,8 @@
       "succ_ids": [
         "classifier_1"
       ],
-      "edge_ms": 0.05036000000018248,
-      "cloud_ms": 0.046380000000567634,
+      "edge_ms": 0.05358000000796892,
+      "cloud_ms": 0.06284000000107426,
       "transmission_ms": 0.8191999999999999,
       "output_bytes": 5120,
       "partition": "edge",
@@ -2805,8 +2805,8 @@
       "id": "classifier_1",
       "op_type": "Linear",
       "succ_ids": [],
-      "edge_ms": 0.5137000000004832,
-      "cloud_ms": 0.1384999999991976,
+      "edge_ms": 0.5146400000057838,
+      "cloud_ms": 0.1730999999999483,
       "transmission_ms": 0.64,
       "output_bytes": 4000,
       "partition": "edge",
@@ -2831,1092 +2831,1092 @@
     {
       "src": "__source__",
       "dst": "__input__",
-      "capacity_ms": 12740.074860000024,
+      "capacity_ms": 12742.863140000056,
       "role": "cloud",
       "is_cut_edge": false
     },
     {
       "src": "__source__",
       "dst": "adaptive_avg_pool2d",
-      "capacity_ms": 0.09247999999999479,
+      "capacity_ms": 0.11087999999972453,
       "role": "cloud",
       "is_cut_edge": false
     },
     {
       "src": "__source__",
       "dst": "add",
-      "capacity_ms": 0.07085999999958403,
+      "capacity_ms": 0.07042000000012649,
       "role": "cloud",
       "is_cut_edge": false
     },
     {
       "src": "__source__",
       "dst": "add_1",
-      "capacity_ms": 0.07385999999982573,
+      "capacity_ms": 0.08710000000107243,
       "role": "cloud",
       "is_cut_edge": false
     },
     {
       "src": "__source__",
       "dst": "add_2",
-      "capacity_ms": 0.07103999999884536,
+      "capacity_ms": 0.074700000000405,
       "role": "cloud",
       "is_cut_edge": false
     },
     {
       "src": "__source__",
       "dst": "add_3",
-      "capacity_ms": 0.07054000000152882,
+      "capacity_ms": 0.13936000000072113,
       "role": "cloud",
       "is_cut_edge": false
     },
     {
       "src": "__source__",
       "dst": "add_4",
-      "capacity_ms": 0.06961999999930413,
+      "capacity_ms": 0.07796000000013237,
       "role": "cloud",
       "is_cut_edge": false
     },
     {
       "src": "__source__",
       "dst": "add_5",
-      "capacity_ms": 0.11766000000008603,
+      "capacity_ms": 0.1145600000000968,
       "role": "cloud",
       "is_cut_edge": false
     },
     {
       "src": "__source__",
       "dst": "add_6",
-      "capacity_ms": 0.06776000000030535,
+      "capacity_ms": 0.07804000000035671,
       "role": "cloud",
       "is_cut_edge": false
     },
     {
       "src": "__source__",
       "dst": "add_7",
-      "capacity_ms": 0.06601999999986674,
+      "capacity_ms": 0.07232000000030325,
       "role": "cloud",
       "is_cut_edge": false
     },
     {
       "src": "__source__",
       "dst": "add_8",
-      "capacity_ms": 0.06455999999914752,
+      "capacity_ms": 0.06804000000002475,
       "role": "cloud",
       "is_cut_edge": false
     },
     {
       "src": "__source__",
       "dst": "add_9",
-      "capacity_ms": 0.06429999999895131,
+      "capacity_ms": 0.0658999999998855,
       "role": "cloud",
       "is_cut_edge": false
     },
     {
       "src": "__source__",
       "dst": "classifier_0",
-      "capacity_ms": 0.046380000000567634,
+      "capacity_ms": 0.06284000000107426,
       "role": "cloud",
       "is_cut_edge": false
     },
     {
       "src": "__source__",
       "dst": "classifier_1",
-      "capacity_ms": 0.1384999999991976,
+      "capacity_ms": 0.1730999999999483,
       "role": "cloud",
       "is_cut_edge": false
     },
     {
       "src": "__source__",
       "dst": "features_0_0",
-      "capacity_ms": 0.12877999999929557,
+      "capacity_ms": 0.2262000000008868,
       "role": "cloud",
       "is_cut_edge": false
     },
     {
       "src": "__source__",
       "dst": "features_0_1",
-      "capacity_ms": 0.1360400000002926,
+      "capacity_ms": 0.1303399999997623,
       "role": "cloud",
       "is_cut_edge": false
     },
     {
       "src": "__source__",
       "dst": "features_0_2",
-      "capacity_ms": 0.08622000000073626,
+      "capacity_ms": 0.08593999999959578,
       "role": "cloud",
       "is_cut_edge": false
     },
     {
       "src": "__source__",
       "dst": "features_10_conv_0_0",
-      "capacity_ms": 0.12519999999938136,
+      "capacity_ms": 0.13441999999983523,
       "role": "cloud",
       "is_cut_edge": false
     },
     {
       "src": "__source__",
       "dst": "features_10_conv_0_1",
-      "capacity_ms": 0.11339999999862016,
+      "capacity_ms": 0.1295999999996411,
       "role": "cloud",
       "is_cut_edge": false
     },
     {
       "src": "__source__",
       "dst": "features_10_conv_0_2",
-      "capacity_ms": 0.08450000000053137,
+      "capacity_ms": 0.09643999999937591,
       "role": "cloud",
       "is_cut_edge": false
     },
     {
       "src": "__source__",
       "dst": "features_10_conv_1_0",
-      "capacity_ms": 0.09738000000041325,
+      "capacity_ms": 0.11790000000075906,
       "role": "cloud",
       "is_cut_edge": false
     },
     {
       "src": "__source__",
       "dst": "features_10_conv_1_1",
-      "capacity_ms": 0.1300399999983881,
+      "capacity_ms": 0.21617999999961057,
       "role": "cloud",
       "is_cut_edge": false
     },
     {
       "src": "__source__",
       "dst": "features_10_conv_1_2",
-      "capacity_ms": 0.09070000000050982,
+      "capacity_ms": 0.09276000000042472,
       "role": "cloud",
       "is_cut_edge": false
     },
     {
       "src": "__source__",
       "dst": "features_10_conv_2",
-      "capacity_ms": 0.1278800000008573,
+      "capacity_ms": 0.1679199999990999,
       "role": "cloud",
       "is_cut_edge": false
     },
     {
       "src": "__source__",
       "dst": "features_10_conv_3",
-      "capacity_ms": 0.16133999999823345,
+      "capacity_ms": 0.16555999999994242,
       "role": "cloud",
       "is_cut_edge": false
     },
     {
       "src": "__source__",
       "dst": "features_11_conv_0_0",
-      "capacity_ms": 0.12142000000068265,
+      "capacity_ms": 0.15229999999917254,
       "role": "cloud",
       "is_cut_edge": false
     },
     {
       "src": "__source__",
       "dst": "features_11_conv_0_1",
-      "capacity_ms": 0.11618000000055417,
+      "capacity_ms": 0.13336000000023773,
       "role": "cloud",
       "is_cut_edge": false
     },
     {
       "src": "__source__",
       "dst": "features_11_conv_0_2",
-      "capacity_ms": 0.10803999999922098,
+      "capacity_ms": 0.10056000000062681,
       "role": "cloud",
       "is_cut_edge": false
     },
     {
       "src": "__source__",
       "dst": "features_11_conv_1_0",
-      "capacity_ms": 0.10209999999943875,
+      "capacity_ms": 0.1105599999995377,
       "role": "cloud",
       "is_cut_edge": false
     },
     {
       "src": "__source__",
       "dst": "features_11_conv_1_1",
-      "capacity_ms": 0.1132000000005462,
+      "capacity_ms": 0.13921999999979562,
       "role": "cloud",
       "is_cut_edge": false
     },
     {
       "src": "__source__",
       "dst": "features_11_conv_1_2",
-      "capacity_ms": 0.08263999999940097,
+      "capacity_ms": 0.09602000000086264,
       "role": "cloud",
       "is_cut_edge": false
     },
     {
       "src": "__source__",
       "dst": "features_11_conv_2",
-      "capacity_ms": 0.11524000000093793,
+      "capacity_ms": 0.14144000000015922,
       "role": "cloud",
       "is_cut_edge": false
     },
     {
       "src": "__source__",
       "dst": "features_11_conv_3",
-      "capacity_ms": 0.11095999999923833,
+      "capacity_ms": 0.2682200000009516,
       "role": "cloud",
       "is_cut_edge": false
     },
     {
       "src": "__source__",
       "dst": "features_12_conv_0_0",
-      "capacity_ms": 0.1163599999998155,
+      "capacity_ms": 0.23760000000052628,
       "role": "cloud",
       "is_cut_edge": false
     },
     {
       "src": "__source__",
       "dst": "features_12_conv_0_1",
-      "capacity_ms": 0.11096000000136996,
+      "capacity_ms": 0.13327999999930285,
       "role": "cloud",
       "is_cut_edge": false
     },
     {
       "src": "__source__",
       "dst": "features_12_conv_0_2",
-      "capacity_ms": 0.07931999999897243,
+      "capacity_ms": 0.09439999999969473,
       "role": "cloud",
       "is_cut_edge": false
     },
     {
       "src": "__source__",
       "dst": "features_12_conv_1_0",
-      "capacity_ms": 0.08758000000099742,
+      "capacity_ms": 0.1123800000009112,
       "role": "cloud",
       "is_cut_edge": false
     },
     {
       "src": "__source__",
       "dst": "features_12_conv_1_1",
-      "capacity_ms": 0.10566000000054032,
+      "capacity_ms": 0.12521999999961508,
       "role": "cloud",
       "is_cut_edge": false
     },
     {
       "src": "__source__",
       "dst": "features_12_conv_1_2",
-      "capacity_ms": 0.07773999999969305,
+      "capacity_ms": 0.08802000000045496,
       "role": "cloud",
       "is_cut_edge": false
     },
     {
       "src": "__source__",
       "dst": "features_12_conv_2",
-      "capacity_ms": 0.11575999999990927,
+      "capacity_ms": 0.127180000000493,
       "role": "cloud",
       "is_cut_edge": false
     },
     {
       "src": "__source__",
       "dst": "features_12_conv_3",
-      "capacity_ms": 0.1635000000000275,
+      "capacity_ms": 0.11907999999962726,
       "role": "cloud",
       "is_cut_edge": false
     },
     {
       "src": "__source__",
       "dst": "features_13_conv_0_0",
-      "capacity_ms": 0.11078000000068755,
+      "capacity_ms": 0.11988000000116017,
       "role": "cloud",
       "is_cut_edge": false
     },
     {
       "src": "__source__",
       "dst": "features_13_conv_0_1",
-      "capacity_ms": 0.11026000000100566,
+      "capacity_ms": 0.11521999999928312,
       "role": "cloud",
       "is_cut_edge": false
     },
     {
       "src": "__source__",
       "dst": "features_13_conv_0_2",
-      "capacity_ms": 0.08114000000034594,
+      "capacity_ms": 0.0913399999994624,
       "role": "cloud",
       "is_cut_edge": false
     },
     {
       "src": "__source__",
       "dst": "features_13_conv_1_0",
-      "capacity_ms": 0.09575999999924534,
+      "capacity_ms": 0.11212000000000444,
       "role": "cloud",
       "is_cut_edge": false
     },
     {
       "src": "__source__",
       "dst": "features_13_conv_1_1",
-      "capacity_ms": 0.1084000000005858,
+      "capacity_ms": 0.12272000000024263,
       "role": "cloud",
       "is_cut_edge": false
     },
     {
       "src": "__source__",
       "dst": "features_13_conv_1_2",
-      "capacity_ms": 0.07883999999975799,
+      "capacity_ms": 0.08987999999945373,
       "role": "cloud",
       "is_cut_edge": false
     },
     {
       "src": "__source__",
       "dst": "features_13_conv_2",
-      "capacity_ms": 0.16454000000010183,
+      "capacity_ms": 0.1239200000000551,
       "role": "cloud",
       "is_cut_edge": false
     },
     {
       "src": "__source__",
       "dst": "features_13_conv_3",
-      "capacity_ms": 0.1082999999994172,
+      "capacity_ms": 0.11438000000012494,
       "role": "cloud",
       "is_cut_edge": false
     },
     {
       "src": "__source__",
       "dst": "features_14_conv_0_0",
-      "capacity_ms": 0.11124000000037881,
+      "capacity_ms": 0.12035999999966407,
       "role": "cloud",
       "is_cut_edge": false
     },
     {
       "src": "__source__",
       "dst": "features_14_conv_0_1",
-      "capacity_ms": 0.11089999999924771,
+      "capacity_ms": 0.11544000000043297,
       "role": "cloud",
       "is_cut_edge": false
     },
     {
       "src": "__source__",
       "dst": "features_14_conv_0_2",
-      "capacity_ms": 0.08030000000047721,
+      "capacity_ms": 0.09074000000026672,
       "role": "cloud",
       "is_cut_edge": false
     },
     {
       "src": "__source__",
       "dst": "features_14_conv_1_0",
-      "capacity_ms": 0.09322000000153707,
+      "capacity_ms": 0.10385999999940054,
       "role": "cloud",
       "is_cut_edge": false
     },
     {
       "src": "__source__",
       "dst": "features_14_conv_1_1",
-      "capacity_ms": 0.10502000000016665,
+      "capacity_ms": 0.1236400000003357,
       "role": "cloud",
       "is_cut_edge": false
     },
     {
       "src": "__source__",
       "dst": "features_14_conv_1_2",
-      "capacity_ms": 0.07918000000017855,
+      "capacity_ms": 0.08895999999936066,
       "role": "cloud",
       "is_cut_edge": false
     },
     {
       "src": "__source__",
       "dst": "features_14_conv_2",
-      "capacity_ms": 0.11620000000007735,
+      "capacity_ms": 0.13082000000039784,
       "role": "cloud",
       "is_cut_edge": false
     },
     {
       "src": "__source__",
       "dst": "features_14_conv_3",
-      "capacity_ms": 0.1045400000009522,
+      "capacity_ms": 0.12567999999930635,
       "role": "cloud",
       "is_cut_edge": false
     },
     {
       "src": "__source__",
       "dst": "features_15_conv_0_0",
-      "capacity_ms": 0.11332000000052744,
+      "capacity_ms": 0.13420000000010646,
       "role": "cloud",
       "is_cut_edge": false
     },
     {
       "src": "__source__",
       "dst": "features_15_conv_0_1",
-      "capacity_ms": 0.11193999999861148,
+      "capacity_ms": 0.12055999999915912,
       "role": "cloud",
       "is_cut_edge": false
     },
     {
       "src": "__source__",
       "dst": "features_15_conv_0_2",
-      "capacity_ms": 0.08959999999973434,
+      "capacity_ms": 0.08295999999958781,
       "role": "cloud",
       "is_cut_edge": false
     },
     {
       "src": "__source__",
       "dst": "features_15_conv_1_0",
-      "capacity_ms": 0.09729999999947836,
+      "capacity_ms": 0.09638000000009583,
       "role": "cloud",
       "is_cut_edge": false
     },
     {
       "src": "__source__",
       "dst": "features_15_conv_1_1",
-      "capacity_ms": 0.10553999999984853,
+      "capacity_ms": 0.11963999999977659,
       "role": "cloud",
       "is_cut_edge": false
     },
     {
       "src": "__source__",
       "dst": "features_15_conv_1_2",
-      "capacity_ms": 0.08299999999863417,
+      "capacity_ms": 0.08531999999945583,
       "role": "cloud",
       "is_cut_edge": false
     },
     {
       "src": "__source__",
       "dst": "features_15_conv_2",
-      "capacity_ms": 0.11860000000112336,
+      "capacity_ms": 0.13325999999977967,
       "role": "cloud",
       "is_cut_edge": false
     },
     {
       "src": "__source__",
       "dst": "features_15_conv_3",
-      "capacity_ms": 0.10540000000034411,
+      "capacity_ms": 0.11660000000048854,
       "role": "cloud",
       "is_cut_edge": false
     },
     {
       "src": "__source__",
       "dst": "features_16_conv_0_0",
-      "capacity_ms": 0.11302000000057433,
+      "capacity_ms": 0.12322000000040134,
       "role": "cloud",
       "is_cut_edge": false
     },
     {
       "src": "__source__",
       "dst": "features_16_conv_0_1",
-      "capacity_ms": 0.10651999999993222,
+      "capacity_ms": 0.12187999999966337,
       "role": "cloud",
       "is_cut_edge": false
     },
     {
       "src": "__source__",
       "dst": "features_16_conv_0_2",
-      "capacity_ms": 0.08038000000070156,
+      "capacity_ms": 0.08324000000072829,
       "role": "cloud",
       "is_cut_edge": false
     },
     {
       "src": "__source__",
       "dst": "features_16_conv_1_0",
-      "capacity_ms": 0.09205999999934988,
+      "capacity_ms": 0.09647999999913281,
       "role": "cloud",
       "is_cut_edge": false
     },
     {
       "src": "__source__",
       "dst": "features_16_conv_1_1",
-      "capacity_ms": 0.1041600000000642,
+      "capacity_ms": 0.12012000000041212,
       "role": "cloud",
       "is_cut_edge": false
     },
     {
       "src": "__source__",
       "dst": "features_16_conv_1_2",
-      "capacity_ms": 0.12337999999942895,
+      "capacity_ms": 0.09012000000012677,
       "role": "cloud",
       "is_cut_edge": false
     },
     {
       "src": "__source__",
       "dst": "features_16_conv_2",
-      "capacity_ms": 0.11280000000013501,
+      "capacity_ms": 0.17498000000131242,
       "role": "cloud",
       "is_cut_edge": false
     },
     {
       "src": "__source__",
       "dst": "features_16_conv_3",
-      "capacity_ms": 0.10511999999991417,
+      "capacity_ms": 0.12557999999955882,
       "role": "cloud",
       "is_cut_edge": false
     },
     {
       "src": "__source__",
       "dst": "features_17_conv_0_0",
-      "capacity_ms": 0.11114000000134183,
+      "capacity_ms": 0.13432000000079825,
       "role": "cloud",
       "is_cut_edge": false
     },
     {
       "src": "__source__",
       "dst": "features_17_conv_0_1",
-      "capacity_ms": 0.1097799999996596,
+      "capacity_ms": 0.17801999999988993,
       "role": "cloud",
       "is_cut_edge": false
     },
     {
       "src": "__source__",
       "dst": "features_17_conv_0_2",
-      "capacity_ms": 0.07911999999947739,
+      "capacity_ms": 0.1618600000007575,
       "role": "cloud",
       "is_cut_edge": false
     },
     {
       "src": "__source__",
       "dst": "features_17_conv_1_0",
-      "capacity_ms": 0.09045999999912624,
+      "capacity_ms": 0.10360000000062541,
       "role": "cloud",
       "is_cut_edge": false
     },
     {
       "src": "__source__",
       "dst": "features_17_conv_1_1",
-      "capacity_ms": 0.10435999999955925,
+      "capacity_ms": 0.11992000000020653,
       "role": "cloud",
       "is_cut_edge": false
     },
     {
       "src": "__source__",
       "dst": "features_17_conv_1_2",
-      "capacity_ms": 0.07912000000018793,
+      "capacity_ms": 0.08252000000013027,
       "role": "cloud",
       "is_cut_edge": false
     },
     {
       "src": "__source__",
       "dst": "features_17_conv_2",
-      "capacity_ms": 0.11469999999889069,
+      "capacity_ms": 0.22711999999955879,
       "role": "cloud",
       "is_cut_edge": false
     },
     {
       "src": "__source__",
       "dst": "features_17_conv_3",
-      "capacity_ms": 0.10647999999946478,
+      "capacity_ms": 0.1526800000007711,
       "role": "cloud",
       "is_cut_edge": false
     },
     {
       "src": "__source__",
       "dst": "features_18_0",
-      "capacity_ms": 0.11771999999865557,
+      "capacity_ms": 0.13995999999920627,
       "role": "cloud",
       "is_cut_edge": false
     },
     {
       "src": "__source__",
       "dst": "features_18_1",
-      "capacity_ms": 0.10405999999960613,
+      "capacity_ms": 0.19170000000059417,
       "role": "cloud",
       "is_cut_edge": false
     },
     {
       "src": "__source__",
       "dst": "features_18_2",
-      "capacity_ms": 0.07543999999981565,
+      "capacity_ms": 0.10025999999996316,
       "role": "cloud",
       "is_cut_edge": false
     },
     {
       "src": "__source__",
       "dst": "features_1_conv_0_0",
-      "capacity_ms": 0.12129999999999086,
+      "capacity_ms": 0.15059999999991192,
       "role": "cloud",
       "is_cut_edge": false
     },
     {
       "src": "__source__",
       "dst": "features_1_conv_0_1",
-      "capacity_ms": 0.23837999999969384,
+      "capacity_ms": 0.2737199999998552,
       "role": "cloud",
       "is_cut_edge": false
     },
     {
       "src": "__source__",
       "dst": "features_1_conv_0_2",
-      "capacity_ms": 0.0825399999989429,
+      "capacity_ms": 0.0794199999994305,
       "role": "cloud",
       "is_cut_edge": false
     },
     {
       "src": "__source__",
       "dst": "features_1_conv_1",
-      "capacity_ms": 0.1143600000013123,
+      "capacity_ms": 0.1254400000000544,
       "role": "cloud",
       "is_cut_edge": false
     },
     {
       "src": "__source__",
       "dst": "features_1_conv_2",
-      "capacity_ms": 0.11254000000064934,
+      "capacity_ms": 0.11315999999936821,
       "role": "cloud",
       "is_cut_edge": false
     },
     {
       "src": "__source__",
       "dst": "features_2_conv_0_0",
-      "capacity_ms": 0.1337800000001721,
+      "capacity_ms": 0.1555200000005641,
       "role": "cloud",
       "is_cut_edge": false
     },
     {
       "src": "__source__",
       "dst": "features_2_conv_0_1",
-      "capacity_ms": 0.14609999999990464,
+      "capacity_ms": 0.16154000000057067,
       "role": "cloud",
       "is_cut_edge": false
     },
     {
       "src": "__source__",
       "dst": "features_2_conv_0_2",
-      "capacity_ms": 0.11921999999913169,
+      "capacity_ms": 0.13605999999981577,
       "role": "cloud",
       "is_cut_edge": false
     },
     {
       "src": "__source__",
       "dst": "features_2_conv_1_0",
-      "capacity_ms": 0.11536000000020863,
+      "capacity_ms": 0.14649999999889474,
       "role": "cloud",
       "is_cut_edge": false
     },
     {
       "src": "__source__",
       "dst": "features_2_conv_1_1",
-      "capacity_ms": 0.11318000000031248,
+      "capacity_ms": 0.11630000000053542,
       "role": "cloud",
       "is_cut_edge": false
     },
     {
       "src": "__source__",
       "dst": "features_2_conv_1_2",
-      "capacity_ms": 0.07933999999920616,
+      "capacity_ms": 0.08897999999959438,
       "role": "cloud",
       "is_cut_edge": false
     },
     {
       "src": "__source__",
       "dst": "features_2_conv_2",
-      "capacity_ms": 0.10930000000044515,
+      "capacity_ms": 0.12496000000012941,
       "role": "cloud",
       "is_cut_edge": false
     },
     {
       "src": "__source__",
       "dst": "features_2_conv_3",
-      "capacity_ms": 0.14155999999942992,
+      "capacity_ms": 0.1130400000000975,
       "role": "cloud",
       "is_cut_edge": false
     },
     {
       "src": "__source__",
       "dst": "features_3_conv_0_0",
-      "capacity_ms": 0.10315999999903624,
+      "capacity_ms": 0.2012399999998138,
       "role": "cloud",
       "is_cut_edge": false
     },
     {
       "src": "__source__",
       "dst": "features_3_conv_0_1",
-      "capacity_ms": 0.10711999999983846,
+      "capacity_ms": 0.12731999999999744,
       "role": "cloud",
       "is_cut_edge": false
     },
     {
       "src": "__source__",
       "dst": "features_3_conv_0_2",
-      "capacity_ms": 0.0831999999995503,
+      "capacity_ms": 0.0983999999995433,
       "role": "cloud",
       "is_cut_edge": false
     },
     {
       "src": "__source__",
       "dst": "features_3_conv_1_0",
-      "capacity_ms": 0.12168000000016832,
+      "capacity_ms": 0.16183999999981324,
       "role": "cloud",
       "is_cut_edge": false
     },
     {
       "src": "__source__",
       "dst": "features_3_conv_1_1",
-      "capacity_ms": 0.10643999999970788,
+      "capacity_ms": 0.12194000000036453,
       "role": "cloud",
       "is_cut_edge": false
     },
     {
       "src": "__source__",
       "dst": "features_3_conv_1_2",
-      "capacity_ms": 0.08116000000057966,
+      "capacity_ms": 0.09252000000117278,
       "role": "cloud",
       "is_cut_edge": false
     },
     {
       "src": "__source__",
       "dst": "features_3_conv_2",
-      "capacity_ms": 0.10950000000065074,
+      "capacity_ms": 0.12935999999967862,
       "role": "cloud",
       "is_cut_edge": false
     },
     {
       "src": "__source__",
       "dst": "features_3_conv_3",
-      "capacity_ms": 0.1072000000000628,
+      "capacity_ms": 0.11334000000076117,
       "role": "cloud",
       "is_cut_edge": false
     },
     {
       "src": "__source__",
       "dst": "features_4_conv_0_0",
-      "capacity_ms": 0.10314000000022361,
+      "capacity_ms": 0.12204000000011206,
       "role": "cloud",
       "is_cut_edge": false
     },
     {
       "src": "__source__",
       "dst": "features_4_conv_0_1",
-      "capacity_ms": 0.10621999999997911,
+      "capacity_ms": 0.1183400000002166,
       "role": "cloud",
       "is_cut_edge": false
     },
     {
       "src": "__source__",
       "dst": "features_4_conv_0_2",
-      "capacity_ms": 0.08235999999897103,
+      "capacity_ms": 0.0978999999979635,
       "role": "cloud",
       "is_cut_edge": false
     },
     {
       "src": "__source__",
       "dst": "features_4_conv_1_0",
-      "capacity_ms": 0.09435999999993783,
+      "capacity_ms": 0.11237999999877957,
       "role": "cloud",
       "is_cut_edge": false
     },
     {
       "src": "__source__",
       "dst": "features_4_conv_1_1",
-      "capacity_ms": 0.10865999999936093,
+      "capacity_ms": 0.11364000000000374,
       "role": "cloud",
       "is_cut_edge": false
     },
     {
       "src": "__source__",
       "dst": "features_4_conv_1_2",
-      "capacity_ms": 0.07873999999929993,
+      "capacity_ms": 0.09195999999960236,
       "role": "cloud",
       "is_cut_edge": false
     },
     {
       "src": "__source__",
       "dst": "features_4_conv_2",
-      "capacity_ms": 0.10741999999979157,
+      "capacity_ms": 0.13675999999946953,
       "role": "cloud",
       "is_cut_edge": false
     },
     {
       "src": "__source__",
       "dst": "features_4_conv_3",
-      "capacity_ms": 0.10578000000052157,
+      "capacity_ms": 0.14602000000039084,
       "role": "cloud",
       "is_cut_edge": false
     },
     {
       "src": "__source__",
       "dst": "features_5_conv_0_0",
-      "capacity_ms": 0.10958000000016455,
+      "capacity_ms": 0.15099999999961256,
       "role": "cloud",
       "is_cut_edge": false
     },
     {
       "src": "__source__",
       "dst": "features_5_conv_0_1",
-      "capacity_ms": 0.10690000000010969,
+      "capacity_ms": 0.14099999999999113,
       "role": "cloud",
       "is_cut_edge": false
     },
     {
       "src": "__source__",
       "dst": "features_5_conv_0_2",
-      "capacity_ms": 0.08041999999974792,
+      "capacity_ms": 0.10229999999964434,
       "role": "cloud",
       "is_cut_edge": false
     },
     {
       "src": "__source__",
       "dst": "features_5_conv_1_0",
-      "capacity_ms": 0.09016000000059421,
+      "capacity_ms": 0.1306200000009028,
       "role": "cloud",
       "is_cut_edge": false
     },
     {
       "src": "__source__",
       "dst": "features_5_conv_1_1",
-      "capacity_ms": 0.12932000000063226,
+      "capacity_ms": 0.12964000000152964,
       "role": "cloud",
       "is_cut_edge": false
     },
     {
       "src": "__source__",
       "dst": "features_5_conv_1_2",
-      "capacity_ms": 0.10066000000037434,
+      "capacity_ms": 0.09365999999957353,
       "role": "cloud",
       "is_cut_edge": false
     },
     {
       "src": "__source__",
       "dst": "features_5_conv_2",
-      "capacity_ms": 0.1229000000002145,
+      "capacity_ms": 0.1348399999997696,
       "role": "cloud",
       "is_cut_edge": false
     },
     {
       "src": "__source__",
       "dst": "features_5_conv_3",
-      "capacity_ms": 0.11700000000018917,
+      "capacity_ms": 0.13579999999890902,
       "role": "cloud",
       "is_cut_edge": false
     },
     {
       "src": "__source__",
       "dst": "features_6_conv_0_0",
-      "capacity_ms": 0.13955999999950564,
+      "capacity_ms": 0.1403200000005711,
       "role": "cloud",
       "is_cut_edge": false
     },
     {
       "src": "__source__",
       "dst": "features_6_conv_0_1",
-      "capacity_ms": 0.11382000000068615,
+      "capacity_ms": 0.214679999999845,
       "role": "cloud",
       "is_cut_edge": false
     },
     {
       "src": "__source__",
       "dst": "features_6_conv_0_2",
-      "capacity_ms": 0.09349999999983538,
+      "capacity_ms": 0.18008000000051538,
       "role": "cloud",
       "is_cut_edge": false
     },
     {
       "src": "__source__",
       "dst": "features_6_conv_1_0",
-      "capacity_ms": 0.10936000000043578,
+      "capacity_ms": 0.11960000000001969,
       "role": "cloud",
       "is_cut_edge": false
     },
     {
       "src": "__source__",
       "dst": "features_6_conv_1_1",
-      "capacity_ms": 0.15898000000049706,
+      "capacity_ms": 0.12643999999966127,
       "role": "cloud",
       "is_cut_edge": false
     },
     {
       "src": "__source__",
       "dst": "features_6_conv_1_2",
-      "capacity_ms": 0.08511999999996078,
+      "capacity_ms": 0.0920399999998267,
       "role": "cloud",
       "is_cut_edge": false
     },
     {
       "src": "__source__",
       "dst": "features_6_conv_2",
-      "capacity_ms": 0.15441999999978862,
+      "capacity_ms": 0.13271999999915352,
       "role": "cloud",
       "is_cut_edge": false
     },
     {
       "src": "__source__",
       "dst": "features_6_conv_3",
-      "capacity_ms": 0.13638000000071315,
+      "capacity_ms": 0.12550000000004502,
       "role": "cloud",
       "is_cut_edge": false
     },
     {
       "src": "__source__",
       "dst": "features_7_conv_0_0",
-      "capacity_ms": 0.14292000000040161,
+      "capacity_ms": 0.12892000000164217,
       "role": "cloud",
       "is_cut_edge": false
     },
     {
       "src": "__source__",
       "dst": "features_7_conv_0_1",
-      "capacity_ms": 0.11140000000011696,
+      "capacity_ms": 0.12684000000007245,
       "role": "cloud",
       "is_cut_edge": false
     },
     {
       "src": "__source__",
       "dst": "features_7_conv_0_2",
-      "capacity_ms": 0.08473999999978332,
+      "capacity_ms": 0.09268000000020038,
       "role": "cloud",
       "is_cut_edge": false
     },
     {
       "src": "__source__",
       "dst": "features_7_conv_1_0",
-      "capacity_ms": 0.09766000000084318,
+      "capacity_ms": 0.1089999999997815,
       "role": "cloud",
       "is_cut_edge": false
     },
     {
       "src": "__source__",
       "dst": "features_7_conv_1_1",
-      "capacity_ms": 0.11079999999878964,
+      "capacity_ms": 0.12401999999909208,
       "role": "cloud",
       "is_cut_edge": false
     },
     {
       "src": "__source__",
       "dst": "features_7_conv_1_2",
-      "capacity_ms": 0.0827799999989054,
+      "capacity_ms": 0.093559999999826,
       "role": "cloud",
       "is_cut_edge": false
     },
     {
       "src": "__source__",
       "dst": "features_7_conv_2",
-      "capacity_ms": 0.11871999999968352,
+      "capacity_ms": 0.12765999999970745,
       "role": "cloud",
       "is_cut_edge": false
     },
     {
       "src": "__source__",
       "dst": "features_7_conv_3",
-      "capacity_ms": 0.11060000000000514,
+      "capacity_ms": 0.12455999999971823,
       "role": "cloud",
       "is_cut_edge": false
     },
     {
       "src": "__source__",
       "dst": "features_8_conv_0_0",
-      "capacity_ms": 0.14608000000038146,
+      "capacity_ms": 0.126079999999007,
       "role": "cloud",
       "is_cut_edge": false
     },
     {
       "src": "__source__",
       "dst": "features_8_conv_0_1",
-      "capacity_ms": 0.11192000000050939,
+      "capacity_ms": 0.12460000000018567,
       "role": "cloud",
       "is_cut_edge": false
     },
     {
       "src": "__source__",
       "dst": "features_8_conv_0_2",
-      "capacity_ms": 0.08337999999952217,
+      "capacity_ms": 0.09439999999969473,
       "role": "cloud",
       "is_cut_edge": false
     },
     {
       "src": "__source__",
       "dst": "features_8_conv_1_0",
-      "capacity_ms": 0.09592000000040457,
+      "capacity_ms": 0.11063999999976204,
       "role": "cloud",
       "is_cut_edge": false
     },
     {
       "src": "__source__",
       "dst": "features_8_conv_1_1",
-      "capacity_ms": 0.1107000000004632,
+      "capacity_ms": 0.12535999999983005,
       "role": "cloud",
       "is_cut_edge": false
     },
     {
       "src": "__source__",
       "dst": "features_8_conv_1_2",
-      "capacity_ms": 0.08332000000095263,
+      "capacity_ms": 0.09097999999880813,
       "role": "cloud",
       "is_cut_edge": false
     },
     {
       "src": "__source__",
       "dst": "features_8_conv_2",
-      "capacity_ms": 0.12132000000093512,
+      "capacity_ms": 0.13893999999936568,
       "role": "cloud",
       "is_cut_edge": false
     },
     {
       "src": "__source__",
       "dst": "features_8_conv_3",
-      "capacity_ms": 0.10997999999915464,
+      "capacity_ms": 0.12354000000058818,
       "role": "cloud",
       "is_cut_edge": false
     },
     {
       "src": "__source__",
       "dst": "features_9_conv_0_0",
-      "capacity_ms": 0.11505999999954497,
+      "capacity_ms": 0.11990000000068335,
       "role": "cloud",
       "is_cut_edge": false
     },
     {
       "src": "__source__",
       "dst": "features_9_conv_0_1",
-      "capacity_ms": 0.1116000000010331,
+      "capacity_ms": 0.12421999999929767,
       "role": "cloud",
       "is_cut_edge": false
     },
     {
       "src": "__source__",
       "dst": "features_9_conv_0_2",
-      "capacity_ms": 0.08368000000018583,
+      "capacity_ms": 0.0987400000006744,
       "role": "cloud",
       "is_cut_edge": false
     },
     {
       "src": "__source__",
       "dst": "features_9_conv_1_0",
-      "capacity_ms": 0.09508000000053585,
+      "capacity_ms": 0.11380000000045243,
       "role": "cloud",
       "is_cut_edge": false
     },
     {
       "src": "__source__",
       "dst": "features_9_conv_1_1",
-      "capacity_ms": 0.1120399999997801,
+      "capacity_ms": 0.12024000000039337,
       "role": "cloud",
       "is_cut_edge": false
     },
     {
       "src": "__source__",
       "dst": "features_9_conv_1_2",
-      "capacity_ms": 0.0868200000006425,
+      "capacity_ms": 0.09221999999979857,
       "role": "cloud",
       "is_cut_edge": false
     },
     {
       "src": "__source__",
       "dst": "features_9_conv_2",
-      "capacity_ms": 0.12181999999967275,
+      "capacity_ms": 0.15113999999911698,
       "role": "cloud",
       "is_cut_edge": false
     },
     {
       "src": "__source__",
       "dst": "features_9_conv_3",
-      "capacity_ms": 0.11060000000000514,
+      "capacity_ms": 0.13547999999943272,
       "role": "cloud",
       "is_cut_edge": false
     },
     {
       "src": "__source__",
       "dst": "flatten",
-      "capacity_ms": 0.03683999999992693,
+      "capacity_ms": 0.04884000000018318,
       "role": "cloud",
       "is_cut_edge": false
     },
     {
       "src": "adaptive_avg_pool2d",
       "dst": "__sink__",
-      "capacity_ms": 0.11423999999990997,
+      "capacity_ms": 0.13919999999529864,
       "role": "edge",
       "is_cut_edge": true
     },
     {
       "src": "adaptive_avg_pool2d",
       "dst": "features_18_2",
-      "capacity_ms": 12740.074860000024,
+      "capacity_ms": 12742.863140000056,
       "role": "precedence_constraint",
       "is_cut_edge": false
     },
@@ -3930,21 +3930,21 @@
     {
       "src": "add",
       "dst": "__sink__",
-      "capacity_ms": 0.06437999999917565,
+      "capacity_ms": 0.058200000000852015,
       "role": "edge",
       "is_cut_edge": true
     },
     {
       "src": "add",
       "dst": "features_2_conv_3",
-      "capacity_ms": 12740.074860000024,
+      "capacity_ms": 12742.863140000056,
       "role": "precedence_constraint",
       "is_cut_edge": false
     },
     {
       "src": "add",
       "dst": "features_3_conv_3",
-      "capacity_ms": 12740.074860000024,
+      "capacity_ms": 12742.863140000056,
       "role": "precedence_constraint",
       "is_cut_edge": false
     },
@@ -3958,7 +3958,7 @@
     {
       "src": "add_1",
       "dst": "__sink__",
-      "capacity_ms": 0.057660000000225864,
+      "capacity_ms": 0.054240000002891975,
       "role": "edge",
       "is_cut_edge": true
     },
@@ -3972,49 +3972,49 @@
     {
       "src": "add_1",
       "dst": "features_4_conv_3",
-      "capacity_ms": 12740.074860000024,
+      "capacity_ms": 12742.863140000056,
       "role": "precedence_constraint",
       "is_cut_edge": false
     },
     {
       "src": "add_1",
       "dst": "features_5_conv_3",
-      "capacity_ms": 12740.074860000024,
+      "capacity_ms": 12742.863140000056,
       "role": "precedence_constraint",
       "is_cut_edge": false
     },
     {
       "src": "add_1__aux",
       "dst": "add_2",
-      "capacity_ms": 12740.074860000024,
+      "capacity_ms": 12742.863140000056,
       "role": "aux",
       "is_cut_edge": false
     },
     {
       "src": "add_1__aux",
       "dst": "features_6_conv_0_0",
-      "capacity_ms": 12740.074860000024,
+      "capacity_ms": 12742.863140000056,
       "role": "aux",
       "is_cut_edge": false
     },
     {
       "src": "add_2",
       "dst": "__sink__",
-      "capacity_ms": 0.05462000000093781,
+      "capacity_ms": 0.046180000003914756,
       "role": "edge",
       "is_cut_edge": true
     },
     {
       "src": "add_2",
       "dst": "add_1",
-      "capacity_ms": 12740.074860000024,
+      "capacity_ms": 12742.863140000056,
       "role": "precedence_constraint",
       "is_cut_edge": false
     },
     {
       "src": "add_2",
       "dst": "features_6_conv_3",
-      "capacity_ms": 12740.074860000024,
+      "capacity_ms": 12742.863140000056,
       "role": "precedence_constraint",
       "is_cut_edge": false
     },
@@ -4028,7 +4028,7 @@
     {
       "src": "add_3",
       "dst": "__sink__",
-      "capacity_ms": 0.04328000000057841,
+      "capacity_ms": 0.04787999999393833,
       "role": "edge",
       "is_cut_edge": true
     },
@@ -4042,42 +4042,42 @@
     {
       "src": "add_3",
       "dst": "features_7_conv_3",
-      "capacity_ms": 12740.074860000024,
+      "capacity_ms": 12742.863140000056,
       "role": "precedence_constraint",
       "is_cut_edge": false
     },
     {
       "src": "add_3",
       "dst": "features_8_conv_3",
-      "capacity_ms": 12740.074860000024,
+      "capacity_ms": 12742.863140000056,
       "role": "precedence_constraint",
       "is_cut_edge": false
     },
     {
       "src": "add_3__aux",
       "dst": "add_4",
-      "capacity_ms": 12740.074860000024,
+      "capacity_ms": 12742.863140000056,
       "role": "aux",
       "is_cut_edge": false
     },
     {
       "src": "add_3__aux",
       "dst": "features_9_conv_0_0",
-      "capacity_ms": 12740.074860000024,
+      "capacity_ms": 12742.863140000056,
       "role": "aux",
       "is_cut_edge": false
     },
     {
       "src": "add_4",
       "dst": "__sink__",
-      "capacity_ms": 0.043079999998951735,
+      "capacity_ms": 0.03935999999384876,
       "role": "edge",
       "is_cut_edge": true
     },
     {
       "src": "add_4",
       "dst": "add_3",
-      "capacity_ms": 12740.074860000024,
+      "capacity_ms": 12742.863140000056,
       "role": "precedence_constraint",
       "is_cut_edge": false
     },
@@ -4091,42 +4091,42 @@
     {
       "src": "add_4",
       "dst": "features_9_conv_3",
-      "capacity_ms": 12740.074860000024,
+      "capacity_ms": 12742.863140000056,
       "role": "precedence_constraint",
       "is_cut_edge": false
     },
     {
       "src": "add_4__aux",
       "dst": "add_5",
-      "capacity_ms": 12740.074860000024,
+      "capacity_ms": 12742.863140000056,
       "role": "aux",
       "is_cut_edge": false
     },
     {
       "src": "add_4__aux",
       "dst": "features_10_conv_0_0",
-      "capacity_ms": 12740.074860000024,
+      "capacity_ms": 12742.863140000056,
       "role": "aux",
       "is_cut_edge": false
     },
     {
       "src": "add_5",
       "dst": "__sink__",
-      "capacity_ms": 0.040019999999429956,
+      "capacity_ms": 0.03592000000480766,
       "role": "edge",
       "is_cut_edge": true
     },
     {
       "src": "add_5",
       "dst": "add_4",
-      "capacity_ms": 12740.074860000024,
+      "capacity_ms": 12742.863140000056,
       "role": "precedence_constraint",
       "is_cut_edge": false
     },
     {
       "src": "add_5",
       "dst": "features_10_conv_3",
-      "capacity_ms": 12740.074860000024,
+      "capacity_ms": 12742.863140000056,
       "role": "precedence_constraint",
       "is_cut_edge": false
     },
@@ -4140,7 +4140,7 @@
     {
       "src": "add_6",
       "dst": "__sink__",
-      "capacity_ms": 0.04645999999937089,
+      "capacity_ms": 0.04586000001154389,
       "role": "edge",
       "is_cut_edge": true
     },
@@ -4154,49 +4154,49 @@
     {
       "src": "add_6",
       "dst": "features_11_conv_3",
-      "capacity_ms": 12740.074860000024,
+      "capacity_ms": 12742.863140000056,
       "role": "precedence_constraint",
       "is_cut_edge": false
     },
     {
       "src": "add_6",
       "dst": "features_12_conv_3",
-      "capacity_ms": 12740.074860000024,
+      "capacity_ms": 12742.863140000056,
       "role": "precedence_constraint",
       "is_cut_edge": false
     },
     {
       "src": "add_6__aux",
       "dst": "add_7",
-      "capacity_ms": 12740.074860000024,
+      "capacity_ms": 12742.863140000056,
       "role": "aux",
       "is_cut_edge": false
     },
     {
       "src": "add_6__aux",
       "dst": "features_13_conv_0_0",
-      "capacity_ms": 12740.074860000024,
+      "capacity_ms": 12742.863140000056,
       "role": "aux",
       "is_cut_edge": false
     },
     {
       "src": "add_7",
       "dst": "__sink__",
-      "capacity_ms": 0.050420000000173104,
+      "capacity_ms": 0.04918000000770917,
       "role": "edge",
       "is_cut_edge": true
     },
     {
       "src": "add_7",
       "dst": "add_6",
-      "capacity_ms": 12740.074860000024,
+      "capacity_ms": 12742.863140000056,
       "role": "precedence_constraint",
       "is_cut_edge": false
     },
     {
       "src": "add_7",
       "dst": "features_13_conv_3",
-      "capacity_ms": 12740.074860000024,
+      "capacity_ms": 12742.863140000056,
       "role": "precedence_constraint",
       "is_cut_edge": false
     },
@@ -4210,7 +4210,7 @@
     {
       "src": "add_8",
       "dst": "__sink__",
-      "capacity_ms": 0.03372000000041453,
+      "capacity_ms": 0.04604000000085762,
       "role": "edge",
       "is_cut_edge": true
     },
@@ -4224,49 +4224,49 @@
     {
       "src": "add_8",
       "dst": "features_14_conv_3",
-      "capacity_ms": 12740.074860000024,
+      "capacity_ms": 12742.863140000056,
       "role": "precedence_constraint",
       "is_cut_edge": false
     },
     {
       "src": "add_8",
       "dst": "features_15_conv_3",
-      "capacity_ms": 12740.074860000024,
+      "capacity_ms": 12742.863140000056,
       "role": "precedence_constraint",
       "is_cut_edge": false
     },
     {
       "src": "add_8__aux",
       "dst": "add_9",
-      "capacity_ms": 12740.074860000024,
+      "capacity_ms": 12742.863140000056,
       "role": "aux",
       "is_cut_edge": false
     },
     {
       "src": "add_8__aux",
       "dst": "features_16_conv_0_0",
-      "capacity_ms": 12740.074860000024,
+      "capacity_ms": 12742.863140000056,
       "role": "aux",
       "is_cut_edge": false
     },
     {
       "src": "add_9",
       "dst": "__sink__",
-      "capacity_ms": 0.03686000000016065,
+      "capacity_ms": 0.03341999999406653,
       "role": "edge",
       "is_cut_edge": true
     },
     {
       "src": "add_9",
       "dst": "add_8",
-      "capacity_ms": 12740.074860000024,
+      "capacity_ms": 12742.863140000056,
       "role": "precedence_constraint",
       "is_cut_edge": false
     },
     {
       "src": "add_9",
       "dst": "features_16_conv_3",
-      "capacity_ms": 12740.074860000024,
+      "capacity_ms": 12742.863140000056,
       "role": "precedence_constraint",
       "is_cut_edge": false
     },
@@ -4280,7 +4280,7 @@
     {
       "src": "classifier_0",
       "dst": "__sink__",
-      "capacity_ms": 0.05036000000018248,
+      "capacity_ms": 0.05358000000796892,
       "role": "edge",
       "is_cut_edge": true
     },
@@ -4294,35 +4294,35 @@
     {
       "src": "classifier_0",
       "dst": "flatten",
-      "capacity_ms": 12740.074860000024,
+      "capacity_ms": 12742.863140000056,
       "role": "precedence_constraint",
       "is_cut_edge": false
     },
     {
       "src": "classifier_1",
       "dst": "__sink__",
-      "capacity_ms": 0.5137000000004832,
+      "capacity_ms": 0.5146400000057838,
       "role": "edge",
       "is_cut_edge": true
     },
     {
       "src": "classifier_1",
       "dst": "classifier_0",
-      "capacity_ms": 12740.074860000024,
+      "capacity_ms": 12742.863140000056,
       "role": "precedence_constraint",
       "is_cut_edge": false
     },
     {
       "src": "features_0_0",
       "dst": "__input__",
-      "capacity_ms": 12740.074860000024,
+      "capacity_ms": 12742.863140000056,
       "role": "precedence_constraint",
       "is_cut_edge": false
     },
     {
       "src": "features_0_0",
       "dst": "__sink__",
-      "capacity_ms": 0.725379999999376,
+      "capacity_ms": 0.694980000008627,
       "role": "edge",
       "is_cut_edge": true
     },
@@ -4336,14 +4336,14 @@
     {
       "src": "features_0_1",
       "dst": "__sink__",
-      "capacity_ms": 0.23540000000110695,
+      "capacity_ms": 0.2799200000026758,
       "role": "edge",
       "is_cut_edge": true
     },
     {
       "src": "features_0_1",
       "dst": "features_0_0",
-      "capacity_ms": 12740.074860000024,
+      "capacity_ms": 12742.863140000056,
       "role": "precedence_constraint",
       "is_cut_edge": false
     },
@@ -4357,14 +4357,14 @@
     {
       "src": "features_0_2",
       "dst": "__sink__",
-      "capacity_ms": 0.09671999999909531,
+      "capacity_ms": 0.10574000000929118,
       "role": "edge",
       "is_cut_edge": true
     },
     {
       "src": "features_0_2",
       "dst": "features_0_1",
-      "capacity_ms": 12740.074860000024,
+      "capacity_ms": 12742.863140000056,
       "role": "precedence_constraint",
       "is_cut_edge": false
     },
@@ -4378,14 +4378,14 @@
     {
       "src": "features_10_conv_0_0",
       "dst": "__sink__",
-      "capacity_ms": 0.15488000000019042,
+      "capacity_ms": 0.1352399999973386,
       "role": "edge",
       "is_cut_edge": true
     },
     {
       "src": "features_10_conv_0_0",
       "dst": "add_4",
-      "capacity_ms": 12740.074860000024,
+      "capacity_ms": 12742.863140000056,
       "role": "precedence_constraint",
       "is_cut_edge": false
     },
@@ -4399,14 +4399,14 @@
     {
       "src": "features_10_conv_0_1",
       "dst": "__sink__",
-      "capacity_ms": 0.0877999999993051,
+      "capacity_ms": 0.08321999999907348,
       "role": "edge",
       "is_cut_edge": true
     },
     {
       "src": "features_10_conv_0_1",
       "dst": "features_10_conv_0_0",
-      "capacity_ms": 12740.074860000024,
+      "capacity_ms": 12742.863140000056,
       "role": "precedence_constraint",
       "is_cut_edge": false
     },
@@ -4420,14 +4420,14 @@
     {
       "src": "features_10_conv_0_2",
       "dst": "__sink__",
-      "capacity_ms": 0.05757999999858043,
+      "capacity_ms": 0.05254000000718406,
       "role": "edge",
       "is_cut_edge": true
     },
     {
       "src": "features_10_conv_0_2",
       "dst": "features_10_conv_0_1",
-      "capacity_ms": 12740.074860000024,
+      "capacity_ms": 12742.863140000056,
       "role": "precedence_constraint",
       "is_cut_edge": false
     },
@@ -4441,14 +4441,14 @@
     {
       "src": "features_10_conv_1_0",
       "dst": "__sink__",
-      "capacity_ms": 0.24053999999864573,
+      "capacity_ms": 0.2304200000082801,
       "role": "edge",
       "is_cut_edge": true
     },
     {
       "src": "features_10_conv_1_0",
       "dst": "features_10_conv_0_2",
-      "capacity_ms": 12740.074860000024,
+      "capacity_ms": 12742.863140000056,
       "role": "precedence_constraint",
       "is_cut_edge": false
     },
@@ -4462,14 +4462,14 @@
     {
       "src": "features_10_conv_1_1",
       "dst": "__sink__",
-      "capacity_ms": 0.09021999999987429,
+      "capacity_ms": 0.08895999999936066,
       "role": "edge",
       "is_cut_edge": true
     },
     {
       "src": "features_10_conv_1_1",
       "dst": "features_10_conv_1_0",
-      "capacity_ms": 12740.074860000024,
+      "capacity_ms": 12742.863140000056,
       "role": "precedence_constraint",
       "is_cut_edge": false
     },
@@ -4483,14 +4483,14 @@
     {
       "src": "features_10_conv_1_2",
       "dst": "__sink__",
-      "capacity_ms": 0.057980000001123244,
+      "capacity_ms": 0.05312000000117223,
       "role": "edge",
       "is_cut_edge": true
     },
     {
       "src": "features_10_conv_1_2",
       "dst": "features_10_conv_1_1",
-      "capacity_ms": 12740.074860000024,
+      "capacity_ms": 12742.863140000056,
       "role": "precedence_constraint",
       "is_cut_edge": false
     },
@@ -4504,14 +4504,14 @@
     {
       "src": "features_10_conv_2",
       "dst": "__sink__",
-      "capacity_ms": 0.24945999999914648,
+      "capacity_ms": 0.22167999999282983,
       "role": "edge",
       "is_cut_edge": true
     },
     {
       "src": "features_10_conv_2",
       "dst": "features_10_conv_1_2",
-      "capacity_ms": 12740.074860000024,
+      "capacity_ms": 12742.863140000056,
       "role": "precedence_constraint",
       "is_cut_edge": false
     },
@@ -4525,7 +4525,7 @@
     {
       "src": "features_10_conv_3",
       "dst": "__sink__",
-      "capacity_ms": 0.07959999999940237,
+      "capacity_ms": 0.07972000000222579,
       "role": "edge",
       "is_cut_edge": true
     },
@@ -4539,21 +4539,21 @@
     {
       "src": "features_10_conv_3",
       "dst": "features_10_conv_2",
-      "capacity_ms": 12740.074860000024,
+      "capacity_ms": 12742.863140000056,
       "role": "precedence_constraint",
       "is_cut_edge": false
     },
     {
       "src": "features_11_conv_0_0",
       "dst": "__sink__",
-      "capacity_ms": 0.13980000000017867,
+      "capacity_ms": 0.1276399999937894,
       "role": "edge",
       "is_cut_edge": true
     },
     {
       "src": "features_11_conv_0_0",
       "dst": "add_5",
-      "capacity_ms": 12740.074860000024,
+      "capacity_ms": 12742.863140000056,
       "role": "precedence_constraint",
       "is_cut_edge": false
     },
@@ -4567,14 +4567,14 @@
     {
       "src": "features_11_conv_0_1",
       "dst": "__sink__",
-      "capacity_ms": 0.08901999999935128,
+      "capacity_ms": 0.08031999999502659,
       "role": "edge",
       "is_cut_edge": true
     },
     {
       "src": "features_11_conv_0_1",
       "dst": "features_11_conv_0_0",
-      "capacity_ms": 12740.074860000024,
+      "capacity_ms": 12742.863140000056,
       "role": "precedence_constraint",
       "is_cut_edge": false
     },
@@ -4588,14 +4588,14 @@
     {
       "src": "features_11_conv_0_2",
       "dst": "__sink__",
-      "capacity_ms": 0.05626000000020781,
+      "capacity_ms": 0.05227999999988242,
       "role": "edge",
       "is_cut_edge": true
     },
     {
       "src": "features_11_conv_0_2",
       "dst": "features_11_conv_0_1",
-      "capacity_ms": 12740.074860000024,
+      "capacity_ms": 12742.863140000056,
       "role": "precedence_constraint",
       "is_cut_edge": false
     },
@@ -4609,14 +4609,14 @@
     {
       "src": "features_11_conv_1_0",
       "dst": "__sink__",
-      "capacity_ms": 0.23404000000013525,
+      "capacity_ms": 0.2081199999963701,
       "role": "edge",
       "is_cut_edge": true
     },
     {
       "src": "features_11_conv_1_0",
       "dst": "features_11_conv_0_2",
-      "capacity_ms": 12740.074860000024,
+      "capacity_ms": 12742.863140000056,
       "role": "precedence_constraint",
       "is_cut_edge": false
     },
@@ -4630,14 +4630,14 @@
     {
       "src": "features_11_conv_1_1",
       "dst": "__sink__",
-      "capacity_ms": 0.0896200000006786,
+      "capacity_ms": 0.08763999999246153,
       "role": "edge",
       "is_cut_edge": true
     },
     {
       "src": "features_11_conv_1_1",
       "dst": "features_11_conv_1_0",
-      "capacity_ms": 12740.074860000024,
+      "capacity_ms": 12742.863140000056,
       "role": "precedence_constraint",
       "is_cut_edge": false
     },
@@ -4651,14 +4651,14 @@
     {
       "src": "features_11_conv_1_2",
       "dst": "__sink__",
-      "capacity_ms": 0.05582000000075027,
+      "capacity_ms": 0.05399999998871863,
       "role": "edge",
       "is_cut_edge": true
     },
     {
       "src": "features_11_conv_1_2",
       "dst": "features_11_conv_1_1",
-      "capacity_ms": 12740.074860000024,
+      "capacity_ms": 12742.863140000056,
       "role": "precedence_constraint",
       "is_cut_edge": false
     },
@@ -4672,14 +4672,14 @@
     {
       "src": "features_11_conv_2",
       "dst": "__sink__",
-      "capacity_ms": 0.2809600000006185,
+      "capacity_ms": 0.2757599999995364,
       "role": "edge",
       "is_cut_edge": true
     },
     {
       "src": "features_11_conv_2",
       "dst": "features_11_conv_1_2",
-      "capacity_ms": 12740.074860000024,
+      "capacity_ms": 12742.863140000056,
       "role": "precedence_constraint",
       "is_cut_edge": false
     },
@@ -4693,14 +4693,14 @@
     {
       "src": "features_11_conv_3",
       "dst": "__sink__",
-      "capacity_ms": 0.07772000000088042,
+      "capacity_ms": 0.07538000000977263,
       "role": "edge",
       "is_cut_edge": true
     },
     {
       "src": "features_11_conv_3",
       "dst": "features_11_conv_2",
-      "capacity_ms": 12740.074860000024,
+      "capacity_ms": 12742.863140000056,
       "role": "precedence_constraint",
       "is_cut_edge": false
     },
@@ -4714,28 +4714,28 @@
     {
       "src": "features_11_conv_3__aux",
       "dst": "add_6",
-      "capacity_ms": 12740.074860000024,
+      "capacity_ms": 12742.863140000056,
       "role": "aux",
       "is_cut_edge": false
     },
     {
       "src": "features_11_conv_3__aux",
       "dst": "features_12_conv_0_0",
-      "capacity_ms": 12740.074860000024,
+      "capacity_ms": 12742.863140000056,
       "role": "aux",
       "is_cut_edge": false
     },
     {
       "src": "features_12_conv_0_0",
       "dst": "__sink__",
-      "capacity_ms": 0.25758000000024595,
+      "capacity_ms": 0.2576200000021345,
       "role": "edge",
       "is_cut_edge": true
     },
     {
       "src": "features_12_conv_0_0",
       "dst": "features_11_conv_3",
-      "capacity_ms": 12740.074860000024,
+      "capacity_ms": 12742.863140000056,
       "role": "precedence_constraint",
       "is_cut_edge": false
     },
@@ -4749,14 +4749,14 @@
     {
       "src": "features_12_conv_0_1",
       "dst": "__sink__",
-      "capacity_ms": 0.10033999999947696,
+      "capacity_ms": 0.15062000001080378,
       "role": "edge",
       "is_cut_edge": true
     },
     {
       "src": "features_12_conv_0_1",
       "dst": "features_12_conv_0_0",
-      "capacity_ms": 12740.074860000024,
+      "capacity_ms": 12742.863140000056,
       "role": "precedence_constraint",
       "is_cut_edge": false
     },
@@ -4770,14 +4770,14 @@
     {
       "src": "features_12_conv_0_2",
       "dst": "__sink__",
-      "capacity_ms": 0.06571999999991363,
+      "capacity_ms": 0.057999999995672624,
       "role": "edge",
       "is_cut_edge": true
     },
     {
       "src": "features_12_conv_0_2",
       "dst": "features_12_conv_0_1",
-      "capacity_ms": 12740.074860000024,
+      "capacity_ms": 12742.863140000056,
       "role": "precedence_constraint",
       "is_cut_edge": false
     },
@@ -4791,14 +4791,14 @@
     {
       "src": "features_12_conv_1_0",
       "dst": "__sink__",
-      "capacity_ms": 0.34944000000152187,
+      "capacity_ms": 0.3258200000004763,
       "role": "edge",
       "is_cut_edge": true
     },
     {
       "src": "features_12_conv_1_0",
       "dst": "features_12_conv_0_2",
-      "capacity_ms": 12740.074860000024,
+      "capacity_ms": 12742.863140000056,
       "role": "precedence_constraint",
       "is_cut_edge": false
     },
@@ -4812,14 +4812,14 @@
     {
       "src": "features_12_conv_1_1",
       "dst": "__sink__",
-      "capacity_ms": 0.12737999999998806,
+      "capacity_ms": 0.10155999999597043,
       "role": "edge",
       "is_cut_edge": true
     },
     {
       "src": "features_12_conv_1_1",
       "dst": "features_12_conv_1_0",
-      "capacity_ms": 12740.074860000024,
+      "capacity_ms": 12742.863140000056,
       "role": "precedence_constraint",
       "is_cut_edge": false
     },
@@ -4833,14 +4833,14 @@
     {
       "src": "features_12_conv_1_2",
       "dst": "__sink__",
-      "capacity_ms": 0.0710399999995559,
+      "capacity_ms": 0.0588000000050215,
       "role": "edge",
       "is_cut_edge": true
     },
     {
       "src": "features_12_conv_1_2",
       "dst": "features_12_conv_1_1",
-      "capacity_ms": 12740.074860000024,
+      "capacity_ms": 12742.863140000056,
       "role": "precedence_constraint",
       "is_cut_edge": false
     },
@@ -4854,14 +4854,14 @@
     {
       "src": "features_12_conv_2",
       "dst": "__sink__",
-      "capacity_ms": 0.35581999999934055,
+      "capacity_ms": 0.3359599999953389,
       "role": "edge",
       "is_cut_edge": true
     },
     {
       "src": "features_12_conv_2",
       "dst": "features_12_conv_1_2",
-      "capacity_ms": 12740.074860000024,
+      "capacity_ms": 12742.863140000056,
       "role": "precedence_constraint",
       "is_cut_edge": false
     },
@@ -4875,7 +4875,7 @@
     {
       "src": "features_12_conv_3",
       "dst": "__sink__",
-      "capacity_ms": 0.08044000000069218,
+      "capacity_ms": 0.07931999999755135,
       "role": "edge",
       "is_cut_edge": true
     },
@@ -4889,21 +4889,21 @@
     {
       "src": "features_12_conv_3",
       "dst": "features_12_conv_2",
-      "capacity_ms": 12740.074860000024,
+      "capacity_ms": 12742.863140000056,
       "role": "precedence_constraint",
       "is_cut_edge": false
     },
     {
       "src": "features_13_conv_0_0",
       "dst": "__sink__",
-      "capacity_ms": 0.21604000000152723,
+      "capacity_ms": 0.2116599999965274,
       "role": "edge",
       "is_cut_edge": true
     },
     {
       "src": "features_13_conv_0_0",
       "dst": "add_6",
-      "capacity_ms": 12740.074860000024,
+      "capacity_ms": 12742.863140000056,
       "role": "precedence_constraint",
       "is_cut_edge": false
     },
@@ -4917,14 +4917,14 @@
     {
       "src": "features_13_conv_0_1",
       "dst": "__sink__",
-      "capacity_ms": 0.10206000000039239,
+      "capacity_ms": 0.09537999999338354,
       "role": "edge",
       "is_cut_edge": true
     },
     {
       "src": "features_13_conv_0_1",
       "dst": "features_13_conv_0_0",
-      "capacity_ms": 12740.074860000024,
+      "capacity_ms": 12742.863140000056,
       "role": "precedence_constraint",
       "is_cut_edge": false
     },
@@ -4938,14 +4938,14 @@
     {
       "src": "features_13_conv_0_2",
       "dst": "__sink__",
-      "capacity_ms": 0.058600000000552654,
+      "capacity_ms": 0.05494000000680899,
       "role": "edge",
       "is_cut_edge": true
     },
     {
       "src": "features_13_conv_0_2",
       "dst": "features_13_conv_0_1",
-      "capacity_ms": 12740.074860000024,
+      "capacity_ms": 12742.863140000056,
       "role": "precedence_constraint",
       "is_cut_edge": false
     },
@@ -4959,14 +4959,14 @@
     {
       "src": "features_13_conv_1_0",
       "dst": "__sink__",
-      "capacity_ms": 0.2725199999993322,
+      "capacity_ms": 0.25734000000170454,
       "role": "edge",
       "is_cut_edge": true
     },
     {
       "src": "features_13_conv_1_0",
       "dst": "features_13_conv_0_2",
-      "capacity_ms": 12740.074860000024,
+      "capacity_ms": 12742.863140000056,
       "role": "precedence_constraint",
       "is_cut_edge": false
     },
@@ -4980,14 +4980,14 @@
     {
       "src": "features_13_conv_1_1",
       "dst": "__sink__",
-      "capacity_ms": 0.10426000000052227,
+      "capacity_ms": 0.0944800000070245,
       "role": "edge",
       "is_cut_edge": true
     },
     {
       "src": "features_13_conv_1_1",
       "dst": "features_13_conv_1_0",
-      "capacity_ms": 12740.074860000024,
+      "capacity_ms": 12742.863140000056,
       "role": "precedence_constraint",
       "is_cut_edge": false
     },
@@ -5001,14 +5001,14 @@
     {
       "src": "features_13_conv_1_2",
       "dst": "__sink__",
-      "capacity_ms": 0.07051999999916347,
+      "capacity_ms": 0.05643999999733751,
       "role": "edge",
       "is_cut_edge": true
     },
     {
       "src": "features_13_conv_1_2",
       "dst": "features_13_conv_1_1",
-      "capacity_ms": 12740.074860000024,
+      "capacity_ms": 12742.863140000056,
       "role": "precedence_constraint",
       "is_cut_edge": false
     },
@@ -5022,14 +5022,14 @@
     {
       "src": "features_13_conv_2",
       "dst": "__sink__",
-      "capacity_ms": 0.35200000000088494,
+      "capacity_ms": 0.3090799999995397,
       "role": "edge",
       "is_cut_edge": true
     },
     {
       "src": "features_13_conv_2",
       "dst": "features_13_conv_1_2",
-      "capacity_ms": 12740.074860000024,
+      "capacity_ms": 12742.863140000056,
       "role": "precedence_constraint",
       "is_cut_edge": false
     },
@@ -5043,7 +5043,7 @@
     {
       "src": "features_13_conv_3",
       "dst": "__sink__",
-      "capacity_ms": 0.09420000000019968,
+      "capacity_ms": 0.10089999999536303,
       "role": "edge",
       "is_cut_edge": true
     },
@@ -5057,21 +5057,21 @@
     {
       "src": "features_13_conv_3",
       "dst": "features_13_conv_2",
-      "capacity_ms": 12740.074860000024,
+      "capacity_ms": 12742.863140000056,
       "role": "precedence_constraint",
       "is_cut_edge": false
     },
     {
       "src": "features_14_conv_0_0",
       "dst": "__sink__",
-      "capacity_ms": 0.25318000000069674,
+      "capacity_ms": 0.23445999999580636,
       "role": "edge",
       "is_cut_edge": true
     },
     {
       "src": "features_14_conv_0_0",
       "dst": "add_7",
-      "capacity_ms": 12740.074860000024,
+      "capacity_ms": 12742.863140000056,
       "role": "precedence_constraint",
       "is_cut_edge": false
     },
@@ -5085,14 +5085,14 @@
     {
       "src": "features_14_conv_0_1",
       "dst": "__sink__",
-      "capacity_ms": 0.11789999999933798,
+      "capacity_ms": 0.12648000000581305,
       "role": "edge",
       "is_cut_edge": true
     },
     {
       "src": "features_14_conv_0_1",
       "dst": "features_14_conv_0_0",
-      "capacity_ms": 12740.074860000024,
+      "capacity_ms": 12742.863140000056,
       "role": "precedence_constraint",
       "is_cut_edge": false
     },
@@ -5106,14 +5106,14 @@
     {
       "src": "features_14_conv_0_2",
       "dst": "__sink__",
-      "capacity_ms": 0.06325999999958754,
+      "capacity_ms": 0.06614000000695341,
       "role": "edge",
       "is_cut_edge": true
     },
     {
       "src": "features_14_conv_0_2",
       "dst": "features_14_conv_0_1",
-      "capacity_ms": 12740.074860000024,
+      "capacity_ms": 12742.863140000056,
       "role": "precedence_constraint",
       "is_cut_edge": false
     },
@@ -5127,14 +5127,14 @@
     {
       "src": "features_14_conv_1_0",
       "dst": "__sink__",
-      "capacity_ms": 0.2694799999993336,
+      "capacity_ms": 0.25102000000174485,
       "role": "edge",
       "is_cut_edge": true
     },
     {
       "src": "features_14_conv_1_0",
       "dst": "features_14_conv_0_2",
-      "capacity_ms": 12740.074860000024,
+      "capacity_ms": 12742.863140000056,
       "role": "precedence_constraint",
       "is_cut_edge": false
     },
@@ -5148,14 +5148,14 @@
     {
       "src": "features_14_conv_1_1",
       "dst": "__sink__",
-      "capacity_ms": 0.08551999999966142,
+      "capacity_ms": 0.08465999999884843,
       "role": "edge",
       "is_cut_edge": true
     },
     {
       "src": "features_14_conv_1_1",
       "dst": "features_14_conv_1_0",
-      "capacity_ms": 12740.074860000024,
+      "capacity_ms": 12742.863140000056,
       "role": "precedence_constraint",
       "is_cut_edge": false
     },
@@ -5169,14 +5169,14 @@
     {
       "src": "features_14_conv_1_2",
       "dst": "__sink__",
-      "capacity_ms": 0.054160000000536,
+      "capacity_ms": 0.053600000001097214,
       "role": "edge",
       "is_cut_edge": true
     },
     {
       "src": "features_14_conv_1_2",
       "dst": "features_14_conv_1_1",
-      "capacity_ms": 12740.074860000024,
+      "capacity_ms": 12742.863140000056,
       "role": "precedence_constraint",
       "is_cut_edge": false
     },
@@ -5190,14 +5190,14 @@
     {
       "src": "features_14_conv_2",
       "dst": "__sink__",
-      "capacity_ms": 0.3705199999998854,
+      "capacity_ms": 0.3218399999923349,
       "role": "edge",
       "is_cut_edge": true
     },
     {
       "src": "features_14_conv_2",
       "dst": "features_14_conv_1_2",
-      "capacity_ms": 12740.074860000024,
+      "capacity_ms": 12742.863140000056,
       "role": "precedence_constraint",
       "is_cut_edge": false
     },
@@ -5211,14 +5211,14 @@
     {
       "src": "features_14_conv_3",
       "dst": "__sink__",
-      "capacity_ms": 0.08371999999994273,
+      "capacity_ms": 0.08137999999462409,
       "role": "edge",
       "is_cut_edge": true
     },
     {
       "src": "features_14_conv_3",
       "dst": "features_14_conv_2",
-      "capacity_ms": 12740.074860000024,
+      "capacity_ms": 12742.863140000056,
       "role": "precedence_constraint",
       "is_cut_edge": false
     },
@@ -5232,28 +5232,28 @@
     {
       "src": "features_14_conv_3__aux",
       "dst": "add_8",
-      "capacity_ms": 12740.074860000024,
+      "capacity_ms": 12742.863140000056,
       "role": "aux",
       "is_cut_edge": false
     },
     {
       "src": "features_14_conv_3__aux",
       "dst": "features_15_conv_0_0",
-      "capacity_ms": 12740.074860000024,
+      "capacity_ms": 12742.863140000056,
       "role": "aux",
       "is_cut_edge": false
     },
     {
       "src": "features_15_conv_0_0",
       "dst": "__sink__",
-      "capacity_ms": 0.4533999999999594,
+      "capacity_ms": 0.31718000000182656,
       "role": "edge",
       "is_cut_edge": true
     },
     {
       "src": "features_15_conv_0_0",
       "dst": "features_14_conv_3",
-      "capacity_ms": 12740.074860000024,
+      "capacity_ms": 12742.863140000056,
       "role": "precedence_constraint",
       "is_cut_edge": false
     },
@@ -5267,14 +5267,14 @@
     {
       "src": "features_15_conv_0_1",
       "dst": "__sink__",
-      "capacity_ms": 0.09346000000007848,
+      "capacity_ms": 0.16951999999719192,
       "role": "edge",
       "is_cut_edge": true
     },
     {
       "src": "features_15_conv_0_1",
       "dst": "features_15_conv_0_0",
-      "capacity_ms": 12740.074860000024,
+      "capacity_ms": 12742.863140000056,
       "role": "precedence_constraint",
       "is_cut_edge": false
     },
@@ -5288,14 +5288,14 @@
     {
       "src": "features_15_conv_0_2",
       "dst": "__sink__",
-      "capacity_ms": 0.05778000000020711,
+      "capacity_ms": 0.07436000000211607,
       "role": "edge",
       "is_cut_edge": true
     },
     {
       "src": "features_15_conv_0_2",
       "dst": "features_15_conv_0_1",
-      "capacity_ms": 12740.074860000024,
+      "capacity_ms": 12742.863140000056,
       "role": "precedence_constraint",
       "is_cut_edge": false
     },
@@ -5309,14 +5309,14 @@
     {
       "src": "features_15_conv_1_0",
       "dst": "__sink__",
-      "capacity_ms": 0.23222000000018284,
+      "capacity_ms": 0.3045000000042819,
       "role": "edge",
       "is_cut_edge": true
     },
     {
       "src": "features_15_conv_1_0",
       "dst": "features_15_conv_0_2",
-      "capacity_ms": 12740.074860000024,
+      "capacity_ms": 12742.863140000056,
       "role": "precedence_constraint",
       "is_cut_edge": false
     },
@@ -5330,14 +5330,14 @@
     {
       "src": "features_15_conv_1_1",
       "dst": "__sink__",
-      "capacity_ms": 0.0884999999996694,
+      "capacity_ms": 0.1289199999973789,
       "role": "edge",
       "is_cut_edge": true
     },
     {
       "src": "features_15_conv_1_1",
       "dst": "features_15_conv_1_0",
-      "capacity_ms": 12740.074860000024,
+      "capacity_ms": 12742.863140000056,
       "role": "precedence_constraint",
       "is_cut_edge": false
     },
@@ -5351,14 +5351,14 @@
     {
       "src": "features_15_conv_1_2",
       "dst": "__sink__",
-      "capacity_ms": 0.05290000000144346,
+      "capacity_ms": 0.0691200000005665,
       "role": "edge",
       "is_cut_edge": true
     },
     {
       "src": "features_15_conv_1_2",
       "dst": "features_15_conv_1_1",
-      "capacity_ms": 12740.074860000024,
+      "capacity_ms": 12742.863140000056,
       "role": "precedence_constraint",
       "is_cut_edge": false
     },
@@ -5372,14 +5372,14 @@
     {
       "src": "features_15_conv_2",
       "dst": "__sink__",
-      "capacity_ms": 0.37128000000095085,
+      "capacity_ms": 0.5731799999978193,
       "role": "edge",
       "is_cut_edge": true
     },
     {
       "src": "features_15_conv_2",
       "dst": "features_15_conv_1_2",
-      "capacity_ms": 12740.074860000024,
+      "capacity_ms": 12742.863140000056,
       "role": "precedence_constraint",
       "is_cut_edge": false
     },
@@ -5393,7 +5393,7 @@
     {
       "src": "features_15_conv_3",
       "dst": "__sink__",
-      "capacity_ms": 0.07378000000102247,
+      "capacity_ms": 0.13699999999516876,
       "role": "edge",
       "is_cut_edge": true
     },
@@ -5407,21 +5407,21 @@
     {
       "src": "features_15_conv_3",
       "dst": "features_15_conv_2",
-      "capacity_ms": 12740.074860000024,
+      "capacity_ms": 12742.863140000056,
       "role": "precedence_constraint",
       "is_cut_edge": false
     },
     {
       "src": "features_16_conv_0_0",
       "dst": "__sink__",
-      "capacity_ms": 0.24033999999986122,
+      "capacity_ms": 0.3798400000050606,
       "role": "edge",
       "is_cut_edge": true
     },
     {
       "src": "features_16_conv_0_0",
       "dst": "add_8",
-      "capacity_ms": 12740.074860000024,
+      "capacity_ms": 12742.863140000056,
       "role": "precedence_constraint",
       "is_cut_edge": false
     },
@@ -5435,14 +5435,14 @@
     {
       "src": "features_16_conv_0_1",
       "dst": "__sink__",
-      "capacity_ms": 0.08497999999974581,
+      "capacity_ms": 0.12017999999898166,
       "role": "edge",
       "is_cut_edge": true
     },
     {
       "src": "features_16_conv_0_1",
       "dst": "features_16_conv_0_0",
-      "capacity_ms": 12740.074860000024,
+      "capacity_ms": 12742.863140000056,
       "role": "precedence_constraint",
       "is_cut_edge": false
     },
@@ -5456,14 +5456,14 @@
     {
       "src": "features_16_conv_0_2",
       "dst": "__sink__",
-      "capacity_ms": 0.05538000000129273,
+      "capacity_ms": 0.07075999999415217,
       "role": "edge",
       "is_cut_edge": true
     },
     {
       "src": "features_16_conv_0_2",
       "dst": "features_16_conv_0_1",
-      "capacity_ms": 12740.074860000024,
+      "capacity_ms": 12742.863140000056,
       "role": "precedence_constraint",
       "is_cut_edge": false
     },
@@ -5477,14 +5477,14 @@
     {
       "src": "features_16_conv_1_0",
       "dst": "__sink__",
-      "capacity_ms": 0.21227999999950953,
+      "capacity_ms": 0.24876000000517706,
       "role": "edge",
       "is_cut_edge": true
     },
     {
       "src": "features_16_conv_1_0",
       "dst": "features_16_conv_0_2",
-      "capacity_ms": 12740.074860000024,
+      "capacity_ms": 12742.863140000056,
       "role": "precedence_constraint",
       "is_cut_edge": false
     },
@@ -5498,14 +5498,14 @@
     {
       "src": "features_16_conv_1_1",
       "dst": "__sink__",
-      "capacity_ms": 0.09735999999946898,
+      "capacity_ms": 0.09987999999339081,
       "role": "edge",
       "is_cut_edge": true
     },
     {
       "src": "features_16_conv_1_1",
       "dst": "features_16_conv_1_0",
-      "capacity_ms": 12740.074860000024,
+      "capacity_ms": 12742.863140000056,
       "role": "precedence_constraint",
       "is_cut_edge": false
     },
@@ -5519,14 +5519,14 @@
     {
       "src": "features_16_conv_1_2",
       "dst": "__sink__",
-      "capacity_ms": 0.05363999999943303,
+      "capacity_ms": 0.05690000000981854,
       "role": "edge",
       "is_cut_edge": true
     },
     {
       "src": "features_16_conv_1_2",
       "dst": "features_16_conv_1_1",
-      "capacity_ms": 12740.074860000024,
+      "capacity_ms": 12742.863140000056,
       "role": "precedence_constraint",
       "is_cut_edge": false
     },
@@ -5540,14 +5540,14 @@
     {
       "src": "features_16_conv_2",
       "dst": "__sink__",
-      "capacity_ms": 0.31018000000102575,
+      "capacity_ms": 0.33100000000558794,
       "role": "edge",
       "is_cut_edge": true
     },
     {
       "src": "features_16_conv_2",
       "dst": "features_16_conv_1_2",
-      "capacity_ms": 12740.074860000024,
+      "capacity_ms": 12742.863140000056,
       "role": "precedence_constraint",
       "is_cut_edge": false
     },
@@ -5561,7 +5561,7 @@
     {
       "src": "features_16_conv_3",
       "dst": "__sink__",
-      "capacity_ms": 0.07497999999941385,
+      "capacity_ms": 0.07412000000499575,
       "role": "edge",
       "is_cut_edge": true
     },
@@ -5575,21 +5575,21 @@
     {
       "src": "features_16_conv_3",
       "dst": "features_16_conv_2",
-      "capacity_ms": 12740.074860000024,
+      "capacity_ms": 12742.863140000056,
       "role": "precedence_constraint",
       "is_cut_edge": false
     },
     {
       "src": "features_17_conv_0_0",
       "dst": "__sink__",
-      "capacity_ms": 0.2624999999987665,
+      "capacity_ms": 0.21817999999598214,
       "role": "edge",
       "is_cut_edge": true
     },
     {
       "src": "features_17_conv_0_0",
       "dst": "add_9",
-      "capacity_ms": 12740.074860000024,
+      "capacity_ms": 12742.863140000056,
       "role": "precedence_constraint",
       "is_cut_edge": false
     },
@@ -5603,14 +5603,14 @@
     {
       "src": "features_17_conv_0_1",
       "dst": "__sink__",
-      "capacity_ms": 0.24377999999956046,
+      "capacity_ms": 0.08113999999181942,
       "role": "edge",
       "is_cut_edge": true
     },
     {
       "src": "features_17_conv_0_1",
       "dst": "features_17_conv_0_0",
-      "capacity_ms": 12740.074860000024,
+      "capacity_ms": 12742.863140000056,
       "role": "precedence_constraint",
       "is_cut_edge": false
     },
@@ -5624,14 +5624,14 @@
     {
       "src": "features_17_conv_0_2",
       "dst": "__sink__",
-      "capacity_ms": 0.07381999999935829,
+      "capacity_ms": 0.052119999998012645,
       "role": "edge",
       "is_cut_edge": true
     },
     {
       "src": "features_17_conv_0_2",
       "dst": "features_17_conv_0_1",
-      "capacity_ms": 12740.074860000024,
+      "capacity_ms": 12742.863140000056,
       "role": "precedence_constraint",
       "is_cut_edge": false
     },
@@ -5645,14 +5645,14 @@
     {
       "src": "features_17_conv_1_0",
       "dst": "__sink__",
-      "capacity_ms": 0.2513399999990895,
+      "capacity_ms": 0.23224000000254819,
       "role": "edge",
       "is_cut_edge": true
     },
     {
       "src": "features_17_conv_1_0",
       "dst": "features_17_conv_0_2",
-      "capacity_ms": 12740.074860000024,
+      "capacity_ms": 12742.863140000056,
       "role": "precedence_constraint",
       "is_cut_edge": false
     },
@@ -5666,14 +5666,14 @@
     {
       "src": "features_17_conv_1_1",
       "dst": "__sink__",
-      "capacity_ms": 0.10467999999974609,
+      "capacity_ms": 0.09234000000333253,
       "role": "edge",
       "is_cut_edge": true
     },
     {
       "src": "features_17_conv_1_1",
       "dst": "features_17_conv_1_0",
-      "capacity_ms": 12740.074860000024,
+      "capacity_ms": 12742.863140000056,
       "role": "precedence_constraint",
       "is_cut_edge": false
     },
@@ -5687,14 +5687,14 @@
     {
       "src": "features_17_conv_1_2",
       "dst": "__sink__",
-      "capacity_ms": 0.05775999999997339,
+      "capacity_ms": 0.051479999996217884,
       "role": "edge",
       "is_cut_edge": true
     },
     {
       "src": "features_17_conv_1_2",
       "dst": "features_17_conv_1_1",
-      "capacity_ms": 12740.074860000024,
+      "capacity_ms": 12742.863140000056,
       "role": "precedence_constraint",
       "is_cut_edge": false
     },
@@ -5708,14 +5708,14 @@
     {
       "src": "features_17_conv_2",
       "dst": "__sink__",
-      "capacity_ms": 0.6903200000010656,
+      "capacity_ms": 0.6448799999986932,
       "role": "edge",
       "is_cut_edge": true
     },
     {
       "src": "features_17_conv_2",
       "dst": "features_17_conv_1_2",
-      "capacity_ms": 12740.074860000024,
+      "capacity_ms": 12742.863140000056,
       "role": "precedence_constraint",
       "is_cut_edge": false
     },
@@ -5729,14 +5729,14 @@
     {
       "src": "features_17_conv_3",
       "dst": "__sink__",
-      "capacity_ms": 0.09115999999949054,
+      "capacity_ms": 0.08208000000422544,
       "role": "edge",
       "is_cut_edge": true
     },
     {
       "src": "features_17_conv_3",
       "dst": "features_17_conv_2",
-      "capacity_ms": 12740.074860000024,
+      "capacity_ms": 12742.863140000056,
       "role": "precedence_constraint",
       "is_cut_edge": false
     },
@@ -5750,14 +5750,14 @@
     {
       "src": "features_18_0",
       "dst": "__sink__",
-      "capacity_ms": 0.48151999999959116,
+      "capacity_ms": 0.4924199999948087,
       "role": "edge",
       "is_cut_edge": true
     },
     {
       "src": "features_18_0",
       "dst": "features_17_conv_3",
-      "capacity_ms": 12740.074860000024,
+      "capacity_ms": 12742.863140000056,
       "role": "precedence_constraint",
       "is_cut_edge": false
     },
@@ -5771,14 +5771,14 @@
     {
       "src": "features_18_1",
       "dst": "__sink__",
-      "capacity_ms": 0.10420000000053165,
+      "capacity_ms": 0.12597999999570675,
       "role": "edge",
       "is_cut_edge": true
     },
     {
       "src": "features_18_1",
       "dst": "features_18_0",
-      "capacity_ms": 12740.074860000024,
+      "capacity_ms": 12742.863140000056,
       "role": "precedence_constraint",
       "is_cut_edge": false
     },
@@ -5792,7 +5792,7 @@
     {
       "src": "features_18_2",
       "dst": "__sink__",
-      "capacity_ms": 0.06564000000111037,
+      "capacity_ms": 0.059659999999439606,
       "role": "edge",
       "is_cut_edge": true
     },
@@ -5806,21 +5806,21 @@
     {
       "src": "features_18_2",
       "dst": "features_18_1",
-      "capacity_ms": 12740.074860000024,
+      "capacity_ms": 12742.863140000056,
       "role": "precedence_constraint",
       "is_cut_edge": false
     },
     {
       "src": "features_1_conv_0_0",
       "dst": "__sink__",
-      "capacity_ms": 0.6819600000000037,
+      "capacity_ms": 0.6113600000048791,
       "role": "edge",
       "is_cut_edge": true
     },
     {
       "src": "features_1_conv_0_0",
       "dst": "features_0_2",
-      "capacity_ms": 12740.074860000024,
+      "capacity_ms": 12742.863140000056,
       "role": "precedence_constraint",
       "is_cut_edge": false
     },
@@ -5834,14 +5834,14 @@
     {
       "src": "features_1_conv_0_1",
       "dst": "__sink__",
-      "capacity_ms": 0.18864000000036185,
+      "capacity_ms": 0.1286600000071303,
       "role": "edge",
       "is_cut_edge": true
     },
     {
       "src": "features_1_conv_0_1",
       "dst": "features_1_conv_0_0",
-      "capacity_ms": 12740.074860000024,
+      "capacity_ms": 12742.863140000056,
       "role": "precedence_constraint",
       "is_cut_edge": false
     },
@@ -5855,14 +5855,14 @@
     {
       "src": "features_1_conv_0_2",
       "dst": "__sink__",
-      "capacity_ms": 0.06779999999935171,
+      "capacity_ms": 0.07231999999248728,
       "role": "edge",
       "is_cut_edge": true
     },
     {
       "src": "features_1_conv_0_2",
       "dst": "features_1_conv_0_1",
-      "capacity_ms": 12740.074860000024,
+      "capacity_ms": 12742.863140000056,
       "role": "precedence_constraint",
       "is_cut_edge": false
     },
@@ -5876,14 +5876,14 @@
     {
       "src": "features_1_conv_1",
       "dst": "__sink__",
-      "capacity_ms": 0.34572000000068215,
+      "capacity_ms": 0.35506000000395943,
       "role": "edge",
       "is_cut_edge": true
     },
     {
       "src": "features_1_conv_1",
       "dst": "features_1_conv_0_2",
-      "capacity_ms": 12740.074860000024,
+      "capacity_ms": 12742.863140000056,
       "role": "precedence_constraint",
       "is_cut_edge": false
     },
@@ -5897,14 +5897,14 @@
     {
       "src": "features_1_conv_2",
       "dst": "__sink__",
-      "capacity_ms": 0.11304000000080805,
+      "capacity_ms": 0.13946000000828462,
       "role": "edge",
       "is_cut_edge": true
     },
     {
       "src": "features_1_conv_2",
       "dst": "features_1_conv_1",
-      "capacity_ms": 12740.074860000024,
+      "capacity_ms": 12742.863140000056,
       "role": "precedence_constraint",
       "is_cut_edge": false
     },
@@ -5918,14 +5918,14 @@
     {
       "src": "features_2_conv_0_0",
       "dst": "__sink__",
-      "capacity_ms": 1.7047200000007479,
+      "capacity_ms": 2.2854599999959646,
       "role": "edge",
       "is_cut_edge": true
     },
     {
       "src": "features_2_conv_0_0",
       "dst": "features_1_conv_2",
-      "capacity_ms": 12740.074860000024,
+      "capacity_ms": 12742.863140000056,
       "role": "precedence_constraint",
       "is_cut_edge": false
     },
@@ -5939,14 +5939,14 @@
     {
       "src": "features_2_conv_0_1",
       "dst": "__sink__",
-      "capacity_ms": 0.5465199999996173,
+      "capacity_ms": 0.5170600000042214,
       "role": "edge",
       "is_cut_edge": true
     },
     {
       "src": "features_2_conv_0_1",
       "dst": "features_2_conv_0_0",
-      "capacity_ms": 12740.074860000024,
+      "capacity_ms": 12742.863140000056,
       "role": "precedence_constraint",
       "is_cut_edge": false
     },
@@ -5960,14 +5960,14 @@
     {
       "src": "features_2_conv_0_2",
       "dst": "__sink__",
-      "capacity_ms": 0.20833999999894104,
+      "capacity_ms": 0.1725000000021737,
       "role": "edge",
       "is_cut_edge": true
     },
     {
       "src": "features_2_conv_0_2",
       "dst": "features_2_conv_0_1",
-      "capacity_ms": 12740.074860000024,
+      "capacity_ms": 12742.863140000056,
       "role": "precedence_constraint",
       "is_cut_edge": false
     },
@@ -5981,14 +5981,14 @@
     {
       "src": "features_2_conv_1_0",
       "dst": "__sink__",
-      "capacity_ms": 1.3431600000004096,
+      "capacity_ms": 1.191140000003088,
       "role": "edge",
       "is_cut_edge": true
     },
     {
       "src": "features_2_conv_1_0",
       "dst": "features_2_conv_0_2",
-      "capacity_ms": 12740.074860000024,
+      "capacity_ms": 12742.863140000056,
       "role": "precedence_constraint",
       "is_cut_edge": false
     },
@@ -6002,14 +6002,14 @@
     {
       "src": "features_2_conv_1_1",
       "dst": "__sink__",
-      "capacity_ms": 0.21522000000047115,
+      "capacity_ms": 0.1931399999932637,
       "role": "edge",
       "is_cut_edge": true
     },
     {
       "src": "features_2_conv_1_1",
       "dst": "features_2_conv_1_0",
-      "capacity_ms": 12740.074860000024,
+      "capacity_ms": 12742.863140000056,
       "role": "precedence_constraint",
       "is_cut_edge": false
     },
@@ -6023,14 +6023,14 @@
     {
       "src": "features_2_conv_1_2",
       "dst": "__sink__",
-      "capacity_ms": 0.15311999999951809,
+      "capacity_ms": 0.08005999999909363,
       "role": "edge",
       "is_cut_edge": true
     },
     {
       "src": "features_2_conv_1_2",
       "dst": "features_2_conv_1_1",
-      "capacity_ms": 12740.074860000024,
+      "capacity_ms": 12742.863140000056,
       "role": "precedence_constraint",
       "is_cut_edge": false
     },
@@ -6044,14 +6044,14 @@
     {
       "src": "features_2_conv_2",
       "dst": "__sink__",
-      "capacity_ms": 0.48110000000036734,
+      "capacity_ms": 0.48093999999991865,
       "role": "edge",
       "is_cut_edge": true
     },
     {
       "src": "features_2_conv_2",
       "dst": "features_2_conv_1_2",
-      "capacity_ms": 12740.074860000024,
+      "capacity_ms": 12742.863140000056,
       "role": "precedence_constraint",
       "is_cut_edge": false
     },
@@ -6065,14 +6065,14 @@
     {
       "src": "features_2_conv_3",
       "dst": "__sink__",
-      "capacity_ms": 0.11252000000041562,
+      "capacity_ms": 0.10874000000171691,
       "role": "edge",
       "is_cut_edge": true
     },
     {
       "src": "features_2_conv_3",
       "dst": "features_2_conv_2",
-      "capacity_ms": 12740.074860000024,
+      "capacity_ms": 12742.863140000056,
       "role": "precedence_constraint",
       "is_cut_edge": false
     },
@@ -6086,28 +6086,28 @@
     {
       "src": "features_2_conv_3__aux",
       "dst": "add",
-      "capacity_ms": 12740.074860000024,
+      "capacity_ms": 12742.863140000056,
       "role": "aux",
       "is_cut_edge": false
     },
     {
       "src": "features_2_conv_3__aux",
       "dst": "features_3_conv_0_0",
-      "capacity_ms": 12740.074860000024,
+      "capacity_ms": 12742.863140000056,
       "role": "aux",
       "is_cut_edge": false
     },
     {
       "src": "features_3_conv_0_0",
       "dst": "__sink__",
-      "capacity_ms": 0.6397799999994902,
+      "capacity_ms": 0.6483600000024126,
       "role": "edge",
       "is_cut_edge": true
     },
     {
       "src": "features_3_conv_0_0",
       "dst": "features_2_conv_3",
-      "capacity_ms": 12740.074860000024,
+      "capacity_ms": 12742.863140000056,
       "role": "precedence_constraint",
       "is_cut_edge": false
     },
@@ -6121,14 +6121,14 @@
     {
       "src": "features_3_conv_0_1",
       "dst": "__sink__",
-      "capacity_ms": 0.255379999998695,
+      "capacity_ms": 0.2280000000041582,
       "role": "edge",
       "is_cut_edge": true
     },
     {
       "src": "features_3_conv_0_1",
       "dst": "features_3_conv_0_0",
-      "capacity_ms": 12740.074860000024,
+      "capacity_ms": 12742.863140000056,
       "role": "precedence_constraint",
       "is_cut_edge": false
     },
@@ -6142,14 +6142,14 @@
     {
       "src": "features_3_conv_0_2",
       "dst": "__sink__",
-      "capacity_ms": 0.10433999999932553,
+      "capacity_ms": 0.1422600000012153,
       "role": "edge",
       "is_cut_edge": true
     },
     {
       "src": "features_3_conv_0_2",
       "dst": "features_3_conv_0_1",
-      "capacity_ms": 12740.074860000024,
+      "capacity_ms": 12742.863140000056,
       "role": "precedence_constraint",
       "is_cut_edge": false
     },
@@ -6163,14 +6163,14 @@
     {
       "src": "features_3_conv_1_0",
       "dst": "__sink__",
-      "capacity_ms": 0.7177399999996226,
+      "capacity_ms": 0.7708999999977095,
       "role": "edge",
       "is_cut_edge": true
     },
     {
       "src": "features_3_conv_1_0",
       "dst": "features_3_conv_0_2",
-      "capacity_ms": 12740.074860000024,
+      "capacity_ms": 12742.863140000056,
       "role": "precedence_constraint",
       "is_cut_edge": false
     },
@@ -6184,14 +6184,14 @@
     {
       "src": "features_3_conv_1_1",
       "dst": "__sink__",
-      "capacity_ms": 0.2026800000002993,
+      "capacity_ms": 0.16796000000454114,
       "role": "edge",
       "is_cut_edge": true
     },
     {
       "src": "features_3_conv_1_1",
       "dst": "features_3_conv_1_0",
-      "capacity_ms": 12740.074860000024,
+      "capacity_ms": 12742.863140000056,
       "role": "precedence_constraint",
       "is_cut_edge": false
     },
@@ -6205,14 +6205,14 @@
     {
       "src": "features_3_conv_1_2",
       "dst": "__sink__",
-      "capacity_ms": 0.08560000000130685,
+      "capacity_ms": 0.083319999998821,
       "role": "edge",
       "is_cut_edge": true
     },
     {
       "src": "features_3_conv_1_2",
       "dst": "features_3_conv_1_1",
-      "capacity_ms": 12740.074860000024,
+      "capacity_ms": 12742.863140000056,
       "role": "precedence_constraint",
       "is_cut_edge": false
     },
@@ -6226,14 +6226,14 @@
     {
       "src": "features_3_conv_2",
       "dst": "__sink__",
-      "capacity_ms": 0.38737999999867156,
+      "capacity_ms": 0.32509999999774664,
       "role": "edge",
       "is_cut_edge": true
     },
     {
       "src": "features_3_conv_2",
       "dst": "features_3_conv_1_2",
-      "capacity_ms": 12740.074860000024,
+      "capacity_ms": 12742.863140000056,
       "role": "precedence_constraint",
       "is_cut_edge": false
     },
@@ -6247,7 +6247,7 @@
     {
       "src": "features_3_conv_3",
       "dst": "__sink__",
-      "capacity_ms": 0.09359999999887236,
+      "capacity_ms": 0.140119999991839,
       "role": "edge",
       "is_cut_edge": true
     },
@@ -6261,21 +6261,21 @@
     {
       "src": "features_3_conv_3",
       "dst": "features_3_conv_2",
-      "capacity_ms": 12740.074860000024,
+      "capacity_ms": 12742.863140000056,
       "role": "precedence_constraint",
       "is_cut_edge": false
     },
     {
       "src": "features_4_conv_0_0",
       "dst": "__sink__",
-      "capacity_ms": 0.4481999999995878,
+      "capacity_ms": 0.45846000000437925,
       "role": "edge",
       "is_cut_edge": true
     },
     {
       "src": "features_4_conv_0_0",
       "dst": "add",
-      "capacity_ms": 12740.074860000024,
+      "capacity_ms": 12742.863140000056,
       "role": "precedence_constraint",
       "is_cut_edge": false
     },
@@ -6289,14 +6289,14 @@
     {
       "src": "features_4_conv_0_1",
       "dst": "__sink__",
-      "capacity_ms": 0.33317999999979975,
+      "capacity_ms": 0.2514199999950506,
       "role": "edge",
       "is_cut_edge": true
     },
     {
       "src": "features_4_conv_0_1",
       "dst": "features_4_conv_0_0",
-      "capacity_ms": 12740.074860000024,
+      "capacity_ms": 12742.863140000056,
       "role": "precedence_constraint",
       "is_cut_edge": false
     },
@@ -6310,14 +6310,14 @@
     {
       "src": "features_4_conv_0_2",
       "dst": "__sink__",
-      "capacity_ms": 0.11781999999982418,
+      "capacity_ms": 0.09209999998915919,
       "role": "edge",
       "is_cut_edge": true
     },
     {
       "src": "features_4_conv_0_2",
       "dst": "features_4_conv_0_1",
-      "capacity_ms": 12740.074860000024,
+      "capacity_ms": 12742.863140000056,
       "role": "precedence_constraint",
       "is_cut_edge": false
     },
@@ -6331,14 +6331,14 @@
     {
       "src": "features_4_conv_1_0",
       "dst": "__sink__",
-      "capacity_ms": 0.4032199999983277,
+      "capacity_ms": 0.37542000000030384,
       "role": "edge",
       "is_cut_edge": true
     },
     {
       "src": "features_4_conv_1_0",
       "dst": "features_4_conv_0_2",
-      "capacity_ms": 12740.074860000024,
+      "capacity_ms": 12742.863140000056,
       "role": "precedence_constraint",
       "is_cut_edge": false
     },
@@ -6352,14 +6352,14 @@
     {
       "src": "features_4_conv_1_1",
       "dst": "__sink__",
-      "capacity_ms": 0.10860000000008085,
+      "capacity_ms": 0.11087999999972453,
       "role": "edge",
       "is_cut_edge": true
     },
     {
       "src": "features_4_conv_1_1",
       "dst": "features_4_conv_1_0",
-      "capacity_ms": 12740.074860000024,
+      "capacity_ms": 12742.863140000056,
       "role": "precedence_constraint",
       "is_cut_edge": false
     },
@@ -6373,14 +6373,14 @@
     {
       "src": "features_4_conv_1_2",
       "dst": "__sink__",
-      "capacity_ms": 0.06599999999963302,
+      "capacity_ms": 0.05700000000388172,
       "role": "edge",
       "is_cut_edge": true
     },
     {
       "src": "features_4_conv_1_2",
       "dst": "features_4_conv_1_1",
-      "capacity_ms": 12740.074860000024,
+      "capacity_ms": 12742.863140000056,
       "role": "precedence_constraint",
       "is_cut_edge": false
     },
@@ -6394,14 +6394,14 @@
     {
       "src": "features_4_conv_2",
       "dst": "__sink__",
-      "capacity_ms": 0.30477999999973804,
+      "capacity_ms": 0.3383600000063325,
       "role": "edge",
       "is_cut_edge": true
     },
     {
       "src": "features_4_conv_2",
       "dst": "features_4_conv_1_2",
-      "capacity_ms": 12740.074860000024,
+      "capacity_ms": 12742.863140000056,
       "role": "precedence_constraint",
       "is_cut_edge": false
     },
@@ -6415,14 +6415,14 @@
     {
       "src": "features_4_conv_3",
       "dst": "__sink__",
-      "capacity_ms": 0.08904000000029555,
+      "capacity_ms": 0.08288000000220563,
       "role": "edge",
       "is_cut_edge": true
     },
     {
       "src": "features_4_conv_3",
       "dst": "features_4_conv_2",
-      "capacity_ms": 12740.074860000024,
+      "capacity_ms": 12742.863140000056,
       "role": "precedence_constraint",
       "is_cut_edge": false
     },
@@ -6436,28 +6436,28 @@
     {
       "src": "features_4_conv_3__aux",
       "dst": "add_1",
-      "capacity_ms": 12740.074860000024,
+      "capacity_ms": 12742.863140000056,
       "role": "aux",
       "is_cut_edge": false
     },
     {
       "src": "features_4_conv_3__aux",
       "dst": "features_5_conv_0_0",
-      "capacity_ms": 12740.074860000024,
+      "capacity_ms": 12742.863140000056,
       "role": "aux",
       "is_cut_edge": false
     },
     {
       "src": "features_5_conv_0_0",
       "dst": "__sink__",
-      "capacity_ms": 0.3230600000009076,
+      "capacity_ms": 0.30696000000034473,
       "role": "edge",
       "is_cut_edge": true
     },
     {
       "src": "features_5_conv_0_0",
       "dst": "features_4_conv_3",
-      "capacity_ms": 12740.074860000024,
+      "capacity_ms": 12742.863140000056,
       "role": "precedence_constraint",
       "is_cut_edge": false
     },
@@ -6471,14 +6471,14 @@
     {
       "src": "features_5_conv_0_1",
       "dst": "__sink__",
-      "capacity_ms": 0.10637999999971726,
+      "capacity_ms": 0.11101999999709733,
       "role": "edge",
       "is_cut_edge": true
     },
     {
       "src": "features_5_conv_0_1",
       "dst": "features_5_conv_0_0",
-      "capacity_ms": 12740.074860000024,
+      "capacity_ms": 12742.863140000056,
       "role": "precedence_constraint",
       "is_cut_edge": false
     },
@@ -6492,14 +6492,14 @@
     {
       "src": "features_5_conv_0_2",
       "dst": "__sink__",
-      "capacity_ms": 0.10891999999955715,
+      "capacity_ms": 0.06121999999777472,
       "role": "edge",
       "is_cut_edge": true
     },
     {
       "src": "features_5_conv_0_2",
       "dst": "features_5_conv_0_1",
-      "capacity_ms": 12740.074860000024,
+      "capacity_ms": 12742.863140000056,
       "role": "precedence_constraint",
       "is_cut_edge": false
     },
@@ -6513,14 +6513,14 @@
     {
       "src": "features_5_conv_1_0",
       "dst": "__sink__",
-      "capacity_ms": 0.37075999999913734,
+      "capacity_ms": 0.2962599999932536,
       "role": "edge",
       "is_cut_edge": true
     },
     {
       "src": "features_5_conv_1_0",
       "dst": "features_5_conv_0_2",
-      "capacity_ms": 12740.074860000024,
+      "capacity_ms": 12742.863140000056,
       "role": "precedence_constraint",
       "is_cut_edge": false
     },
@@ -6534,14 +6534,14 @@
     {
       "src": "features_5_conv_1_1",
       "dst": "__sink__",
-      "capacity_ms": 0.12076000000007525,
+      "capacity_ms": 0.11495999999624473,
       "role": "edge",
       "is_cut_edge": true
     },
     {
       "src": "features_5_conv_1_1",
       "dst": "features_5_conv_1_0",
-      "capacity_ms": 12740.074860000024,
+      "capacity_ms": 12742.863140000056,
       "role": "precedence_constraint",
       "is_cut_edge": false
     },
@@ -6555,14 +6555,14 @@
     {
       "src": "features_5_conv_1_2",
       "dst": "__sink__",
-      "capacity_ms": 0.07195999999893843,
+      "capacity_ms": 0.0708999999972093,
       "role": "edge",
       "is_cut_edge": true
     },
     {
       "src": "features_5_conv_1_2",
       "dst": "features_5_conv_1_1",
-      "capacity_ms": 12740.074860000024,
+      "capacity_ms": 12742.863140000056,
       "role": "precedence_constraint",
       "is_cut_edge": false
     },
@@ -6576,14 +6576,14 @@
     {
       "src": "features_5_conv_2",
       "dst": "__sink__",
-      "capacity_ms": 0.2921600000000524,
+      "capacity_ms": 0.2707800000109728,
       "role": "edge",
       "is_cut_edge": true
     },
     {
       "src": "features_5_conv_2",
       "dst": "features_5_conv_1_2",
-      "capacity_ms": 12740.074860000024,
+      "capacity_ms": 12742.863140000056,
       "role": "precedence_constraint",
       "is_cut_edge": false
     },
@@ -6597,7 +6597,7 @@
     {
       "src": "features_5_conv_3",
       "dst": "__sink__",
-      "capacity_ms": 0.08163999999837301,
+      "capacity_ms": 0.07782000000133849,
       "role": "edge",
       "is_cut_edge": true
     },
@@ -6611,21 +6611,21 @@
     {
       "src": "features_5_conv_3",
       "dst": "features_5_conv_2",
-      "capacity_ms": 12740.074860000024,
+      "capacity_ms": 12742.863140000056,
       "role": "precedence_constraint",
       "is_cut_edge": false
     },
     {
       "src": "features_6_conv_0_0",
       "dst": "__sink__",
-      "capacity_ms": 0.2923199999997905,
+      "capacity_ms": 0.29368000000431493,
       "role": "edge",
       "is_cut_edge": true
     },
     {
       "src": "features_6_conv_0_0",
       "dst": "add_1",
-      "capacity_ms": 12740.074860000024,
+      "capacity_ms": 12742.863140000056,
       "role": "precedence_constraint",
       "is_cut_edge": false
     },
@@ -6639,14 +6639,14 @@
     {
       "src": "features_6_conv_0_1",
       "dst": "__sink__",
-      "capacity_ms": 0.11239999999972383,
+      "capacity_ms": 0.09927999999490567,
       "role": "edge",
       "is_cut_edge": true
     },
     {
       "src": "features_6_conv_0_1",
       "dst": "features_6_conv_0_0",
-      "capacity_ms": 12740.074860000024,
+      "capacity_ms": 12742.863140000056,
       "role": "precedence_constraint",
       "is_cut_edge": false
     },
@@ -6660,14 +6660,14 @@
     {
       "src": "features_6_conv_0_2",
       "dst": "__sink__",
-      "capacity_ms": 0.0641799999996806,
+      "capacity_ms": 0.05962000000181433,
       "role": "edge",
       "is_cut_edge": true
     },
     {
       "src": "features_6_conv_0_2",
       "dst": "features_6_conv_0_1",
-      "capacity_ms": 12740.074860000024,
+      "capacity_ms": 12742.863140000056,
       "role": "precedence_constraint",
       "is_cut_edge": false
     },
@@ -6681,14 +6681,14 @@
     {
       "src": "features_6_conv_1_0",
       "dst": "__sink__",
-      "capacity_ms": 0.29901999999921713,
+      "capacity_ms": 0.2747199999987515,
       "role": "edge",
       "is_cut_edge": true
     },
     {
       "src": "features_6_conv_1_0",
       "dst": "features_6_conv_0_2",
-      "capacity_ms": 12740.074860000024,
+      "capacity_ms": 12742.863140000056,
       "role": "precedence_constraint",
       "is_cut_edge": false
     },
@@ -6702,14 +6702,14 @@
     {
       "src": "features_6_conv_1_1",
       "dst": "__sink__",
-      "capacity_ms": 0.11177999999958388,
+      "capacity_ms": 0.0954799999988154,
       "role": "edge",
       "is_cut_edge": true
     },
     {
       "src": "features_6_conv_1_1",
       "dst": "features_6_conv_1_0",
-      "capacity_ms": 12740.074860000024,
+      "capacity_ms": 12742.863140000056,
       "role": "precedence_constraint",
       "is_cut_edge": false
     },
@@ -6723,14 +6723,14 @@
     {
       "src": "features_6_conv_1_2",
       "dst": "__sink__",
-      "capacity_ms": 0.06949999999932288,
+      "capacity_ms": 0.058000000001356966,
       "role": "edge",
       "is_cut_edge": true
     },
     {
       "src": "features_6_conv_1_2",
       "dst": "features_6_conv_1_1",
-      "capacity_ms": 12740.074860000024,
+      "capacity_ms": 12742.863140000056,
       "role": "precedence_constraint",
       "is_cut_edge": false
     },
@@ -6744,14 +6744,14 @@
     {
       "src": "features_6_conv_2",
       "dst": "__sink__",
-      "capacity_ms": 0.2965199999998447,
+      "capacity_ms": 0.24401999999099644,
       "role": "edge",
       "is_cut_edge": true
     },
     {
       "src": "features_6_conv_2",
       "dst": "features_6_conv_1_2",
-      "capacity_ms": 12740.074860000024,
+      "capacity_ms": 12742.863140000056,
       "role": "precedence_constraint",
       "is_cut_edge": false
     },
@@ -6765,7 +6765,7 @@
     {
       "src": "features_6_conv_3",
       "dst": "__sink__",
-      "capacity_ms": 0.07963999999986981,
+      "capacity_ms": 0.07254000000216365,
       "role": "edge",
       "is_cut_edge": true
     },
@@ -6779,21 +6779,21 @@
     {
       "src": "features_6_conv_3",
       "dst": "features_6_conv_2",
-      "capacity_ms": 12740.074860000024,
+      "capacity_ms": 12742.863140000056,
       "role": "precedence_constraint",
       "is_cut_edge": false
     },
     {
       "src": "features_7_conv_0_0",
       "dst": "__sink__",
-      "capacity_ms": 0.33348000000117395,
+      "capacity_ms": 0.2543399999979101,
       "role": "edge",
       "is_cut_edge": true
     },
     {
       "src": "features_7_conv_0_0",
       "dst": "add_2",
-      "capacity_ms": 12740.074860000024,
+      "capacity_ms": 12742.863140000056,
       "role": "precedence_constraint",
       "is_cut_edge": false
     },
@@ -6807,14 +6807,14 @@
     {
       "src": "features_7_conv_0_1",
       "dst": "__sink__",
-      "capacity_ms": 0.10539999999963356,
+      "capacity_ms": 0.10824000000866363,
       "role": "edge",
       "is_cut_edge": true
     },
     {
       "src": "features_7_conv_0_1",
       "dst": "features_7_conv_0_0",
-      "capacity_ms": 12740.074860000024,
+      "capacity_ms": 12742.863140000056,
       "role": "precedence_constraint",
       "is_cut_edge": false
     },
@@ -6828,14 +6828,14 @@
     {
       "src": "features_7_conv_0_2",
       "dst": "__sink__",
-      "capacity_ms": 0.0590799999997671,
+      "capacity_ms": 0.061579999999139545,
       "role": "edge",
       "is_cut_edge": true
     },
     {
       "src": "features_7_conv_0_2",
       "dst": "features_7_conv_0_1",
-      "capacity_ms": 12740.074860000024,
+      "capacity_ms": 12742.863140000056,
       "role": "precedence_constraint",
       "is_cut_edge": false
     },
@@ -6849,14 +6849,14 @@
     {
       "src": "features_7_conv_1_0",
       "dst": "__sink__",
-      "capacity_ms": 0.25413999999983616,
+      "capacity_ms": 0.25880000000029213,
       "role": "edge",
       "is_cut_edge": true
     },
     {
       "src": "features_7_conv_1_0",
       "dst": "features_7_conv_0_2",
-      "capacity_ms": 12740.074860000024,
+      "capacity_ms": 12742.863140000056,
       "role": "precedence_constraint",
       "is_cut_edge": false
     },
@@ -6870,14 +6870,14 @@
     {
       "src": "features_7_conv_1_1",
       "dst": "__sink__",
-      "capacity_ms": 0.08673999999899706,
+      "capacity_ms": 0.08348000000637512,
       "role": "edge",
       "is_cut_edge": true
     },
     {
       "src": "features_7_conv_1_1",
       "dst": "features_7_conv_1_0",
-      "capacity_ms": 12740.074860000024,
+      "capacity_ms": 12742.863140000056,
       "role": "precedence_constraint",
       "is_cut_edge": false
     },
@@ -6891,14 +6891,14 @@
     {
       "src": "features_7_conv_1_2",
       "dst": "__sink__",
-      "capacity_ms": 0.05368000000061102,
+      "capacity_ms": 0.05260000000362197,
       "role": "edge",
       "is_cut_edge": true
     },
     {
       "src": "features_7_conv_1_2",
       "dst": "features_7_conv_1_1",
-      "capacity_ms": 12740.074860000024,
+      "capacity_ms": 12742.863140000056,
       "role": "precedence_constraint",
       "is_cut_edge": false
     },
@@ -6912,14 +6912,14 @@
     {
       "src": "features_7_conv_2",
       "dst": "__sink__",
-      "capacity_ms": 0.2505399999989777,
+      "capacity_ms": 0.26973999999881926,
       "role": "edge",
       "is_cut_edge": true
     },
     {
       "src": "features_7_conv_2",
       "dst": "features_7_conv_1_2",
-      "capacity_ms": 12740.074860000024,
+      "capacity_ms": 12742.863140000056,
       "role": "precedence_constraint",
       "is_cut_edge": false
     },
@@ -6933,14 +6933,14 @@
     {
       "src": "features_7_conv_3",
       "dst": "__sink__",
-      "capacity_ms": 0.07948000000013167,
+      "capacity_ms": 0.08029999999621396,
       "role": "edge",
       "is_cut_edge": true
     },
     {
       "src": "features_7_conv_3",
       "dst": "features_7_conv_2",
-      "capacity_ms": 12740.074860000024,
+      "capacity_ms": 12742.863140000056,
       "role": "precedence_constraint",
       "is_cut_edge": false
     },
@@ -6954,28 +6954,28 @@
     {
       "src": "features_7_conv_3__aux",
       "dst": "add_3",
-      "capacity_ms": 12740.074860000024,
+      "capacity_ms": 12742.863140000056,
       "role": "aux",
       "is_cut_edge": false
     },
     {
       "src": "features_7_conv_3__aux",
       "dst": "features_8_conv_0_0",
-      "capacity_ms": 12740.074860000024,
+      "capacity_ms": 12742.863140000056,
       "role": "aux",
       "is_cut_edge": false
     },
     {
       "src": "features_8_conv_0_0",
       "dst": "__sink__",
-      "capacity_ms": 0.18914000000052056,
+      "capacity_ms": 0.18767999999340645,
       "role": "edge",
       "is_cut_edge": true
     },
     {
       "src": "features_8_conv_0_0",
       "dst": "features_7_conv_3",
-      "capacity_ms": 12740.074860000024,
+      "capacity_ms": 12742.863140000056,
       "role": "precedence_constraint",
       "is_cut_edge": false
     },
@@ -6989,14 +6989,14 @@
     {
       "src": "features_8_conv_0_1",
       "dst": "__sink__",
-      "capacity_ms": 0.09150000000062164,
+      "capacity_ms": 0.09753999999588814,
       "role": "edge",
       "is_cut_edge": true
     },
     {
       "src": "features_8_conv_0_1",
       "dst": "features_8_conv_0_0",
-      "capacity_ms": 12740.074860000024,
+      "capacity_ms": 12742.863140000056,
       "role": "precedence_constraint",
       "is_cut_edge": false
     },
@@ -7010,14 +7010,14 @@
     {
       "src": "features_8_conv_0_2",
       "dst": "__sink__",
-      "capacity_ms": 0.05528000000083466,
+      "capacity_ms": 0.056160000002591914,
       "role": "edge",
       "is_cut_edge": true
     },
     {
       "src": "features_8_conv_0_2",
       "dst": "features_8_conv_0_1",
-      "capacity_ms": 12740.074860000024,
+      "capacity_ms": 12742.863140000056,
       "role": "precedence_constraint",
       "is_cut_edge": false
     },
@@ -7031,14 +7031,14 @@
     {
       "src": "features_8_conv_1_0",
       "dst": "__sink__",
-      "capacity_ms": 0.259079999999301,
+      "capacity_ms": 0.2500600000018949,
       "role": "edge",
       "is_cut_edge": true
     },
     {
       "src": "features_8_conv_1_0",
       "dst": "features_8_conv_0_2",
-      "capacity_ms": 12740.074860000024,
+      "capacity_ms": 12742.863140000056,
       "role": "precedence_constraint",
       "is_cut_edge": false
     },
@@ -7052,14 +7052,14 @@
     {
       "src": "features_8_conv_1_1",
       "dst": "__sink__",
-      "capacity_ms": 0.08948000000046363,
+      "capacity_ms": 0.09086000000024796,
       "role": "edge",
       "is_cut_edge": true
     },
     {
       "src": "features_8_conv_1_1",
       "dst": "features_8_conv_1_0",
-      "capacity_ms": 12740.074860000024,
+      "capacity_ms": 12742.863140000056,
       "role": "precedence_constraint",
       "is_cut_edge": false
     },
@@ -7073,14 +7073,14 @@
     {
       "src": "features_8_conv_1_2",
       "dst": "__sink__",
-      "capacity_ms": 0.05524000000036722,
+      "capacity_ms": 0.0546000000042568,
       "role": "edge",
       "is_cut_edge": true
     },
     {
       "src": "features_8_conv_1_2",
       "dst": "features_8_conv_1_1",
-      "capacity_ms": 12740.074860000024,
+      "capacity_ms": 12742.863140000056,
       "role": "precedence_constraint",
       "is_cut_edge": false
     },
@@ -7094,14 +7094,14 @@
     {
       "src": "features_8_conv_2",
       "dst": "__sink__",
-      "capacity_ms": 0.25680000000036785,
+      "capacity_ms": 0.5722600000069633,
       "role": "edge",
       "is_cut_edge": true
     },
     {
       "src": "features_8_conv_2",
       "dst": "features_8_conv_1_2",
-      "capacity_ms": 12740.074860000024,
+      "capacity_ms": 12742.863140000056,
       "role": "precedence_constraint",
       "is_cut_edge": false
     },
@@ -7115,7 +7115,7 @@
     {
       "src": "features_8_conv_3",
       "dst": "__sink__",
-      "capacity_ms": 0.07469999999969446,
+      "capacity_ms": 0.09022000000413755,
       "role": "edge",
       "is_cut_edge": true
     },
@@ -7129,21 +7129,21 @@
     {
       "src": "features_8_conv_3",
       "dst": "features_8_conv_2",
-      "capacity_ms": 12740.074860000024,
+      "capacity_ms": 12742.863140000056,
       "role": "precedence_constraint",
       "is_cut_edge": false
     },
     {
       "src": "features_9_conv_0_0",
       "dst": "__sink__",
-      "capacity_ms": 0.14252000000070097,
+      "capacity_ms": 0.1630400000010468,
       "role": "edge",
       "is_cut_edge": true
     },
     {
       "src": "features_9_conv_0_0",
       "dst": "add_3",
-      "capacity_ms": 12740.074860000024,
+      "capacity_ms": 12742.863140000056,
       "role": "precedence_constraint",
       "is_cut_edge": false
     },
@@ -7157,14 +7157,14 @@
     {
       "src": "features_9_conv_0_1",
       "dst": "__sink__",
-      "capacity_ms": 0.11468000000007805,
+      "capacity_ms": 0.10143999999172593,
       "role": "edge",
       "is_cut_edge": true
     },
     {
       "src": "features_9_conv_0_1",
       "dst": "features_9_conv_0_0",
-      "capacity_ms": 12740.074860000024,
+      "capacity_ms": 12742.863140000056,
       "role": "precedence_constraint",
       "is_cut_edge": false
     },
@@ -7178,14 +7178,14 @@
     {
       "src": "features_9_conv_0_2",
       "dst": "__sink__",
-      "capacity_ms": 0.060760000000215086,
+      "capacity_ms": 0.060559999997167324,
       "role": "edge",
       "is_cut_edge": true
     },
     {
       "src": "features_9_conv_0_2",
       "dst": "features_9_conv_0_1",
-      "capacity_ms": 12740.074860000024,
+      "capacity_ms": 12742.863140000056,
       "role": "precedence_constraint",
       "is_cut_edge": false
     },
@@ -7199,14 +7199,14 @@
     {
       "src": "features_9_conv_1_0",
       "dst": "__sink__",
-      "capacity_ms": 0.2597399999999084,
+      "capacity_ms": 0.24779999999964275,
       "role": "edge",
       "is_cut_edge": true
     },
     {
       "src": "features_9_conv_1_0",
       "dst": "features_9_conv_0_2",
-      "capacity_ms": 12740.074860000024,
+      "capacity_ms": 12742.863140000056,
       "role": "precedence_constraint",
       "is_cut_edge": false
     },
@@ -7220,14 +7220,14 @@
     {
       "src": "features_9_conv_1_1",
       "dst": "__sink__",
-      "capacity_ms": 0.10192000000017742,
+      "capacity_ms": 0.09519999999838547,
       "role": "edge",
       "is_cut_edge": true
     },
     {
       "src": "features_9_conv_1_1",
       "dst": "features_9_conv_1_0",
-      "capacity_ms": 12740.074860000024,
+      "capacity_ms": 12742.863140000056,
       "role": "precedence_constraint",
       "is_cut_edge": false
     },
@@ -7241,14 +7241,14 @@
     {
       "src": "features_9_conv_1_2",
       "dst": "__sink__",
-      "capacity_ms": 0.06371999999998934,
+      "capacity_ms": 0.054159999996272745,
       "role": "edge",
       "is_cut_edge": true
     },
     {
       "src": "features_9_conv_1_2",
       "dst": "features_9_conv_1_1",
-      "capacity_ms": 12740.074860000024,
+      "capacity_ms": 12742.863140000056,
       "role": "precedence_constraint",
       "is_cut_edge": false
     },
@@ -7262,14 +7262,14 @@
     {
       "src": "features_9_conv_2",
       "dst": "__sink__",
-      "capacity_ms": 0.30703999999985854,
+      "capacity_ms": 0.2364999999997508,
       "role": "edge",
       "is_cut_edge": true
     },
     {
       "src": "features_9_conv_2",
       "dst": "features_9_conv_1_2",
-      "capacity_ms": 12740.074860000024,
+      "capacity_ms": 12742.863140000056,
       "role": "precedence_constraint",
       "is_cut_edge": false
     },
@@ -7283,7 +7283,7 @@
     {
       "src": "features_9_conv_3",
       "dst": "__sink__",
-      "capacity_ms": 0.08580000000009136,
+      "capacity_ms": 0.07599999999570173,
       "role": "edge",
       "is_cut_edge": true
     },
@@ -7297,21 +7297,21 @@
     {
       "src": "features_9_conv_3",
       "dst": "features_9_conv_2",
-      "capacity_ms": 12740.074860000024,
+      "capacity_ms": 12742.863140000056,
       "role": "precedence_constraint",
       "is_cut_edge": false
     },
     {
       "src": "flatten",
       "dst": "__sink__",
-      "capacity_ms": 0.03890000000055238,
+      "capacity_ms": 0.03752000000645239,
       "role": "edge",
       "is_cut_edge": true
     },
     {
       "src": "flatten",
       "dst": "adaptive_avg_pool2d",
-      "capacity_ms": 12740.074860000024,
+      "capacity_ms": 12742.863140000056,
       "role": "precedence_constraint",
       "is_cut_edge": false
     },
