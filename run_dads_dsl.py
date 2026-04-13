@@ -1,6 +1,6 @@
-#云端D:\Program4Python\anaconda\envs\pytorch\python.exe .\run_dads_dsl.py serve --host 0.0.0.0 --port 50051 --device cuda
-#边缘端：D:\Program4Python\anaconda\envs\pytorch\python.exe .\run_dads_dsl.py client-run --server localhost:50051 --model mobilenet_v2 --bandwidth-mbps 5 --cpu-load-target 0 --report-format table
-
+#云端python.exe .\run_dads_dsl.py run-config --config configs\serve_cuda.json
+#边缘端：python.exe .\run_dads_dsl.py run-config --config configs\client.json   
+# 实验：python.exe .\run_dads_dsl.py experiment --config configs\experiment_mobilenet_v2.json
 from __future__ import annotations
 
 from pathlib import Path

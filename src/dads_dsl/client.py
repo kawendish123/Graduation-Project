@@ -1,10 +1,12 @@
 from __future__ import annotations
 
+import json
+from pathlib import Path
 from time import perf_counter, sleep
 from typing import Any, Optional
 
 from .cpu_load import CpuLoadController
-from .dsl import VIRTUAL_INPUT_ID, solve_dsl, with_virtual_input_node
+from .dsl import VIRTUAL_INPUT_ID, build_debug_payload, solve_dsl, with_virtual_input_node
 from .profile import ProfileRunConfig, profile_model
 from .report import write_report
 from .rpc import DadsCloudStub, make_channel
@@ -75,6 +77,7 @@ def run_client_once(
     input_shape: list[int],
     profile_runs: int,
     profile_warmup_runs: int,
+    debug_output: Optional[str] = None,
 ) -> dict[str, Any]:
     channel = make_channel(server)
     stub = DadsCloudStub(channel)
@@ -138,6 +141,7 @@ def run_client_once(
         total_actual_ms = edge_actual_ms + transmission_actual_ms + cloud_actual_ms
         cpu_stats = load_controller.stats()
 
+    all_edge_estimated_ms = sum(node.edge_ms for node in merged.nodes)
     row = {
         "model": model_name,
         "bandwidth_mbps": bandwidth_mbps,
@@ -146,7 +150,11 @@ def run_client_once(
         "split_nodes": solution.transmission_nodes,
         "edge_node_count": len(solution.edge_nodes),
         "cloud_node_count": len(solution.cloud_nodes),
+        "dsl_estimated_edge_ms": solution.edge_stage_ms,
         "dsl_estimated_transfer_ms": solution.transmission_stage_ms,
+        "dsl_estimated_cloud_ms": solution.cloud_stage_ms,
+        "dsl_estimated_total_ms": solution.total_inference_ms,
+        "all_edge_estimated_ms": all_edge_estimated_ms,
         "edge_actual_ms": edge_actual_ms,
         "transmission_actual_ms": transmission_actual_ms,
         "cloud_actual_ms": cloud_actual_ms,
@@ -159,6 +167,11 @@ def run_client_once(
         "output_shape": output_shape,
         "partition": solution.to_dict(),
     }
+    if debug_output:
+        debug_payload = build_debug_payload(profile_with_input, bandwidth_mbps, solution)
+        debug_path = Path(debug_output)
+        debug_path.parent.mkdir(parents=True, exist_ok=True)
+        debug_path.write_text(json.dumps(debug_payload, indent=2), encoding="utf-8")
     rendered = write_report(row, full_payload, report_format, report_output)
     print(rendered)
     return full_payload

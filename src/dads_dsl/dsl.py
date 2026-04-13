@@ -1,3 +1,5 @@
+# %%
+
 from __future__ import annotations
 
 from dataclasses import dataclass
@@ -6,12 +8,36 @@ from typing import Iterable
 
 import networkx as nx
 
-from .types import DSLSolution, ModelProfile
-from .types import ModelProfileNode
+from .types import DSLSolution, ModelProfile, ModelProfileNode
 
 SOURCE = "__source__"
 SINK = "__sink__"
 VIRTUAL_INPUT_ID = "__input__"
+CAPACITY_SCALE = 1_000_000
+
+
+def with_virtual_input_node(profile: ModelProfile, input_bytes: int) -> ModelProfile:
+    if input_bytes < 0:
+        raise ValueError("input_bytes must be non-negative.")
+    if any(node.id == VIRTUAL_INPUT_ID for node in profile.nodes):
+        return profile
+
+    all_successors = {succ_id for node in profile.nodes for succ_id in node.succ_ids}
+    root_ids = [node.id for node in profile.nodes if node.id not in all_successors]
+    virtual_input_node = ModelProfileNode(
+        id=VIRTUAL_INPUT_ID,
+        op_type="Input",
+        succ_ids=root_ids,
+        edge_ms=0.0,
+        cloud_ms=0.0,
+        output_bytes=input_bytes,
+    )
+    return ModelProfile(
+        model_name=profile.model_name,
+        input_shape=list(profile.input_shape),
+        nodes=[virtual_input_node] + list(profile.nodes),
+        metadata=profile.metadata,
+    )
 
 
 @dataclass
@@ -37,38 +63,10 @@ def compute_transmission_profile(profile: ModelProfile, bandwidth_mbps: float) -
     }
 
 
-def with_virtual_input_node(profile: ModelProfile, input_bytes: int) -> ModelProfile:
-    if input_bytes < 0:
-        raise ValueError("input_bytes must be non-negative.")
-    if any(node.id == VIRTUAL_INPUT_ID for node in profile.nodes):
-        return profile
-
-    all_successors = {succ_id for node in profile.nodes for succ_id in node.succ_ids}
-    root_nodes = [node.id for node in profile.nodes if node.id not in all_successors]
-    virtual_input = ModelProfileNode(
-        id=VIRTUAL_INPUT_ID,
-        op_type="Input",
-        succ_ids=root_nodes,
-        edge_ms=0.0,
-        cloud_ms=0.0,
-        output_bytes=input_bytes,
-    )
-    metadata = dict(profile.metadata or {})
-    metadata["virtual_input_node"] = VIRTUAL_INPUT_ID
-    return ModelProfile(
-        model_name=profile.model_name,
-        input_shape=list(profile.input_shape),
-        nodes=[virtual_input] + list(profile.nodes),
-        metadata=metadata,
-    )
-
-
 def _finite_capacity_sum(profile: ModelProfile, transmission_ms: dict[str, float]) -> float:
     total = 0.0
     for node in profile.nodes:
-        total += node.edge_ms
-        if node.id != VIRTUAL_INPUT_ID:
-            total += node.cloud_ms
+        total += node.edge_ms + node.cloud_ms
         if node.succ_ids:
             total += transmission_ms[node.id]
     return total
@@ -96,6 +94,12 @@ def construct_flow_graph(profile: ModelProfile, bandwidth_mbps: float) -> FlowGr
                 capacity=transmission_ms[node.id],
                 role="transmission",
             )
+            graph.add_edge(
+                node.succ_ids[0],
+                node.id,
+                capacity=infinity_capacity,
+                role="precedence_constraint",
+            )
         elif len(node.succ_ids) > 1:
             aux_id = f"{node.id}__aux"
             aux_nodes[node.id] = aux_id
@@ -108,6 +112,12 @@ def construct_flow_graph(profile: ModelProfile, bandwidth_mbps: float) -> FlowGr
             )
             for succ_id in node.succ_ids:
                 graph.add_edge(aux_id, succ_id, capacity=infinity_capacity, role="aux")
+                graph.add_edge(
+                    succ_id,
+                    node.id,
+                    capacity=infinity_capacity,
+                    role="precedence_constraint",
+                )
 
     return FlowGraphBuild(
         graph=graph,
@@ -117,6 +127,53 @@ def construct_flow_graph(profile: ModelProfile, bandwidth_mbps: float) -> FlowGr
     )
 
 
+def _scaled_capacity(capacity: float) -> int:
+    if not math.isfinite(capacity):
+        raise ValueError("All graph capacities must be finite.")
+    if capacity < 0:
+        raise ValueError("All graph capacities must be non-negative.")
+    if capacity == 0:
+        return 0
+    return max(1, int(round(capacity * CAPACITY_SCALE)))
+
+
+def _integer_capacity_graph(graph: nx.DiGraph) -> nx.DiGraph:
+    scaled_graph = nx.DiGraph()
+    scaled_graph.add_nodes_from(graph.nodes(data=True))
+    for src, dst, data in graph.edges(data=True):
+        copied = dict(data)
+        copied["capacity"] = _scaled_capacity(float(data["capacity"]))
+        scaled_graph.add_edge(src, dst, **copied)
+    return scaled_graph
+
+
+def _directed_cut_capacity(graph: nx.DiGraph, reachable: set[str], non_reachable: set[str]) -> int:
+    return sum(
+        int(graph[src][dst]["capacity"])
+        for src in reachable
+        for dst in graph.successors(src)
+        if dst in non_reachable
+    )
+
+
+def _minimum_cut_partition(graph: nx.DiGraph) -> tuple[set[str], set[str]]:
+    scaled_graph = _integer_capacity_graph(graph)
+    cut_value, partition = nx.minimum_cut(scaled_graph, SOURCE, SINK, capacity="capacity")
+    reachable, non_reachable = partition
+
+    if SOURCE not in reachable or SINK not in non_reachable:
+        raise RuntimeError("Minimum cut partition is invalid: source and sink are not separated.")
+
+    directed_cut_value = _directed_cut_capacity(scaled_graph, reachable, non_reachable)
+    if directed_cut_value != cut_value:
+        raise RuntimeError(
+            "Minimum cut partition is inconsistent with the cut value: "
+            f"partition_capacity={directed_cut_value}, cut_value={cut_value}."
+        )
+
+    return set(reachable), set(non_reachable)
+
+
 def _sorted_nodes(nodes: Iterable[str], order: dict[str, int]) -> list[str]:
     return sorted(nodes, key=lambda item: order[item])
 
@@ -124,8 +181,7 @@ def _sorted_nodes(nodes: Iterable[str], order: dict[str, int]) -> list[str]:
 def solve_dsl(profile: ModelProfile, bandwidth_mbps: float) -> DSLSolution:
     build = construct_flow_graph(profile, bandwidth_mbps)
     graph = build.graph
-    _, partition = nx.minimum_cut(graph, SOURCE, SINK, capacity="capacity")
-    reachable, non_reachable = partition
+    reachable, non_reachable = _minimum_cut_partition(graph)
 
     original_order = {node.id: index for index, node in enumerate(profile.nodes)}
     node_map = profile.node_map()
@@ -174,6 +230,71 @@ def solve_dsl(profile: ModelProfile, bandwidth_mbps: float) -> DSLSolution:
         cloud_nodes=cloud_nodes,
         cut_edges=sorted(cut_edges),
     )
+
+
+def build_debug_payload(profile: ModelProfile, bandwidth_mbps: float, solution: DSLSolution) -> dict:
+    build = construct_flow_graph(profile, bandwidth_mbps)
+    transmission_ms = build.transmission_ms
+    edge_node_ids = set(solution.edge_nodes)
+    cloud_node_ids = set(solution.cloud_nodes)
+    transmission_node_ids = set(solution.transmission_nodes)
+    cut_edges = set(tuple(edge) for edge in solution.cut_edges)
+
+    nodes = []
+    for node in profile.nodes:
+        if node.id in edge_node_ids:
+            partition = "edge"
+        elif node.id in cloud_node_ids:
+            partition = "cloud"
+        else:
+            partition = "unknown"
+        nodes.append(
+            {
+                "id": node.id,
+                "op_type": node.op_type,
+                "succ_ids": list(node.succ_ids),
+                "edge_ms": node.edge_ms,
+                "cloud_ms": node.cloud_ms,
+                "transmission_ms": transmission_ms[node.id],
+                "output_bytes": node.output_bytes,
+                "partition": partition,
+                "is_transmission_node": node.id in transmission_node_ids,
+            }
+        )
+
+    flow_edges = []
+    for src, dst, data in sorted(build.graph.edges(data=True), key=lambda item: (str(item[0]), str(item[1]))):
+        flow_edges.append(
+            {
+                "src": src,
+                "dst": dst,
+                "capacity_ms": float(data["capacity"]),
+                "role": data.get("role", ""),
+                "is_cut_edge": (src, dst) in cut_edges,
+            }
+        )
+
+    all_edge_estimated_ms = sum(node.edge_ms for node in profile.nodes)
+    return {
+        "model_name": profile.model_name,
+        "input_shape": list(profile.input_shape),
+        "bandwidth_mbps": bandwidth_mbps,
+        "summary": {
+            "edge_node_count": len(solution.edge_nodes),
+            "cloud_node_count": len(solution.cloud_nodes),
+            "transmission_node_count": len(solution.transmission_nodes),
+            "dsl_estimated_edge_ms": solution.edge_stage_ms,
+            "dsl_estimated_transfer_ms": solution.transmission_stage_ms,
+            "dsl_estimated_cloud_ms": solution.cloud_stage_ms,
+            "dsl_estimated_total_ms": solution.total_inference_ms,
+            "all_edge_estimated_ms": all_edge_estimated_ms,
+        },
+        "partition": solution.to_dict(),
+        "nodes": nodes,
+        "flow_edges": flow_edges,
+        "cut_edges": [list(edge) for edge in solution.cut_edges],
+        "aux_nodes": dict(build.aux_nodes),
+    }
 
 
 def solve_bandwidth_sweep(profile: ModelProfile, bandwidths_mbps: Iterable[float]) -> list[DSLSolution]:

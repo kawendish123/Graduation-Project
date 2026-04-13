@@ -30,6 +30,14 @@ def test_construct_flow_graph_adds_source_and_sink_edges():
     assert build.graph["d"][SINK]["capacity"] == 100.0
 
 
+def test_construct_flow_graph_adds_precedence_constraint_edges():
+    build = construct_flow_graph(_branch_profile(), bandwidth_mbps=2.0)
+    assert build.graph["b"]["a"]["role"] == "precedence_constraint"
+    assert build.graph["b"]["a"]["capacity"] == build.infinity_capacity
+    assert build.graph["c"]["a"]["role"] == "precedence_constraint"
+    assert build.graph["d"]["b"]["role"] == "precedence_constraint"
+
+
 def test_solution_marks_transmission_node_once_even_with_two_successors():
     solution = solve_dsl(_branch_profile(), bandwidth_mbps=1.0)
     assert solution.transmission_nodes == ["a"]

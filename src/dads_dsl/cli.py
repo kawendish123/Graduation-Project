@@ -3,7 +3,7 @@ from __future__ import annotations
 import argparse
 import json
 from pathlib import Path
-from typing import Optional
+from typing import Any, Optional
 
 from .dsl import solve_bandwidth_sweep, solve_dsl
 from .profile import ProfileRunConfig, profile_model
@@ -12,6 +12,20 @@ from .types import ModelProfile
 
 def _parse_bandwidths(values: list[str]) -> list[float]:
     return [float(value) for value in values]
+
+
+def _load_config(path: str) -> dict[str, Any]:
+    payload = json.loads(Path(path).read_text(encoding="utf-8"))
+    if not isinstance(payload, dict):
+        raise ValueError("Config file must contain a JSON object.")
+    return payload
+
+
+def _get_input_shape(config: dict[str, Any]) -> list[int]:
+    value = config.get("input_shape", [1, 3, 224, 224])
+    if not isinstance(value, list) or len(value) != 4:
+        raise ValueError("client-run config field 'input_shape' must be a list of four integers.")
+    return [int(item) for item in value]
 
 
 def build_parser() -> argparse.ArgumentParser:
@@ -57,6 +71,13 @@ def build_parser() -> argparse.ArgumentParser:
     client_parser.add_argument("--profile-warmup-runs", type=int, default=0)
     client_parser.add_argument("--report-format", choices=["table", "json", "csv"], default="table")
     client_parser.add_argument("--report-output")
+    client_parser.add_argument("--debug-output")
+
+    config_parser = subparsers.add_parser("run-config", help="Run serve/client-run/experiment from a JSON config file")
+    config_parser.add_argument("--config", required=True)
+
+    experiment_parser = subparsers.add_parser("experiment", help="Run a DSL latency experiment sweep")
+    experiment_parser.add_argument("--config", required=True)
 
     return parser
 
@@ -113,7 +134,84 @@ def main(argv: Optional[list[str]] = None) -> int:
             input_shape=list(args.input_shape),
             profile_runs=args.profile_runs,
             profile_warmup_runs=args.profile_warmup_runs,
+            debug_output=args.debug_output,
         )
+        return 0
+
+    if args.command == "run-config":
+        try:
+            config = _load_config(args.config)
+            config_command = str(config.get("command", ""))
+        except (OSError, json.JSONDecodeError, ValueError) as exc:
+            parser.error(str(exc))
+
+        if config_command == "serve":
+            device = str(config.get("device", "cuda"))
+            if device not in {"cpu", "cuda"}:
+                parser.error("serve config field 'device' must be 'cpu' or 'cuda'.")
+            from .server import serve
+
+            serve(
+                host=str(config.get("host", "0.0.0.0")),
+                port=int(config.get("port", 50051)),
+                device=device,
+                max_workers=int(config.get("max_workers", 4)),
+            )
+            return 0
+
+        if config_command == "client-run":
+            if "model" not in config:
+                parser.error("client-run config field 'model' is required.")
+            model_name = str(config["model"])
+            if model_name not in {"mobilenet_v2", "googlenet"}:
+                parser.error("client-run config field 'model' must be 'mobilenet_v2' or 'googlenet'.")
+            if "bandwidth_mbps" not in config:
+                parser.error("client-run config field 'bandwidth_mbps' is required.")
+            report_format = str(config.get("report_format", "table"))
+            if report_format not in {"table", "json", "csv"}:
+                parser.error("client-run config field 'report_format' must be 'table', 'json', or 'csv'.")
+            try:
+                input_shape = _get_input_shape(config)
+            except ValueError as exc:
+                parser.error(str(exc))
+
+            from .client import run_client_once
+
+            run_client_once(
+                server=str(config.get("server", "localhost:50051")),
+                model_name=model_name,
+                bandwidth_mbps=float(config["bandwidth_mbps"]),
+                cpu_load_target=float(config.get("cpu_load_target", 0.0)),
+                cpu_load_tolerance=float(config.get("cpu_load_tolerance", 5.0)),
+                cpu_load_interval=float(config.get("cpu_load_interval", 0.5)),
+                cpu_load_ramp_seconds=float(config.get("cpu_load_ramp_seconds", 2.0)),
+                report_format=report_format,
+                report_output=config.get("report_output"),
+                input_shape=input_shape,
+                profile_runs=int(config.get("profile_runs", 1)),
+                profile_warmup_runs=int(config.get("profile_warmup_runs", 0)),
+                debug_output=config.get("debug_output"),
+            )
+            return 0
+
+        if config_command == "experiment":
+            from .experiment import run_experiment
+
+            run_experiment(config)
+            return 0
+
+        parser.error("Config field 'command' must be 'serve', 'client-run', or 'experiment'.")
+
+    if args.command == "experiment":
+        try:
+            config = _load_config(args.config)
+        except (OSError, json.JSONDecodeError, ValueError) as exc:
+            parser.error(str(exc))
+        if str(config.get("command", "experiment")) != "experiment":
+            parser.error("experiment config field 'command' must be 'experiment'.")
+        from .experiment import run_experiment
+
+        run_experiment(config)
         return 0
 
     if args.command == "dsl":
