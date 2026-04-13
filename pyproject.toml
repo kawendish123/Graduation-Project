@@ -1,0 +1,36 @@
+[build-system]
+requires = ["setuptools>=68", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "dads-dsl"
+version = "0.1.0"
+description = "A paper-faithful DSL prototype for Dynamic Adaptive DNN Surgery."
+readme = "README.md"
+requires-python = ">=3.8"
+dependencies = [
+  "grpcio>=1.60",
+  "networkx>=3.1",
+  "numpy>=1.24",
+  "psutil>=5.9",
+  "protobuf>=4",
+]
+
+[project.optional-dependencies]
+torch = [
+  "torch>=2.0",
+  "torchvision>=0.15",
+]
+
+[project.scripts]
+dads-dsl = "dads_dsl.cli:main"
+
+[tool.setuptools]
+package-dir = {"" = "src"}
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.pytest.ini_options]
+pythonpath = ["src"]
+testpaths = ["tests"]

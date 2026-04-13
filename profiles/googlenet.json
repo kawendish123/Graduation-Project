@@ -1,0 +1,2012 @@
+{
+  "model_name": "googlenet",
+  "input_shape": [
+    1,
+    3,
+    224,
+    224
+  ],
+  "nodes": [
+    {
+      "id": "conv1_conv",
+      "op_type": "Conv2d",
+      "succ_ids": [
+        "conv1_bn"
+      ],
+      "edge_ms": 1.7986333333332993,
+      "cloud_ms": 0.26989999999926795,
+      "output_bytes": 3211264
+    },
+    {
+      "id": "conv1_bn",
+      "op_type": "BatchNorm2d",
+      "succ_ids": [
+        "relu"
+      ],
+      "edge_ms": 0.3827333333331258,
+      "cloud_ms": 0.1557999999993361,
+      "output_bytes": 3211264
+    },
+    {
+      "id": "relu",
+      "op_type": "relu",
+      "succ_ids": [
+        "maxpool1"
+      ],
+      "edge_ms": 0.10789999999971656,
+      "cloud_ms": 0.1047333333327553,
+      "output_bytes": 3211264
+    },
+    {
+      "id": "maxpool1",
+      "op_type": "MaxPool2d",
+      "succ_ids": [
+        "conv2_conv"
+      ],
+      "edge_ms": 2.1057666666663977,
+      "cloud_ms": 0.12019999999897853,
+      "output_bytes": 802816
+    },
+    {
+      "id": "conv2_conv",
+      "op_type": "Conv2d",
+      "succ_ids": [
+        "conv2_bn"
+      ],
+      "edge_ms": 0.6287333333325762,
+      "cloud_ms": 0.12886666666744873,
+      "output_bytes": 802816
+    },
+    {
+      "id": "conv2_bn",
+      "op_type": "BatchNorm2d",
+      "succ_ids": [
+        "relu_1"
+      ],
+      "edge_ms": 0.12619999999922507,
+      "cloud_ms": 0.13210000000067149,
+      "output_bytes": 802816
+    },
+    {
+      "id": "relu_1",
+      "op_type": "relu",
+      "succ_ids": [
+        "conv3_conv"
+      ],
+      "edge_ms": 0.05326666666623699,
+      "cloud_ms": 0.13366666666788282,
+      "output_bytes": 802816
+    },
+    {
+      "id": "conv3_conv",
+      "op_type": "Conv2d",
+      "succ_ids": [
+        "conv3_bn"
+      ],
+      "edge_ms": 2.579466666666974,
+      "cloud_ms": 0.30773333333300457,
+      "output_bytes": 2408448
+    },
+    {
+      "id": "conv3_bn",
+      "op_type": "BatchNorm2d",
+      "succ_ids": [
+        "relu_2"
+      ],
+      "edge_ms": 0.24866666666648976,
+      "cloud_ms": 0.1331666666667767,
+      "output_bytes": 2408448
+    },
+    {
+      "id": "relu_2",
+      "op_type": "relu",
+      "succ_ids": [
+        "maxpool2"
+      ],
+      "edge_ms": 0.07949999999823376,
+      "cloud_ms": 0.07669999999985559,
+      "output_bytes": 2408448
+    },
+    {
+      "id": "maxpool2",
+      "op_type": "MaxPool2d",
+      "succ_ids": [
+        "inception3a_branch1_conv",
+        "inception3a_branch2_0_conv",
+        "inception3a_branch3_0_conv",
+        "inception3a_branch4_0"
+      ],
+      "edge_ms": 1.4151000000002985,
+      "cloud_ms": 0.11416666666619335,
+      "output_bytes": 602112
+    },
+    {
+      "id": "inception3a_branch1_conv",
+      "op_type": "Conv2d",
+      "succ_ids": [
+        "inception3a_branch1_bn"
+      ],
+      "edge_ms": 0.5340666666657038,
+      "cloud_ms": 0.12959999999869373,
+      "output_bytes": 200704
+    },
+    {
+      "id": "inception3a_branch1_bn",
+      "op_type": "BatchNorm2d",
+      "succ_ids": [
+        "relu_3"
+      ],
+      "edge_ms": 0.10849999999962279,
+      "cloud_ms": 0.12573333333421033,
+      "output_bytes": 200704
+    },
+    {
+      "id": "relu_3",
+      "op_type": "relu",
+      "succ_ids": [
+        "cat"
+      ],
+      "edge_ms": 0.048466666666987145,
+      "cloud_ms": 0.0781333333345439,
+      "output_bytes": 200704
+    },
+    {
+      "id": "inception3a_branch2_0_conv",
+      "op_type": "Conv2d",
+      "succ_ids": [
+        "inception3a_branch2_0_bn"
+      ],
+      "edge_ms": 0.44216666666585525,
+      "cloud_ms": 0.1319666666681485,
+      "output_bytes": 301056
+    },
+    {
+      "id": "inception3a_branch2_0_bn",
+      "op_type": "BatchNorm2d",
+      "succ_ids": [
+        "relu_4"
+      ],
+      "edge_ms": 0.1121333333315988,
+      "cloud_ms": 0.124166666666999,
+      "output_bytes": 301056
+    },
+    {
+      "id": "relu_4",
+      "op_type": "relu",
+      "succ_ids": [
+        "inception3a_branch2_1_conv"
+      ],
+      "edge_ms": 0.04583333333248637,
+      "cloud_ms": 0.13493333333277255,
+      "output_bytes": 301056
+    },
+    {
+      "id": "inception3a_branch2_1_conv",
+      "op_type": "Conv2d",
+      "succ_ids": [
+        "inception3a_branch2_1_bn"
+      ],
+      "edge_ms": 0.873433333333414,
+      "cloud_ms": 0.2521666666659428,
+      "output_bytes": 401408
+    },
+    {
+      "id": "inception3a_branch2_1_bn",
+      "op_type": "BatchNorm2d",
+      "succ_ids": [
+        "relu_5"
+      ],
+      "edge_ms": 0.11120000000156931,
+      "cloud_ms": 0.14150000000038668,
+      "output_bytes": 401408
+    },
+    {
+      "id": "relu_5",
+      "op_type": "relu",
+      "succ_ids": [
+        "cat"
+      ],
+      "edge_ms": 0.06949999999979657,
+      "cloud_ms": 0.11923333333522616,
+      "output_bytes": 401408
+    },
+    {
+      "id": "inception3a_branch3_0_conv",
+      "op_type": "Conv2d",
+      "succ_ids": [
+        "inception3a_branch3_0_bn"
+      ],
+      "edge_ms": 0.3371333333331468,
+      "cloud_ms": 0.1636333333330242,
+      "output_bytes": 50176
+    },
+    {
+      "id": "inception3a_branch3_0_bn",
+      "op_type": "BatchNorm2d",
+      "succ_ids": [
+        "relu_6"
+      ],
+      "edge_ms": 0.09850000000000136,
+      "cloud_ms": 0.11999999999900979,
+      "output_bytes": 50176
+    },
+    {
+      "id": "relu_6",
+      "op_type": "relu",
+      "succ_ids": [
+        "inception3a_branch3_1_conv"
+      ],
+      "edge_ms": 0.04543333333136464,
+      "cloud_ms": 0.07216666666802023,
+      "output_bytes": 50176
+    },
+    {
+      "id": "inception3a_branch3_1_conv",
+      "op_type": "Conv2d",
+      "succ_ids": [
+        "inception3a_branch3_1_bn"
+      ],
+      "edge_ms": 0.32436666666650166,
+      "cloud_ms": 0.11793333333306084,
+      "output_bytes": 100352
+    },
+    {
+      "id": "inception3a_branch3_1_bn",
+      "op_type": "BatchNorm2d",
+      "succ_ids": [
+        "relu_7"
+      ],
+      "edge_ms": 0.10793333333225519,
+      "cloud_ms": 0.11909999999915044,
+      "output_bytes": 100352
+    },
+    {
+      "id": "relu_7",
+      "op_type": "relu",
+      "succ_ids": [
+        "cat"
+      ],
+      "edge_ms": 0.040266666667084415,
+      "cloud_ms": 0.06576666666546771,
+      "output_bytes": 100352
+    },
+    {
+      "id": "inception3a_branch4_0",
+      "op_type": "MaxPool2d",
+      "succ_ids": [
+        "inception3a_branch4_1_conv"
+      ],
+      "edge_ms": 1.2751333333334003,
+      "cloud_ms": 0.09470000000059524,
+      "output_bytes": 602112
+    },
+    {
+      "id": "inception3a_branch4_1_conv",
+      "op_type": "Conv2d",
+      "succ_ids": [
+        "inception3a_branch4_1_bn"
+      ],
+      "edge_ms": 0.5480666666670686,
+      "cloud_ms": 0.1380999999997338,
+      "output_bytes": 100352
+    },
+    {
+      "id": "inception3a_branch4_1_bn",
+      "op_type": "BatchNorm2d",
+      "succ_ids": [
+        "relu_8"
+      ],
+      "edge_ms": 0.11583333333338904,
+      "cloud_ms": 0.18809999999902516,
+      "output_bytes": 100352
+    },
+    {
+      "id": "relu_8",
+      "op_type": "relu",
+      "succ_ids": [
+        "cat"
+      ],
+      "edge_ms": 0.04409999999902917,
+      "cloud_ms": 0.06413333333436337,
+      "output_bytes": 100352
+    },
+    {
+      "id": "cat",
+      "op_type": "cat",
+      "succ_ids": [
+        "inception3b_branch1_conv",
+        "inception3b_branch2_0_conv",
+        "inception3b_branch3_0_conv",
+        "inception3b_branch4_0"
+      ],
+      "edge_ms": 0.15903333333374312,
+      "cloud_ms": 0.1055333333338145,
+      "output_bytes": 802816
+    },
+    {
+      "id": "inception3b_branch1_conv",
+      "op_type": "Conv2d",
+      "succ_ids": [
+        "inception3b_branch1_bn"
+      ],
+      "edge_ms": 0.5822333333351063,
+      "cloud_ms": 0.1612999999996608,
+      "output_bytes": 401408
+    },
+    {
+      "id": "inception3b_branch1_bn",
+      "op_type": "BatchNorm2d",
+      "succ_ids": [
+        "relu_9"
+      ],
+      "edge_ms": 0.12493333333315111,
+      "cloud_ms": 0.12970000000104656,
+      "output_bytes": 401408
+    },
+    {
+      "id": "relu_9",
+      "op_type": "relu",
+      "succ_ids": [
+        "cat_1"
+      ],
+      "edge_ms": 0.05999999999891278,
+      "cloud_ms": 0.07329999999920271,
+      "output_bytes": 401408
+    },
+    {
+      "id": "inception3b_branch2_0_conv",
+      "op_type": "Conv2d",
+      "succ_ids": [
+        "inception3b_branch2_0_bn"
+      ],
+      "edge_ms": 0.5642000000006439,
+      "cloud_ms": 0.13556666666640163,
+      "output_bytes": 401408
+    },
+    {
+      "id": "inception3b_branch2_0_bn",
+      "op_type": "BatchNorm2d",
+      "succ_ids": [
+        "relu_10"
+      ],
+      "edge_ms": 0.15089999999891765,
+      "cloud_ms": 0.11496666666488409,
+      "output_bytes": 401408
+    },
+    {
+      "id": "relu_10",
+      "op_type": "relu",
+      "succ_ids": [
+        "inception3b_branch2_1_conv"
+      ],
+      "edge_ms": 0.05153333333514828,
+      "cloud_ms": 0.06726666666760177,
+      "output_bytes": 401408
+    },
+    {
+      "id": "inception3b_branch2_1_conv",
+      "op_type": "Conv2d",
+      "succ_ids": [
+        "inception3b_branch2_1_bn"
+      ],
+      "edge_ms": 1.3454999999993333,
+      "cloud_ms": 0.19700000000000273,
+      "output_bytes": 602112
+    },
+    {
+      "id": "inception3b_branch2_1_bn",
+      "op_type": "BatchNorm2d",
+      "succ_ids": [
+        "relu_11"
+      ],
+      "edge_ms": 0.17289999999903216,
+      "cloud_ms": 0.11786666666679935,
+      "output_bytes": 602112
+    },
+    {
+      "id": "relu_11",
+      "op_type": "relu",
+      "succ_ids": [
+        "cat_1"
+      ],
+      "edge_ms": 0.0649666666679612,
+      "cloud_ms": 0.06550000000160594,
+      "output_bytes": 602112
+    },
+    {
+      "id": "inception3b_branch3_0_conv",
+      "op_type": "Conv2d",
+      "succ_ids": [
+        "inception3b_branch3_0_bn"
+      ],
+      "edge_ms": 0.39086666666676706,
+      "cloud_ms": 0.1375333333347347,
+      "output_bytes": 100352
+    },
+    {
+      "id": "inception3b_branch3_0_bn",
+      "op_type": "BatchNorm2d",
+      "succ_ids": [
+        "relu_12"
+      ],
+      "edge_ms": 0.10950000000065074,
+      "cloud_ms": 0.14033333333192863,
+      "output_bytes": 100352
+    },
+    {
+      "id": "relu_12",
+      "op_type": "relu",
+      "succ_ids": [
+        "inception3b_branch3_1_conv"
+      ],
+      "edge_ms": 0.0591999999990378,
+      "cloud_ms": 0.06999999999971844,
+      "output_bytes": 100352
+    },
+    {
+      "id": "inception3b_branch3_1_conv",
+      "op_type": "Conv2d",
+      "succ_ids": [
+        "inception3b_branch3_1_bn"
+      ],
+      "edge_ms": 0.4766999999989234,
+      "cloud_ms": 0.15736666666536317,
+      "output_bytes": 301056
+    },
+    {
+      "id": "inception3b_branch3_1_bn",
+      "op_type": "BatchNorm2d",
+      "succ_ids": [
+        "relu_13"
+      ],
+      "edge_ms": 0.11653333333327964,
+      "cloud_ms": 0.1493333333340748,
+      "output_bytes": 301056
+    },
+    {
+      "id": "relu_13",
+      "op_type": "relu",
+      "succ_ids": [
+        "cat_1"
+      ],
+      "edge_ms": 0.04936666666447801,
+      "cloud_ms": 0.10920000000069763,
+      "output_bytes": 301056
+    },
+    {
+      "id": "inception3b_branch4_0",
+      "op_type": "MaxPool2d",
+      "succ_ids": [
+        "inception3b_branch4_1_conv"
+      ],
+      "edge_ms": 1.6481333333319508,
+      "cloud_ms": 0.10426666666774054,
+      "output_bytes": 802816
+    },
+    {
+      "id": "inception3b_branch4_1_conv",
+      "op_type": "Conv2d",
+      "succ_ids": [
+        "inception3b_branch4_1_bn"
+      ],
+      "edge_ms": 1.0715000000007062,
+      "cloud_ms": 0.13346666666672982,
+      "output_bytes": 200704
+    },
+    {
+      "id": "inception3b_branch4_1_bn",
+      "op_type": "BatchNorm2d",
+      "succ_ids": [
+        "relu_14"
+      ],
+      "edge_ms": 0.1213666666674366,
+      "cloud_ms": 0.1442333333336876,
+      "output_bytes": 200704
+    },
+    {
+      "id": "relu_14",
+      "op_type": "relu",
+      "succ_ids": [
+        "cat_1"
+      ],
+      "edge_ms": 0.05393333333358896,
+      "cloud_ms": 0.07416666666770766,
+      "output_bytes": 200704
+    },
+    {
+      "id": "cat_1",
+      "op_type": "cat",
+      "succ_ids": [
+        "maxpool3"
+      ],
+      "edge_ms": 0.26733333333221293,
+      "cloud_ms": 0.09196666666611009,
+      "output_bytes": 1505280
+    },
+    {
+      "id": "maxpool3",
+      "op_type": "MaxPool2d",
+      "succ_ids": [
+        "inception4a_branch1_conv",
+        "inception4a_branch2_0_conv",
+        "inception4a_branch3_0_conv",
+        "inception4a_branch4_0"
+      ],
+      "edge_ms": 0.8618000000015039,
+      "cloud_ms": 0.0881666666678882,
+      "output_bytes": 376320
+    },
+    {
+      "id": "inception4a_branch1_conv",
+      "op_type": "Conv2d",
+      "succ_ids": [
+        "inception4a_branch1_bn"
+      ],
+      "edge_ms": 0.5401999999996576,
+      "cloud_ms": 0.11846666666670558,
+      "output_bytes": 150528
+    },
+    {
+      "id": "inception4a_branch1_bn",
+      "op_type": "BatchNorm2d",
+      "succ_ids": [
+        "relu_15"
+      ],
+      "edge_ms": 0.10283333333423646,
+      "cloud_ms": 0.16230000000187297,
+      "output_bytes": 150528
+    },
+    {
+      "id": "relu_15",
+      "op_type": "relu",
+      "succ_ids": [
+        "cat_2"
+      ],
+      "edge_ms": 0.04659999999982271,
+      "cloud_ms": 0.11563333333105182,
+      "output_bytes": 150528
+    },
+    {
+      "id": "inception4a_branch2_0_conv",
+      "op_type": "Conv2d",
+      "succ_ids": [
+        "inception4a_branch2_0_bn"
+      ],
+      "edge_ms": 0.3013666666665434,
+      "cloud_ms": 0.1330666666656081,
+      "output_bytes": 75264
+    },
+    {
+      "id": "inception4a_branch2_0_bn",
+      "op_type": "BatchNorm2d",
+      "succ_ids": [
+        "relu_16"
+      ],
+      "edge_ms": 0.09999999999858271,
+      "cloud_ms": 0.11353333333256425,
+      "output_bytes": 75264
+    },
+    {
+      "id": "relu_16",
+      "op_type": "relu",
+      "succ_ids": [
+        "inception4a_branch2_1_conv"
+      ],
+      "edge_ms": 0.03879999999985747,
+      "cloud_ms": 0.06506666666676135,
+      "output_bytes": 75264
+    },
+    {
+      "id": "inception4a_branch2_1_conv",
+      "op_type": "Conv2d",
+      "succ_ids": [
+        "inception4a_branch2_1_bn"
+      ],
+      "edge_ms": 0.6228666666672211,
+      "cloud_ms": 0.1716333333329582,
+      "output_bytes": 163072
+    },
+    {
+      "id": "inception4a_branch2_1_bn",
+      "op_type": "BatchNorm2d",
+      "succ_ids": [
+        "relu_17"
+      ],
+      "edge_ms": 0.12360000000081565,
+      "cloud_ms": 0.12309999999970955,
+      "output_bytes": 163072
+    },
+    {
+      "id": "relu_17",
+      "op_type": "relu",
+      "succ_ids": [
+        "cat_2"
+      ],
+      "edge_ms": 0.044366666666443656,
+      "cloud_ms": 0.07466666666526105,
+      "output_bytes": 163072
+    },
+    {
+      "id": "inception4a_branch3_0_conv",
+      "op_type": "Conv2d",
+      "succ_ids": [
+        "inception4a_branch3_0_bn"
+      ],
+      "edge_ms": 0.2631666666677764,
+      "cloud_ms": 0.1262333333341322,
+      "output_bytes": 12544
+    },
+    {
+      "id": "inception4a_branch3_0_bn",
+      "op_type": "BatchNorm2d",
+      "succ_ids": [
+        "relu_18"
+      ],
+      "edge_ms": 0.10149999999953252,
+      "cloud_ms": 0.14526666666606994,
+      "output_bytes": 12544
+    },
+    {
+      "id": "relu_18",
+      "op_type": "relu",
+      "succ_ids": [
+        "inception4a_branch3_1_conv"
+      ],
+      "edge_ms": 0.03643333333277118,
+      "cloud_ms": 0.10743333333351757,
+      "output_bytes": 12544
+    },
+    {
+      "id": "inception4a_branch3_1_conv",
+      "op_type": "Conv2d",
+      "succ_ids": [
+        "inception4a_branch3_1_bn"
+      ],
+      "edge_ms": 0.1353666666664329,
+      "cloud_ms": 0.11456666666613084,
+      "output_bytes": 37632
+    },
+    {
+      "id": "inception4a_branch3_1_bn",
+      "op_type": "BatchNorm2d",
+      "succ_ids": [
+        "relu_19"
+      ],
+      "edge_ms": 0.08776666666558224,
+      "cloud_ms": 0.11143333333407668,
+      "output_bytes": 37632
+    },
+    {
+      "id": "relu_19",
+      "op_type": "relu",
+      "succ_ids": [
+        "cat_2"
+      ],
+      "edge_ms": 0.036133333334002295,
+      "cloud_ms": 0.0654666666655146,
+      "output_bytes": 37632
+    },
+    {
+      "id": "inception4a_branch4_0",
+      "op_type": "MaxPool2d",
+      "succ_ids": [
+        "inception4a_branch4_1_conv"
+      ],
+      "edge_ms": 0.7708000000003304,
+      "cloud_ms": 0.08823333333414969,
+      "output_bytes": 376320
+    },
+    {
+      "id": "inception4a_branch4_1_conv",
+      "op_type": "Conv2d",
+      "succ_ids": [
+        "inception4a_branch4_1_bn"
+      ],
+      "edge_ms": 0.3230666666667048,
+      "cloud_ms": 0.12616666666668644,
+      "output_bytes": 50176
+    },
+    {
+      "id": "inception4a_branch4_1_bn",
+      "op_type": "BatchNorm2d",
+      "succ_ids": [
+        "relu_20"
+      ],
+      "edge_ms": 0.13519999999900278,
+      "cloud_ms": 0.13413333333289756,
+      "output_bytes": 50176
+    },
+    {
+      "id": "relu_20",
+      "op_type": "relu",
+      "succ_ids": [
+        "cat_2"
+      ],
+      "edge_ms": 0.04489999999890415,
+      "cloud_ms": 0.07460000000018378,
+      "output_bytes": 50176
+    },
+    {
+      "id": "cat_2",
+      "op_type": "cat",
+      "succ_ids": [
+        "inception4b_branch1_conv",
+        "inception4b_branch2_0_conv",
+        "inception4b_branch3_0_conv",
+        "inception4b_branch4_0"
+      ],
+      "edge_ms": 0.12003333333154842,
+      "cloud_ms": 0.0780999999996368,
+      "output_bytes": 401408
+    },
+    {
+      "id": "inception4b_branch1_conv",
+      "op_type": "Conv2d",
+      "succ_ids": [
+        "inception4b_branch1_bn"
+      ],
+      "edge_ms": 0.45699999999963364,
+      "cloud_ms": 0.128000000000128,
+      "output_bytes": 125440
+    },
+    {
+      "id": "inception4b_branch1_bn",
+      "op_type": "BatchNorm2d",
+      "succ_ids": [
+        "relu_21"
+      ],
+      "edge_ms": 0.13673333333249124,
+      "cloud_ms": 0.11410000000111609,
+      "output_bytes": 125440
+    },
+    {
+      "id": "relu_21",
+      "op_type": "relu",
+      "succ_ids": [
+        "cat_3"
+      ],
+      "edge_ms": 0.04246666666674059,
+      "cloud_ms": 0.0648666666667926,
+      "output_bytes": 125440
+    },
+    {
+      "id": "inception4b_branch2_0_conv",
+      "op_type": "Conv2d",
+      "succ_ids": [
+        "inception4b_branch2_0_bn"
+      ],
+      "edge_ms": 0.3489999999999327,
+      "cloud_ms": 0.11973333333396378,
+      "output_bytes": 87808
+    },
+    {
+      "id": "inception4b_branch2_0_bn",
+      "op_type": "BatchNorm2d",
+      "succ_ids": [
+        "relu_22"
+      ],
+      "edge_ms": 0.10763333333230207,
+      "cloud_ms": 0.11113333333293933,
+      "output_bytes": 87808
+    },
+    {
+      "id": "relu_22",
+      "op_type": "relu",
+      "succ_ids": [
+        "inception4b_branch2_1_conv"
+      ],
+      "edge_ms": 0.03869999999987309,
+      "cloud_ms": 0.06570000000039045,
+      "output_bytes": 87808
+    },
+    {
+      "id": "inception4b_branch2_1_conv",
+      "op_type": "Conv2d",
+      "succ_ids": [
+        "inception4b_branch2_1_bn"
+      ],
+      "edge_ms": 0.6810333333338766,
+      "cloud_ms": 0.6591333333325622,
+      "output_bytes": 175616
+    },
+    {
+      "id": "inception4b_branch2_1_bn",
+      "op_type": "BatchNorm2d",
+      "succ_ids": [
+        "relu_23"
+      ],
+      "edge_ms": 0.11723333333317025,
+      "cloud_ms": 0.18909999999886887,
+      "output_bytes": 175616
+    },
+    {
+      "id": "relu_23",
+      "op_type": "relu",
+      "succ_ids": [
+        "cat_3"
+      ],
+      "edge_ms": 0.04709999999974457,
+      "cloud_ms": 0.1651000000014354,
+      "output_bytes": 175616
+    },
+    {
+      "id": "inception4b_branch3_0_conv",
+      "op_type": "Conv2d",
+      "succ_ids": [
+        "inception4b_branch3_0_bn"
+      ],
+      "edge_ms": 0.2602333333333225,
+      "cloud_ms": 0.15470000000069226,
+      "output_bytes": 18816
+    },
+    {
+      "id": "inception4b_branch3_0_bn",
+      "op_type": "BatchNorm2d",
+      "succ_ids": [
+        "relu_24"
+      ],
+      "edge_ms": 0.11856666666550571,
+      "cloud_ms": 0.1221999999998502,
+      "output_bytes": 18816
+    },
+    {
+      "id": "relu_24",
+      "op_type": "relu",
+      "succ_ids": [
+        "inception4b_branch3_1_conv"
+      ],
+      "edge_ms": 0.0406666666670219,
+      "cloud_ms": 0.06963333333231958,
+      "output_bytes": 18816
+    },
+    {
+      "id": "inception4b_branch3_1_conv",
+      "op_type": "Conv2d",
+      "succ_ids": [
+        "inception4b_branch3_1_bn"
+      ],
+      "edge_ms": 0.24003333333411092,
+      "cloud_ms": 0.11593333333574189,
+      "output_bytes": 50176
+    },
+    {
+      "id": "inception4b_branch3_1_bn",
+      "op_type": "BatchNorm2d",
+      "succ_ids": [
+        "relu_25"
+      ],
+      "edge_ms": 0.1272666666653303,
+      "cloud_ms": 0.1198333333351324,
+      "output_bytes": 50176
+    },
+    {
+      "id": "relu_25",
+      "op_type": "relu",
+      "succ_ids": [
+        "cat_3"
+      ],
+      "edge_ms": 0.042966666666662455,
+      "cloud_ms": 0.0749666666663984,
+      "output_bytes": 50176
+    },
+    {
+      "id": "inception4b_branch4_0",
+      "op_type": "MaxPool2d",
+      "succ_ids": [
+        "inception4b_branch4_1_conv"
+      ],
+      "edge_ms": 0.8118666666661056,
+      "cloud_ms": 0.10089999999962629,
+      "output_bytes": 401408
+    },
+    {
+      "id": "inception4b_branch4_1_conv",
+      "op_type": "Conv2d",
+      "succ_ids": [
+        "inception4b_branch4_1_bn"
+      ],
+      "edge_ms": 0.4539000000013023,
+      "cloud_ms": 0.12740000000140603,
+      "output_bytes": 50176
+    },
+    {
+      "id": "inception4b_branch4_1_bn",
+      "op_type": "BatchNorm2d",
+      "succ_ids": [
+        "relu_26"
+      ],
+      "edge_ms": 0.09983333333352107,
+      "cloud_ms": 0.11963333333279517,
+      "output_bytes": 50176
+    },
+    {
+      "id": "relu_26",
+      "op_type": "relu",
+      "succ_ids": [
+        "cat_3"
+      ],
+      "edge_ms": 0.08026666666675435,
+      "cloud_ms": 0.06573333333292908,
+      "output_bytes": 50176
+    },
+    {
+      "id": "cat_3",
+      "op_type": "cat",
+      "succ_ids": [
+        "inception4c_branch1_conv",
+        "inception4c_branch2_0_conv",
+        "inception4c_branch3_0_conv",
+        "inception4c_branch4_0"
+      ],
+      "edge_ms": 0.09740000000135751,
+      "cloud_ms": 0.08136666666658243,
+      "output_bytes": 401408
+    },
+    {
+      "id": "inception4c_branch1_conv",
+      "op_type": "Conv2d",
+      "succ_ids": [
+        "inception4c_branch1_bn"
+      ],
+      "edge_ms": 0.4818666666667563,
+      "cloud_ms": 0.11763333333310773,
+      "output_bytes": 100352
+    },
+    {
+      "id": "inception4c_branch1_bn",
+      "op_type": "BatchNorm2d",
+      "succ_ids": [
+        "relu_27"
+      ],
+      "edge_ms": 0.12013333333390126,
+      "cloud_ms": 0.1695999999995479,
+      "output_bytes": 100352
+    },
+    {
+      "id": "relu_27",
+      "op_type": "relu",
+      "succ_ids": [
+        "cat_4"
+      ],
+      "edge_ms": 0.055166666667124296,
+      "cloud_ms": 0.10703333333358007,
+      "output_bytes": 100352
+    },
+    {
+      "id": "inception4c_branch2_0_conv",
+      "op_type": "Conv2d",
+      "succ_ids": [
+        "inception4c_branch2_0_bn"
+      ],
+      "edge_ms": 0.3885666666671265,
+      "cloud_ms": 0.14559999999974593,
+      "output_bytes": 100352
+    },
+    {
+      "id": "inception4c_branch2_0_bn",
+      "op_type": "BatchNorm2d",
+      "succ_ids": [
+        "relu_28"
+      ],
+      "edge_ms": 0.09973333333235246,
+      "cloud_ms": 0.11936666666538069,
+      "output_bytes": 100352
+    },
+    {
+      "id": "relu_28",
+      "op_type": "relu",
+      "succ_ids": [
+        "inception4c_branch2_1_conv"
+      ],
+      "edge_ms": 0.036600000001385524,
+      "cloud_ms": 0.06516666666674571,
+      "output_bytes": 100352
+    },
+    {
+      "id": "inception4c_branch2_1_conv",
+      "op_type": "Conv2d",
+      "succ_ids": [
+        "inception4c_branch2_1_bn"
+      ],
+      "edge_ms": 0.7738666666661231,
+      "cloud_ms": 0.17643333333457653,
+      "output_bytes": 200704
+    },
+    {
+      "id": "inception4c_branch2_1_bn",
+      "op_type": "BatchNorm2d",
+      "succ_ids": [
+        "relu_29"
+      ],
+      "edge_ms": 0.09579999999923909,
+      "cloud_ms": 0.16109999999969205,
+      "output_bytes": 200704
+    },
+    {
+      "id": "relu_29",
+      "op_type": "relu",
+      "succ_ids": [
+        "cat_4"
+      ],
+      "edge_ms": 0.0418666666680186,
+      "cloud_ms": 0.08266666666637927,
+      "output_bytes": 200704
+    },
+    {
+      "id": "inception4c_branch3_0_conv",
+      "op_type": "Conv2d",
+      "succ_ids": [
+        "inception4c_branch3_0_bn"
+      ],
+      "edge_ms": 0.21319999999983943,
+      "cloud_ms": 0.15309999999975807,
+      "output_bytes": 18816
+    },
+    {
+      "id": "inception4c_branch3_0_bn",
+      "op_type": "BatchNorm2d",
+      "succ_ids": [
+        "relu_30"
+      ],
+      "edge_ms": 0.07669999999985559,
+      "cloud_ms": 0.1599666666673253,
+      "output_bytes": 18816
+    },
+    {
+      "id": "relu_30",
+      "op_type": "relu",
+      "succ_ids": [
+        "inception4c_branch3_1_conv"
+      ],
+      "edge_ms": 0.032533333333380675,
+      "cloud_ms": 0.0831333333337625,
+      "output_bytes": 18816
+    },
+    {
+      "id": "inception4c_branch3_1_conv",
+      "op_type": "Conv2d",
+      "succ_ids": [
+        "inception4c_branch3_1_bn"
+      ],
+      "edge_ms": 0.16803333333233658,
+      "cloud_ms": 0.1494666666665978,
+      "output_bytes": 50176
+    },
+    {
+      "id": "inception4c_branch3_1_bn",
+      "op_type": "BatchNorm2d",
+      "succ_ids": [
+        "relu_31"
+      ],
+      "edge_ms": 0.0953999999993016,
+      "cloud_ms": 0.1554000000017671,
+      "output_bytes": 50176
+    },
+    {
+      "id": "relu_31",
+      "op_type": "relu",
+      "succ_ids": [
+        "cat_4"
+      ],
+      "edge_ms": 0.043533333332845814,
+      "cloud_ms": 0.14106666666672632,
+      "output_bytes": 50176
+    },
+    {
+      "id": "inception4c_branch4_0",
+      "op_type": "MaxPool2d",
+      "succ_ids": [
+        "inception4c_branch4_1_conv"
+      ],
+      "edge_ms": 0.7863333333328152,
+      "cloud_ms": 0.17666666666589967,
+      "output_bytes": 401408
+    },
+    {
+      "id": "inception4c_branch4_1_conv",
+      "op_type": "Conv2d",
+      "succ_ids": [
+        "inception4c_branch4_1_bn"
+      ],
+      "edge_ms": 0.4140999999992327,
+      "cloud_ms": 0.27123333333278765,
+      "output_bytes": 50176
+    },
+    {
+      "id": "inception4c_branch4_1_bn",
+      "op_type": "BatchNorm2d",
+      "succ_ids": [
+        "relu_32"
+      ],
+      "edge_ms": 0.08423333333359058,
+      "cloud_ms": 0.2637666666653142,
+      "output_bytes": 50176
+    },
+    {
+      "id": "relu_32",
+      "op_type": "relu",
+      "succ_ids": [
+        "cat_4"
+      ],
+      "edge_ms": 0.040466666667053154,
+      "cloud_ms": 0.09759999999895778,
+      "output_bytes": 50176
+    },
+    {
+      "id": "cat_4",
+      "op_type": "cat",
+      "succ_ids": [
+        "inception4d_branch1_conv",
+        "inception4d_branch2_0_conv",
+        "inception4d_branch3_0_conv",
+        "inception4d_branch4_0"
+      ],
+      "edge_ms": 0.0860666666658479,
+      "cloud_ms": 0.1274666666676675,
+      "output_bytes": 401408
+    },
+    {
+      "id": "inception4d_branch1_conv",
+      "op_type": "Conv2d",
+      "succ_ids": [
+        "inception4d_branch1_bn"
+      ],
+      "edge_ms": 0.675700000000982,
+      "cloud_ms": 0.19023333333360407,
+      "output_bytes": 87808
+    },
+    {
+      "id": "inception4d_branch1_bn",
+      "op_type": "BatchNorm2d",
+      "succ_ids": [
+        "relu_33"
+      ],
+      "edge_ms": 0.10146666666699389,
+      "cloud_ms": 0.16293333333431784,
+      "output_bytes": 87808
+    },
+    {
+      "id": "relu_33",
+      "op_type": "relu",
+      "succ_ids": [
+        "cat_5"
+      ],
+      "edge_ms": 0.05499999999850994,
+      "cloud_ms": 0.11586666666592767,
+      "output_bytes": 87808
+    },
+    {
+      "id": "inception4d_branch2_0_conv",
+      "op_type": "Conv2d",
+      "succ_ids": [
+        "inception4d_branch2_0_bn"
+      ],
+      "edge_ms": 0.36996666666648065,
+      "cloud_ms": 0.16273333333316486,
+      "output_bytes": 112896
+    },
+    {
+      "id": "inception4d_branch2_0_bn",
+      "op_type": "BatchNorm2d",
+      "succ_ids": [
+        "relu_34"
+      ],
+      "edge_ms": 0.09450000000062649,
+      "cloud_ms": 0.15693333333288706,
+      "output_bytes": 112896
+    },
+    {
+      "id": "relu_34",
+      "op_type": "relu",
+      "succ_ids": [
+        "inception4d_branch2_1_conv"
+      ],
+      "edge_ms": 0.042966666666662455,
+      "cloud_ms": 0.1041333333340333,
+      "output_bytes": 112896
+    },
+    {
+      "id": "inception4d_branch2_1_conv",
+      "op_type": "Conv2d",
+      "succ_ids": [
+        "inception4d_branch2_1_bn"
+      ],
+      "edge_ms": 1.0643333333331857,
+      "cloud_ms": 0.33459999999981466,
+      "output_bytes": 225792
+    },
+    {
+      "id": "inception4d_branch2_1_bn",
+      "op_type": "BatchNorm2d",
+      "succ_ids": [
+        "relu_35"
+      ],
+      "edge_ms": 0.11819999999810686,
+      "cloud_ms": 0.24463333333339202,
+      "output_bytes": 225792
+    },
+    {
+      "id": "relu_35",
+      "op_type": "relu",
+      "succ_ids": [
+        "cat_5"
+      ],
+      "edge_ms": 0.043533333332845814,
+      "cloud_ms": 0.0775000000009148,
+      "output_bytes": 225792
+    },
+    {
+      "id": "inception4d_branch3_0_conv",
+      "op_type": "Conv2d",
+      "succ_ids": [
+        "inception4d_branch3_0_bn"
+      ],
+      "edge_ms": 0.2540000000005686,
+      "cloud_ms": 0.1550999999994455,
+      "output_bytes": 25088
+    },
+    {
+      "id": "inception4d_branch3_0_bn",
+      "op_type": "BatchNorm2d",
+      "succ_ids": [
+        "relu_36"
+      ],
+      "edge_ms": 0.08310000000003963,
+      "cloud_ms": 0.17519999999867272,
+      "output_bytes": 25088
+    },
+    {
+      "id": "relu_36",
+      "op_type": "relu",
+      "succ_ids": [
+        "inception4d_branch3_1_conv"
+      ],
+      "edge_ms": 0.034199999999392126,
+      "cloud_ms": 0.101633333334424,
+      "output_bytes": 25088
+    },
+    {
+      "id": "inception4d_branch3_1_conv",
+      "op_type": "Conv2d",
+      "succ_ids": [
+        "inception4d_branch3_1_bn"
+      ],
+      "edge_ms": 0.22789999999872634,
+      "cloud_ms": 0.18429999999961902,
+      "output_bytes": 50176
+    },
+    {
+      "id": "inception4d_branch3_1_bn",
+      "op_type": "BatchNorm2d",
+      "succ_ids": [
+        "relu_37"
+      ],
+      "edge_ms": 0.08676666666810699,
+      "cloud_ms": 0.13576666666637038,
+      "output_bytes": 50176
+    },
+    {
+      "id": "relu_37",
+      "op_type": "relu",
+      "succ_ids": [
+        "cat_5"
+      ],
+      "edge_ms": 0.050933333332873566,
+      "cloud_ms": 0.09193333333238722,
+      "output_bytes": 50176
+    },
+    {
+      "id": "inception4d_branch4_0",
+      "op_type": "MaxPool2d",
+      "succ_ids": [
+        "inception4d_branch4_1_conv"
+      ],
+      "edge_ms": 0.8572999999998387,
+      "cloud_ms": 0.1127666666652279,
+      "output_bytes": 401408
+    },
+    {
+      "id": "inception4d_branch4_1_conv",
+      "op_type": "Conv2d",
+      "succ_ids": [
+        "inception4d_branch4_1_bn"
+      ],
+      "edge_ms": 0.8135666666670242,
+      "cloud_ms": 0.1928333333320135,
+      "output_bytes": 50176
+    },
+    {
+      "id": "inception4d_branch4_1_bn",
+      "op_type": "BatchNorm2d",
+      "succ_ids": [
+        "relu_38"
+      ],
+      "edge_ms": 0.11103333333295495,
+      "cloud_ms": 0.14163333333527817,
+      "output_bytes": 50176
+    },
+    {
+      "id": "relu_38",
+      "op_type": "relu",
+      "succ_ids": [
+        "cat_5"
+      ],
+      "edge_ms": 0.04609999999990085,
+      "cloud_ms": 0.07816666666589829,
+      "output_bytes": 50176
+    },
+    {
+      "id": "cat_5",
+      "op_type": "cat",
+      "succ_ids": [
+        "inception4e_branch1_conv",
+        "inception4e_branch2_0_conv",
+        "inception4e_branch3_0_conv",
+        "inception4e_branch4_0"
+      ],
+      "edge_ms": 0.0951333333342556,
+      "cloud_ms": 0.10370000000037294,
+      "output_bytes": 413952
+    },
+    {
+      "id": "inception4e_branch1_conv",
+      "op_type": "Conv2d",
+      "succ_ids": [
+        "inception4e_branch1_bn"
+      ],
+      "edge_ms": 0.5695999999986157,
+      "cloud_ms": 0.1391666666646548,
+      "output_bytes": 200704
+    },
+    {
+      "id": "inception4e_branch1_bn",
+      "op_type": "BatchNorm2d",
+      "succ_ids": [
+        "relu_39"
+      ],
+      "edge_ms": 0.09746666666761901,
+      "cloud_ms": 0.12210000000105008,
+      "output_bytes": 200704
+    },
+    {
+      "id": "relu_39",
+      "op_type": "relu",
+      "succ_ids": [
+        "cat_6"
+      ],
+      "edge_ms": 0.046233333333608094,
+      "cloud_ms": 0.07180000000062137,
+      "output_bytes": 200704
+    },
+    {
+      "id": "inception4e_branch2_0_conv",
+      "op_type": "Conv2d",
+      "succ_ids": [
+        "inception4e_branch2_0_bn"
+      ],
+      "edge_ms": 0.4990333333338981,
+      "cloud_ms": 0.1297999999998467,
+      "output_bytes": 125440
+    },
+    {
+      "id": "inception4e_branch2_0_bn",
+      "op_type": "BatchNorm2d",
+      "succ_ids": [
+        "relu_40"
+      ],
+      "edge_ms": 0.10230000000059174,
+      "cloud_ms": 0.14889999999804596,
+      "output_bytes": 125440
+    },
+    {
+      "id": "relu_40",
+      "op_type": "relu",
+      "succ_ids": [
+        "inception4e_branch2_1_conv"
+      ],
+      "edge_ms": 0.04339999999913857,
+      "cloud_ms": 0.07293333333417233,
+      "output_bytes": 125440
+    },
+    {
+      "id": "inception4e_branch2_1_conv",
+      "op_type": "Conv2d",
+      "succ_ids": [
+        "inception4e_branch2_1_bn"
+      ],
+      "edge_ms": 1.1475333333332098,
+      "cloud_ms": 0.30706666666683685,
+      "output_bytes": 250880
+    },
+    {
+      "id": "inception4e_branch2_1_bn",
+      "op_type": "BatchNorm2d",
+      "succ_ids": [
+        "relu_41"
+      ],
+      "edge_ms": 0.11436666666734634,
+      "cloud_ms": 0.14346666666635124,
+      "output_bytes": 250880
+    },
+    {
+      "id": "relu_41",
+      "op_type": "relu",
+      "succ_ids": [
+        "cat_6"
+      ],
+      "edge_ms": 0.04946666666564662,
+      "cloud_ms": 0.08846666666665708,
+      "output_bytes": 250880
+    },
+    {
+      "id": "inception4e_branch3_0_conv",
+      "op_type": "Conv2d",
+      "succ_ids": [
+        "inception4e_branch3_0_bn"
+      ],
+      "edge_ms": 0.4221333333317053,
+      "cloud_ms": 0.21200000000121122,
+      "output_bytes": 25088
+    },
+    {
+      "id": "inception4e_branch3_0_bn",
+      "op_type": "BatchNorm2d",
+      "succ_ids": [
+        "relu_42"
+      ],
+      "edge_ms": 0.1521666666649916,
+      "cloud_ms": 0.1380999999997338,
+      "output_bytes": 25088
+    },
+    {
+      "id": "relu_42",
+      "op_type": "relu",
+      "succ_ids": [
+        "inception4e_branch3_1_conv"
+      ],
+      "edge_ms": 0.11379999999997874,
+      "cloud_ms": 0.08406666666497624,
+      "output_bytes": 25088
+    },
+    {
+      "id": "inception4e_branch3_1_conv",
+      "op_type": "Conv2d",
+      "succ_ids": [
+        "inception4e_branch3_1_bn"
+      ],
+      "edge_ms": 0.7595999999997124,
+      "cloud_ms": 0.17693333333449837,
+      "output_bytes": 100352
+    },
+    {
+      "id": "inception4e_branch3_1_bn",
+      "op_type": "BatchNorm2d",
+      "succ_ids": [
+        "relu_43"
+      ],
+      "edge_ms": 0.19010000000108107,
+      "cloud_ms": 0.13466666666772653,
+      "output_bytes": 100352
+    },
+    {
+      "id": "relu_43",
+      "op_type": "relu",
+      "succ_ids": [
+        "cat_6"
+      ],
+      "edge_ms": 0.058533333332870065,
+      "cloud_ms": 0.08896666666657893,
+      "output_bytes": 100352
+    },
+    {
+      "id": "inception4e_branch4_0",
+      "op_type": "MaxPool2d",
+      "succ_ids": [
+        "inception4e_branch4_1_conv"
+      ],
+      "edge_ms": 0.9085333333338497,
+      "cloud_ms": 0.12133333333252949,
+      "output_bytes": 413952
+    },
+    {
+      "id": "inception4e_branch4_1_conv",
+      "op_type": "Conv2d",
+      "succ_ids": [
+        "inception4e_branch4_1_bn"
+      ],
+      "edge_ms": 0.6733333333350799,
+      "cloud_ms": 0.19833333333233819,
+      "output_bytes": 100352
+    },
+    {
+      "id": "inception4e_branch4_1_bn",
+      "op_type": "BatchNorm2d",
+      "succ_ids": [
+        "relu_44"
+      ],
+      "edge_ms": 0.1228333333334793,
+      "cloud_ms": 0.21796666666655065,
+      "output_bytes": 100352
+    },
+    {
+      "id": "relu_44",
+      "op_type": "relu",
+      "succ_ids": [
+        "cat_6"
+      ],
+      "edge_ms": 0.04746666666714342,
+      "cloud_ms": 0.1220000000010657,
+      "output_bytes": 100352
+    },
+    {
+      "id": "cat_6",
+      "op_type": "cat",
+      "succ_ids": [
+        "maxpool4"
+      ],
+      "edge_ms": 0.14083333333421896,
+      "cloud_ms": 0.14120000000043356,
+      "output_bytes": 652288
+    },
+    {
+      "id": "maxpool4",
+      "op_type": "MaxPool2d",
+      "succ_ids": [
+        "inception5a_branch1_conv",
+        "inception5a_branch2_0_conv",
+        "inception5a_branch3_0_conv",
+        "inception5a_branch4_0"
+      ],
+      "edge_ms": 0.2580666666650207,
+      "cloud_ms": 0.2763333333343591,
+      "output_bytes": 163072
+    },
+    {
+      "id": "inception5a_branch1_conv",
+      "op_type": "Conv2d",
+      "succ_ids": [
+        "inception5a_branch1_bn"
+      ],
+      "edge_ms": 0.9181333333335336,
+      "cloud_ms": 0.1907333333323417,
+      "output_bytes": 50176
+    },
+    {
+      "id": "inception5a_branch1_bn",
+      "op_type": "BatchNorm2d",
+      "succ_ids": [
+        "relu_45"
+      ],
+      "edge_ms": 0.15083333333384039,
+      "cloud_ms": 0.16276666666688774,
+      "output_bytes": 50176
+    },
+    {
+      "id": "relu_45",
+      "op_type": "relu",
+      "succ_ids": [
+        "cat_7"
+      ],
+      "edge_ms": 0.05866666666539307,
+      "cloud_ms": 0.08613333333447788,
+      "output_bytes": 50176
+    },
+    {
+      "id": "inception5a_branch2_0_conv",
+      "op_type": "Conv2d",
+      "succ_ids": [
+        "inception5a_branch2_0_bn"
+      ],
+      "edge_ms": 0.426900000000785,
+      "cloud_ms": 0.1543999999995549,
+      "output_bytes": 31360
+    },
+    {
+      "id": "inception5a_branch2_0_bn",
+      "op_type": "BatchNorm2d",
+      "succ_ids": [
+        "relu_46"
+      ],
+      "edge_ms": 0.10656666666738109,
+      "cloud_ms": 0.14030000000057422,
+      "output_bytes": 31360
+    },
+    {
+      "id": "relu_46",
+      "op_type": "relu",
+      "succ_ids": [
+        "inception5a_branch2_1_conv"
+      ],
+      "edge_ms": 0.04206666666680311,
+      "cloud_ms": 0.07976666666683248,
+      "output_bytes": 31360
+    },
+    {
+      "id": "inception5a_branch2_1_conv",
+      "op_type": "Conv2d",
+      "succ_ids": [
+        "inception5a_branch2_1_bn"
+      ],
+      "edge_ms": 0.5796000000006055,
+      "cloud_ms": 0.23253333333291457,
+      "output_bytes": 62720
+    },
+    {
+      "id": "inception5a_branch2_1_bn",
+      "op_type": "BatchNorm2d",
+      "succ_ids": [
+        "relu_47"
+      ],
+      "edge_ms": 0.13686666666619848,
+      "cloud_ms": 0.14490000000103956,
+      "output_bytes": 62720
+    },
+    {
+      "id": "relu_47",
+      "op_type": "relu",
+      "succ_ids": [
+        "cat_7"
+      ],
+      "edge_ms": 0.05926666666766778,
+      "cloud_ms": 0.08113333333289081,
+      "output_bytes": 62720
+    },
+    {
+      "id": "inception5a_branch3_0_conv",
+      "op_type": "Conv2d",
+      "succ_ids": [
+        "inception5a_branch3_0_bn"
+      ],
+      "edge_ms": 0.31256666666716154,
+      "cloud_ms": 0.14509999999863984,
+      "output_bytes": 6272
+    },
+    {
+      "id": "inception5a_branch3_0_bn",
+      "op_type": "BatchNorm2d",
+      "succ_ids": [
+        "relu_48"
+      ],
+      "edge_ms": 0.09403333333324326,
+      "cloud_ms": 0.13906666666585465,
+      "output_bytes": 6272
+    },
+    {
+      "id": "relu_48",
+      "op_type": "relu",
+      "succ_ids": [
+        "inception5a_branch3_1_conv"
+      ],
+      "edge_ms": 0.03800000000116673,
+      "cloud_ms": 0.07719999999977745,
+      "output_bytes": 6272
+    },
+    {
+      "id": "inception5a_branch3_1_conv",
+      "op_type": "Conv2d",
+      "succ_ids": [
+        "inception5a_branch3_1_bn"
+      ],
+      "edge_ms": 0.1768666666658684,
+      "cloud_ms": 0.20596666666605756,
+      "output_bytes": 25088
+    },
+    {
+      "id": "inception5a_branch3_1_bn",
+      "op_type": "BatchNorm2d",
+      "succ_ids": [
+        "relu_49"
+      ],
+      "edge_ms": 0.11123333333292369,
+      "cloud_ms": 0.14939999999915207,
+      "output_bytes": 25088
+    },
+    {
+      "id": "relu_49",
+      "op_type": "relu",
+      "succ_ids": [
+        "cat_7"
+      ],
+      "edge_ms": 0.04673333333352995,
+      "cloud_ms": 0.08260000000011776,
+      "output_bytes": 25088
+    },
+    {
+      "id": "inception5a_branch4_0",
+      "op_type": "MaxPool2d",
+      "succ_ids": [
+        "inception5a_branch4_1_conv"
+      ],
+      "edge_ms": 0.37443333333323875,
+      "cloud_ms": 0.12780000000015926,
+      "output_bytes": 163072
+    },
+    {
+      "id": "inception5a_branch4_1_conv",
+      "op_type": "Conv2d",
+      "succ_ids": [
+        "inception5a_branch4_1_bn"
+      ],
+      "edge_ms": 0.3730333333322733,
+      "cloud_ms": 0.1555000000005672,
+      "output_bytes": 25088
+    },
+    {
+      "id": "inception5a_branch4_1_bn",
+      "op_type": "BatchNorm2d",
+      "succ_ids": [
+        "relu_50"
+      ],
+      "edge_ms": 0.09463333333433373,
+      "cloud_ms": 0.14809999999935522,
+      "output_bytes": 25088
+    },
+    {
+      "id": "relu_50",
+      "op_type": "relu",
+      "succ_ids": [
+        "cat_7"
+      ],
+      "edge_ms": 0.040733333333283404,
+      "cloud_ms": 0.08250000000131763,
+      "output_bytes": 25088
+    },
+    {
+      "id": "cat_7",
+      "op_type": "cat",
+      "succ_ids": [
+        "inception5b_branch1_conv",
+        "inception5b_branch2_0_conv",
+        "inception5b_branch3_0_conv",
+        "inception5b_branch4_0"
+      ],
+      "edge_ms": 0.10370000000037294,
+      "cloud_ms": 0.21100000000018326,
+      "output_bytes": 163072
+    },
+    {
+      "id": "inception5b_branch1_conv",
+      "op_type": "Conv2d",
+      "succ_ids": [
+        "inception5b_branch1_bn"
+      ],
+      "edge_ms": 0.7305333333344303,
+      "cloud_ms": 0.1832333333335138,
+      "output_bytes": 75264
+    },
+    {
+      "id": "inception5b_branch1_bn",
+      "op_type": "BatchNorm2d",
+      "succ_ids": [
+        "relu_51"
+      ],
+      "edge_ms": 0.29763333333339875,
+      "cloud_ms": 0.17100000000051332,
+      "output_bytes": 75264
+    },
+    {
+      "id": "relu_51",
+      "op_type": "relu",
+      "succ_ids": [
+        "cat_8"
+      ],
+      "edge_ms": 0.05769999999808798,
+      "cloud_ms": 0.08953333333394653,
+      "output_bytes": 75264
+    },
+    {
+      "id": "inception5b_branch2_0_conv",
+      "op_type": "Conv2d",
+      "succ_ids": [
+        "inception5b_branch2_0_bn"
+      ],
+      "edge_ms": 0.48253333333292403,
+      "cloud_ms": 0.20450000000001486,
+      "output_bytes": 37632
+    },
+    {
+      "id": "inception5b_branch2_0_bn",
+      "op_type": "BatchNorm2d",
+      "succ_ids": [
+        "relu_52"
+      ],
+      "edge_ms": 0.10556666666753738,
+      "cloud_ms": 0.147700000000602,
+      "output_bytes": 37632
+    },
+    {
+      "id": "relu_52",
+      "op_type": "relu",
+      "succ_ids": [
+        "inception5b_branch2_1_conv"
+      ],
+      "edge_ms": 0.04223333333304898,
+      "cloud_ms": 0.08923333333280918,
+      "output_bytes": 37632
+    },
+    {
+      "id": "inception5b_branch2_1_conv",
+      "op_type": "Conv2d",
+      "succ_ids": [
+        "inception5b_branch2_1_bn"
+      ],
+      "edge_ms": 0.8685000000016411,
+      "cloud_ms": 0.24609999999943474,
+      "output_bytes": 75264
+    },
+    {
+      "id": "inception5b_branch2_1_bn",
+      "op_type": "BatchNorm2d",
+      "succ_ids": [
+        "relu_53"
+      ],
+      "edge_ms": 0.13740000000102745,
+      "cloud_ms": 0.16563333333389588,
+      "output_bytes": 75264
+    },
+    {
+      "id": "relu_53",
+      "op_type": "relu",
+      "succ_ids": [
+        "cat_8"
+      ],
+      "edge_ms": 0.04559999999879475,
+      "cloud_ms": 0.08623333333209378,
+      "output_bytes": 75264
+    },
+    {
+      "id": "inception5b_branch3_0_conv",
+      "op_type": "Conv2d",
+      "succ_ids": [
+        "inception5b_branch3_0_bn"
+      ],
+      "edge_ms": 0.6380666666672141,
+      "cloud_ms": 0.15483333333321525,
+      "output_bytes": 9408
+    },
+    {
+      "id": "inception5b_branch3_0_bn",
+      "op_type": "BatchNorm2d",
+      "succ_ids": [
+        "relu_54"
+      ],
+      "edge_ms": 0.10753333333468618,
+      "cloud_ms": 0.17593333333347042,
+      "output_bytes": 9408
+    },
+    {
+      "id": "relu_54",
+      "op_type": "relu",
+      "succ_ids": [
+        "inception5b_branch3_1_conv"
+      ],
+      "edge_ms": 0.07000000000090267,
+      "cloud_ms": 0.0862000000007394,
+      "output_bytes": 9408
+    },
+    {
+      "id": "inception5b_branch3_1_conv",
+      "op_type": "Conv2d",
+      "succ_ids": [
+        "inception5b_branch3_1_bn"
+      ],
+      "edge_ms": 0.24373333333234845,
+      "cloud_ms": 0.25136666666725205,
+      "output_bytes": 25088
+    },
+    {
+      "id": "inception5b_branch3_1_bn",
+      "op_type": "BatchNorm2d",
+      "succ_ids": [
+        "relu_55"
+      ],
+      "edge_ms": 0.1041666666653877,
+      "cloud_ms": 0.16326666666680958,
+      "output_bytes": 25088
+    },
+    {
+      "id": "relu_55",
+      "op_type": "relu",
+      "succ_ids": [
+        "cat_8"
+      ],
+      "edge_ms": 0.045999999999916476,
+      "cloud_ms": 0.08803333333418095,
+      "output_bytes": 25088
+    },
+    {
+      "id": "inception5b_branch4_0",
+      "op_type": "MaxPool2d",
+      "succ_ids": [
+        "inception5b_branch4_1_conv"
+      ],
+      "edge_ms": 0.49036666666661216,
+      "cloud_ms": 0.12653333333290107,
+      "output_bytes": 163072
+    },
+    {
+      "id": "inception5b_branch4_1_conv",
+      "op_type": "Conv2d",
+      "succ_ids": [
+        "inception5b_branch4_1_bn"
+      ],
+      "edge_ms": 0.4073333333340183,
+      "cloud_ms": 0.1545000000007235,
+      "output_bytes": 25088
+    },
+    {
+      "id": "inception5b_branch4_1_bn",
+      "op_type": "BatchNorm2d",
+      "succ_ids": [
+        "relu_56"
+      ],
+      "edge_ms": 0.10796666666597805,
+      "cloud_ms": 0.257133333333807,
+      "output_bytes": 25088
+    },
+    {
+      "id": "relu_56",
+      "op_type": "relu",
+      "succ_ids": [
+        "cat_8"
+      ],
+      "edge_ms": 0.05019999999926009,
+      "cloud_ms": 0.11670000000070975,
+      "output_bytes": 25088
+    },
+    {
+      "id": "cat_8",
+      "op_type": "cat",
+      "succ_ids": [
+        "avgpool"
+      ],
+      "edge_ms": 0.11436666666734634,
+      "cloud_ms": 0.10856666666706853,
+      "output_bytes": 200704
+    },
+    {
+      "id": "avgpool",
+      "op_type": "AdaptiveAvgPool2d",
+      "succ_ids": [
+        "flatten"
+      ],
+      "edge_ms": 0.1777333333331891,
+      "cloud_ms": 0.1308333333334133,
+      "output_bytes": 4096
+    },
+    {
+      "id": "flatten",
+      "op_type": "flatten",
+      "succ_ids": [
+        "dropout"
+      ],
+      "edge_ms": 0.06276666666593655,
+      "cloud_ms": 0.05596666666699927,
+      "output_bytes": 4096
+    },
+    {
+      "id": "dropout",
+      "op_type": "Dropout",
+      "succ_ids": [
+        "fc"
+      ],
+      "edge_ms": 0.051866666666455785,
+      "cloud_ms": 0.06763333333381638,
+      "output_bytes": 4096
+    },
+    {
+      "id": "fc",
+      "op_type": "Linear",
+      "succ_ids": [],
+      "edge_ms": 0.7261666666652881,
+      "cloud_ms": 0.24703333333301694,
+      "output_bytes": 4000
+    }
+  ],
+  "metadata": {
+    "edge_device": "cpu",
+    "cloud_device": "cuda",
+    "edge_profile_runs": 3,
+    "cloud_profile_runs": 3
+  }
+}
