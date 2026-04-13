@@ -2,7 +2,7 @@ import json
 
 from dads_dsl.cli import _load_config, build_parser
 from dads_dsl.dsl import VIRTUAL_INPUT_ID, solve_dsl, with_virtual_input_node
-from dads_dsl.experiment import _run_strategy_repeats, build_strategy_plans, summarize_measurements
+from dads_dsl.experiment import _format_csv_value, _write_csv, _run_strategy_repeats, build_strategy_plans, summarize_measurements
 from dads_dsl.types import ModelProfile, ModelProfileNode
 
 
@@ -81,3 +81,49 @@ def test_run_strategy_repeats_excludes_actual_warmup_measurements():
     assert len(calls) == 5
     assert [item["repeat_index"] for item in measurements] == [1, 2, 3]
     assert [item["total_actual_ms"] for item in measurements] == [3.0, 4.0, 5.0]
+
+
+def test_format_csv_value_rounds_floats_but_not_ints_or_lists():
+    assert _format_csv_value(12.345678) == "12.3457"
+    assert _format_csv_value(10) == 10
+    assert _format_csv_value(["a", "b"]) == "a;b"
+
+
+def test_write_csv_formats_float_cells(tmp_path):
+    output = tmp_path / "experiment.csv"
+    _write_csv(
+        str(output),
+        [
+            {
+                "model": "toy",
+                "bandwidth_mbps": 12.345678,
+                "cpu_load_target": 30.0,
+                "strategy": "dsl",
+                "repeats": 10,
+                "actual_warmup_runs": 2,
+                "split_nodes": ["a", "b"],
+                "edge_node_count": 1,
+                "cloud_node_count": 2,
+                "estimated_total_ms": 3.456789,
+                "actual_total_mean_ms": 4.567891,
+                "actual_total_std_ms": 0.123456,
+                "edge_actual_mean_ms": 1.0,
+                "edge_actual_std_ms": 0.0,
+                "transmission_actual_mean_ms": 2.0,
+                "transmission_actual_std_ms": 0.0,
+                "cloud_actual_mean_ms": 1.5,
+                "cloud_actual_std_ms": 0.0,
+                "payload_bytes_mean": 1024.0,
+                "payload_bytes_std": 0.0,
+                "cpu_load_avg": 30.111111,
+                "cpu_load_min": 25.0,
+                "cpu_load_max": 35.0,
+            }
+        ],
+    )
+
+    content = output.read_text(encoding="utf-8")
+    assert "12.3457" in content
+    assert "30.0000" in content
+    assert "a;b" in content
+    assert ",10,2," in content

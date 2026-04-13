@@ -3,6 +3,7 @@ from __future__ import annotations
 import csv
 from dataclasses import dataclass
 import json
+from numbers import Integral
 from pathlib import Path
 from statistics import mean, stdev
 from time import perf_counter, sleep
@@ -199,6 +200,16 @@ def _float_list(config: dict[str, Any], key: str, default: list[float]) -> list[
     return [float(item) for item in config.get(key, default)]
 
 
+def _format_csv_value(value: Any) -> Any:
+    if isinstance(value, list):
+        return ";".join(str(item) for item in value)
+    if isinstance(value, float):
+        return f"{value:.4f}"
+    if isinstance(value, Integral):
+        return int(value)
+    return value
+
+
 def _write_csv(path: str, rows: list[dict[str, Any]]) -> None:
     output = Path(path)
     output.parent.mkdir(parents=True, exist_ok=True)
@@ -207,8 +218,7 @@ def _write_csv(path: str, rows: list[dict[str, Any]]) -> None:
         writer.writeheader()
         for row in rows:
             copied = dict(row)
-            copied["split_nodes"] = ";".join(copied.get("split_nodes", []))
-            writer.writerow({column: copied.get(column, "") for column in EXPERIMENT_CSV_COLUMNS})
+            writer.writerow({column: _format_csv_value(copied.get(column, "")) for column in EXPERIMENT_CSV_COLUMNS})
 
 
 def _write_json(path: str, payload: dict[str, Any]) -> None:
@@ -233,6 +243,8 @@ def run_experiment(config: dict[str, Any]) -> dict[str, Any]:
     report_csv = str(config.get("report_csv", "results/experiment.csv"))
     report_json = str(config.get("report_json", "results/experiment.json"))
     debug_dir = config.get("debug_dir")
+    plot_dir = config.get("plot_dir", "results/plots")
+    plot_format = str(config.get("plot_format", "png"))
 
     channel = make_channel(server)
     stub = DadsCloudStub(channel)
@@ -330,5 +342,12 @@ def run_experiment(config: dict[str, Any]) -> dict[str, Any]:
     output_payload = {"config": config, "results": result_items}
     _write_csv(report_csv, csv_rows)
     _write_json(report_json, output_payload)
+    plot_outputs = []
+    if plot_dir:
+        from .plotting import plot_experiment_latency
+
+        plot_outputs = plot_experiment_latency(report_csv, str(plot_dir), plot_format=plot_format)
     print(f"Experiment complete. CSV: {report_csv} JSON: {report_json}")
+    if plot_outputs:
+        print("Plots: " + ", ".join(plot_outputs))
     return output_payload
