@@ -14,5 +14,7 @@
   "cpu_load_ramp_seconds": 2,
   "report_csv": "results/experiment_mobilenet_v2.csv",
   "report_json": "results/experiment_mobilenet_v2.json",
-  "debug_dir": "results/debug_experiment"
+  "debug_dir": "results/debug_experiment",
+  "plot_dir": "results/plots",
+  "plot_format": "png"
 }
