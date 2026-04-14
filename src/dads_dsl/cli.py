@@ -6,7 +6,7 @@ from pathlib import Path
 from typing import Any, Optional
 
 from .dsl import solve_bandwidth_sweep, solve_dsl
-from .profile import ProfileRunConfig, profile_model
+from .profile import AVAILABLE_MODELS, PARTITION_GRANULARITIES, ProfileRunConfig, profile_model
 from .types import ModelProfile
 
 
@@ -28,12 +28,19 @@ def _get_input_shape(config: dict[str, Any]) -> list[int]:
     return [int(item) for item in value]
 
 
+def _get_partition_granularity(config: dict[str, Any]) -> str:
+    value = str(config.get("partition_granularity", "node"))
+    if value not in PARTITION_GRANULARITIES:
+        raise ValueError("config field 'partition_granularity' must be 'node' or 'block'.")
+    return value
+
+
 def build_parser() -> argparse.ArgumentParser:
     parser = argparse.ArgumentParser(description="DADS DSL prototype CLI")
     subparsers = parser.add_subparsers(dest="command", required=True)
 
     profile_parser = subparsers.add_parser("profile", help="Export a model profile JSON")
-    profile_parser.add_argument("--model", required=True, choices=["mobilenet_v2", "googlenet"])
+    profile_parser.add_argument("--model", required=True, choices=list(AVAILABLE_MODELS))
     profile_parser.add_argument("--output", required=True)
     profile_parser.add_argument("--input-shape", nargs=4, type=int, default=[1, 3, 224, 224])
     profile_parser.add_argument("--edge-warmup-runs", type=int, default=1)
@@ -41,6 +48,7 @@ def build_parser() -> argparse.ArgumentParser:
     profile_parser.add_argument("--cloud-warmup-runs", type=int, default=1)
     profile_parser.add_argument("--cloud-profile-runs", type=int, default=3)
     profile_parser.add_argument("--cloud-device", choices=["auto", "cpu", "cuda"], default="auto")
+    profile_parser.add_argument("--partition-granularity", choices=list(PARTITION_GRANULARITIES), default="node")
 
     dsl_parser = subparsers.add_parser("dsl", help="Solve DSL for one bandwidth")
     dsl_parser.add_argument("--profile", required=True)
@@ -60,7 +68,7 @@ def build_parser() -> argparse.ArgumentParser:
 
     client_parser = subparsers.add_parser("client-run", help="Run one edge/cloud split inference")
     client_parser.add_argument("--server", default="localhost:50051")
-    client_parser.add_argument("--model", required=True, choices=["mobilenet_v2", "googlenet"])
+    client_parser.add_argument("--model", required=True, choices=list(AVAILABLE_MODELS))
     client_parser.add_argument("--bandwidth-mbps", type=float, required=True)
     client_parser.add_argument("--cpu-load-target", type=float, default=0.0)
     client_parser.add_argument("--cpu-load-tolerance", type=float, default=5.0)
@@ -72,6 +80,7 @@ def build_parser() -> argparse.ArgumentParser:
     client_parser.add_argument("--report-format", choices=["table", "json", "csv"], default="table")
     client_parser.add_argument("--report-output")
     client_parser.add_argument("--debug-output")
+    client_parser.add_argument("--partition-granularity", choices=list(PARTITION_GRANULARITIES), default="node")
 
     config_parser = subparsers.add_parser("run-config", help="Run serve/client-run/experiment from a JSON config file")
     config_parser.add_argument("--config", required=True)
@@ -106,6 +115,7 @@ def main(argv: Optional[list[str]] = None) -> int:
                 cloud_warmup_runs=args.cloud_warmup_runs,
                 cloud_profile_runs=args.cloud_profile_runs,
                 cloud_device=args.cloud_device,
+                partition_granularity=args.partition_granularity,
             ),
         )
         profile.save(args.output)
@@ -135,6 +145,7 @@ def main(argv: Optional[list[str]] = None) -> int:
             profile_runs=args.profile_runs,
             profile_warmup_runs=args.profile_warmup_runs,
             debug_output=args.debug_output,
+            partition_granularity=args.partition_granularity,
         )
         return 0
 
@@ -163,8 +174,8 @@ def main(argv: Optional[list[str]] = None) -> int:
             if "model" not in config:
                 parser.error("client-run config field 'model' is required.")
             model_name = str(config["model"])
-            if model_name not in {"mobilenet_v2", "googlenet"}:
-                parser.error("client-run config field 'model' must be 'mobilenet_v2' or 'googlenet'.")
+            if model_name not in AVAILABLE_MODELS:
+                parser.error(f"client-run config field 'model' must be one of: {', '.join(AVAILABLE_MODELS)}.")
             if "bandwidth_mbps" not in config:
                 parser.error("client-run config field 'bandwidth_mbps' is required.")
             report_format = str(config.get("report_format", "table"))
@@ -172,6 +183,7 @@ def main(argv: Optional[list[str]] = None) -> int:
                 parser.error("client-run config field 'report_format' must be 'table', 'json', or 'csv'.")
             try:
                 input_shape = _get_input_shape(config)
+                partition_granularity = _get_partition_granularity(config)
             except ValueError as exc:
                 parser.error(str(exc))
 
@@ -191,6 +203,7 @@ def main(argv: Optional[list[str]] = None) -> int:
                 profile_runs=int(config.get("profile_runs", 1)),
                 profile_warmup_runs=int(config.get("profile_warmup_runs", 0)),
                 debug_output=config.get("debug_output"),
+                partition_granularity=partition_granularity,
             )
             return 0
 

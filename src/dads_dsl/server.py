@@ -18,8 +18,15 @@ class CloudRuntimeCache:
         self._profiles: dict[str, ModelProfile] = {}
         self._runtimes: dict[str, Any] = {}
 
-    def get_profile(self, model_name: str, input_shape: list[int], warmup_runs: int, profile_runs: int) -> ModelProfile:
-        key = f"{model_name}:{tuple(input_shape)}:{self.device}:{warmup_runs}:{profile_runs}"
+    def get_profile(
+        self,
+        model_name: str,
+        input_shape: list[int],
+        warmup_runs: int,
+        profile_runs: int,
+        partition_granularity: str = "node",
+    ) -> ModelProfile:
+        key = f"{model_name}:{tuple(input_shape)}:{self.device}:{warmup_runs}:{profile_runs}:{partition_granularity}"
         if key not in self._profiles:
             self._profiles[key] = profile_model(
                 model_name,
@@ -30,14 +37,15 @@ class CloudRuntimeCache:
                     cloud_warmup_runs=warmup_runs,
                     cloud_profile_runs=profile_runs,
                     cloud_device=self.device,
+                    partition_granularity=partition_granularity,
                 ),
             )
         return self._profiles[key]
 
-    def get_runtime(self, model_name: str, profile_node_ids: set[str]) -> Any:
-        key = f"{model_name}:{self.device}"
+    def get_runtime(self, model_name: str, profile_node_ids: set[str], partition_granularity: str = "node") -> Any:
+        key = f"{model_name}:{self.device}:{partition_granularity}"
         if key not in self._runtimes:
-            self._runtimes[key] = build_runtime_model(model_name, self.device, profile_node_ids)
+            self._runtimes[key] = build_runtime_model(model_name, self.device, profile_node_ids, partition_granularity)
         return self._runtimes[key]
 
 
@@ -52,6 +60,7 @@ class DadsCloudServicer:
                 input_shape=[int(item) for item in request.get("input_shape", [1, 3, 224, 224])],
                 warmup_runs=int(request.get("warmup_runs", 1)),
                 profile_runs=int(request.get("profile_runs", 1)),
+                partition_granularity=str(request.get("partition_granularity", "node")),
             )
             return {"status": "ok", "profile": profile.to_dict(), "error_message": ""}
         except Exception as exc:
@@ -62,7 +71,8 @@ class DadsCloudServicer:
             model_name = request["model_name"]
             cloud_nodes = [str(item) for item in request.get("cloud_nodes", [])]
             profile_node_ids = set(str(item) for item in request.get("profile_node_ids", []))
-            runtime = self.cache.get_runtime(model_name, profile_node_ids)
+            partition_granularity = str(request.get("partition_granularity", "node"))
+            runtime = self.cache.get_runtime(model_name, profile_node_ids, partition_granularity)
             tensors = {
                 payload["node_id"]: payload_to_tensor(payload, runtime.torch, runtime.device)
                 for payload in request.get("tensors", [])

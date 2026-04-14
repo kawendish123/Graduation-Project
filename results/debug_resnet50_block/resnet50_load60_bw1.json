@@ -1,0 +1,975 @@
+{
+  "model_name": "resnet50",
+  "input_shape": [
+    1,
+    3,
+    224,
+    224
+  ],
+  "bandwidth_mbps": 1.0,
+  "summary": {
+    "edge_node_count": 19,
+    "cloud_node_count": 0,
+    "transmission_node_count": 0,
+    "dsl_estimated_edge_ms": 106.1839399999485,
+    "dsl_estimated_transfer_ms": 0,
+    "dsl_estimated_cloud_ms": 0,
+    "dsl_estimated_total_ms": 106.1839399999485,
+    "all_edge_estimated_ms": 106.1839399999485
+  },
+  "partition": {
+    "model_name": "resnet50",
+    "bandwidth_mbps": 1.0,
+    "total_inference_ms": 106.1839399999485,
+    "edge_stage_ms": 106.1839399999485,
+    "transmission_stage_ms": 0,
+    "cloud_stage_ms": 0,
+    "edge_nodes": [
+      "__input__",
+      "stem",
+      "layer1_0",
+      "layer1_1",
+      "layer1_2",
+      "layer2_0",
+      "layer2_1",
+      "layer2_2",
+      "layer2_3",
+      "layer3_0",
+      "layer3_1",
+      "layer3_2",
+      "layer3_3",
+      "layer3_4",
+      "layer3_5",
+      "layer4_0",
+      "layer4_1",
+      "layer4_2",
+      "head"
+    ],
+    "transmission_nodes": [],
+    "cloud_nodes": [],
+    "cut_edges": [
+      [
+        "__input__",
+        "__sink__"
+      ],
+      [
+        "head",
+        "__sink__"
+      ],
+      [
+        "layer1_0",
+        "__sink__"
+      ],
+      [
+        "layer1_1",
+        "__sink__"
+      ],
+      [
+        "layer1_2",
+        "__sink__"
+      ],
+      [
+        "layer2_0",
+        "__sink__"
+      ],
+      [
+        "layer2_1",
+        "__sink__"
+      ],
+      [
+        "layer2_2",
+        "__sink__"
+      ],
+      [
+        "layer2_3",
+        "__sink__"
+      ],
+      [
+        "layer3_0",
+        "__sink__"
+      ],
+      [
+        "layer3_1",
+        "__sink__"
+      ],
+      [
+        "layer3_2",
+        "__sink__"
+      ],
+      [
+        "layer3_3",
+        "__sink__"
+      ],
+      [
+        "layer3_4",
+        "__sink__"
+      ],
+      [
+        "layer3_5",
+        "__sink__"
+      ],
+      [
+        "layer4_0",
+        "__sink__"
+      ],
+      [
+        "layer4_1",
+        "__sink__"
+      ],
+      [
+        "layer4_2",
+        "__sink__"
+      ],
+      [
+        "stem",
+        "__sink__"
+      ]
+    ]
+  },
+  "nodes": [
+    {
+      "id": "__input__",
+      "op_type": "Input",
+      "succ_ids": [
+        "stem"
+      ],
+      "edge_ms": 0.0,
+      "cloud_ms": 0.0,
+      "transmission_ms": 4816.896,
+      "output_bytes": 602112,
+      "partition": "edge",
+      "is_transmission_node": false
+    },
+    {
+      "id": "stem",
+      "op_type": "ResNetStem",
+      "succ_ids": [
+        "layer1_0"
+      ],
+      "edge_ms": 6.0062799999968775,
+      "cloud_ms": 0.38176000000049726,
+      "transmission_ms": 6422.528,
+      "output_bytes": 802816,
+      "partition": "edge",
+      "is_transmission_node": false
+    },
+    {
+      "id": "layer1_0",
+      "op_type": "Bottleneck",
+      "succ_ids": [
+        "layer1_1"
+      ],
+      "edge_ms": 10.173799999995481,
+      "cloud_ms": 0.8819799999997713,
+      "transmission_ms": 25690.112,
+      "output_bytes": 3211264,
+      "partition": "edge",
+      "is_transmission_node": false
+    },
+    {
+      "id": "layer1_1",
+      "op_type": "Bottleneck",
+      "succ_ids": [
+        "layer1_2"
+      ],
+      "edge_ms": 6.261939999978949,
+      "cloud_ms": 0.6613800000025094,
+      "transmission_ms": 25690.112,
+      "output_bytes": 3211264,
+      "partition": "edge",
+      "is_transmission_node": false
+    },
+    {
+      "id": "layer1_2",
+      "op_type": "Bottleneck",
+      "succ_ids": [
+        "layer2_0"
+      ],
+      "edge_ms": 6.466100000000097,
+      "cloud_ms": 0.6458999999978232,
+      "transmission_ms": 25690.112,
+      "output_bytes": 3211264,
+      "partition": "edge",
+      "is_transmission_node": false
+    },
+    {
+      "id": "layer2_0",
+      "op_type": "Bottleneck",
+      "succ_ids": [
+        "layer2_1"
+      ],
+      "edge_ms": 9.297719999995024,
+      "cloud_ms": 0.8130000000008408,
+      "transmission_ms": 12845.056,
+      "output_bytes": 1605632,
+      "partition": "edge",
+      "is_transmission_node": false
+    },
+    {
+      "id": "layer2_1",
+      "op_type": "Bottleneck",
+      "succ_ids": [
+        "layer2_2"
+      ],
+      "edge_ms": 3.952060000005986,
+      "cloud_ms": 0.5602600000017333,
+      "transmission_ms": 12845.056,
+      "output_bytes": 1605632,
+      "partition": "edge",
+      "is_transmission_node": false
+    },
+    {
+      "id": "layer2_2",
+      "op_type": "Bottleneck",
+      "succ_ids": [
+        "layer2_3"
+      ],
+      "edge_ms": 3.4935599999926126,
+      "cloud_ms": 0.5554000000017822,
+      "transmission_ms": 12845.056,
+      "output_bytes": 1605632,
+      "partition": "edge",
+      "is_transmission_node": false
+    },
+    {
+      "id": "layer2_3",
+      "op_type": "Bottleneck",
+      "succ_ids": [
+        "layer3_0"
+      ],
+      "edge_ms": 3.434760000004644,
+      "cloud_ms": 0.5602400000000785,
+      "transmission_ms": 12845.056,
+      "output_bytes": 1605632,
+      "partition": "edge",
+      "is_transmission_node": false
+    },
+    {
+      "id": "layer3_0",
+      "op_type": "Bottleneck",
+      "succ_ids": [
+        "layer3_1"
+      ],
+      "edge_ms": 7.255820000000313,
+      "cloud_ms": 0.8112199999985137,
+      "transmission_ms": 6422.528,
+      "output_bytes": 802816,
+      "partition": "edge",
+      "is_transmission_node": false
+    },
+    {
+      "id": "layer3_1",
+      "op_type": "Bottleneck",
+      "succ_ids": [
+        "layer3_2"
+      ],
+      "edge_ms": 4.020759999980328,
+      "cloud_ms": 0.5812800000015272,
+      "transmission_ms": 6422.528,
+      "output_bytes": 802816,
+      "partition": "edge",
+      "is_transmission_node": false
+    },
+    {
+      "id": "layer3_2",
+      "op_type": "Bottleneck",
+      "succ_ids": [
+        "layer3_3"
+      ],
+      "edge_ms": 3.743480000002819,
+      "cloud_ms": 0.5756400000009876,
+      "transmission_ms": 6422.528,
+      "output_bytes": 802816,
+      "partition": "edge",
+      "is_transmission_node": false
+    },
+    {
+      "id": "layer3_3",
+      "op_type": "Bottleneck",
+      "succ_ids": [
+        "layer3_4"
+      ],
+      "edge_ms": 4.26838000000771,
+      "cloud_ms": 0.5765400000001364,
+      "transmission_ms": 6422.528,
+      "output_bytes": 802816,
+      "partition": "edge",
+      "is_transmission_node": false
+    },
+    {
+      "id": "layer3_4",
+      "op_type": "Bottleneck",
+      "succ_ids": [
+        "layer3_5"
+      ],
+      "edge_ms": 3.841459999989638,
+      "cloud_ms": 0.5750200000022687,
+      "transmission_ms": 6422.528,
+      "output_bytes": 802816,
+      "partition": "edge",
+      "is_transmission_node": false
+    },
+    {
+      "id": "layer3_5",
+      "op_type": "Bottleneck",
+      "succ_ids": [
+        "layer4_0"
+      ],
+      "edge_ms": 4.728080000006685,
+      "cloud_ms": 0.5693999999991206,
+      "transmission_ms": 6422.528,
+      "output_bytes": 802816,
+      "partition": "edge",
+      "is_transmission_node": false
+    },
+    {
+      "id": "layer4_0",
+      "op_type": "Bottleneck",
+      "succ_ids": [
+        "layer4_1"
+      ],
+      "edge_ms": 13.073580000002494,
+      "cloud_ms": 1.0346999999981676,
+      "transmission_ms": 3211.264,
+      "output_bytes": 401408,
+      "partition": "edge",
+      "is_transmission_node": false
+    },
+    {
+      "id": "layer4_1",
+      "op_type": "Bottleneck",
+      "succ_ids": [
+        "layer4_2"
+      ],
+      "edge_ms": 8.021640000004027,
+      "cloud_ms": 0.7116800000005696,
+      "transmission_ms": 3211.264,
+      "output_bytes": 401408,
+      "partition": "edge",
+      "is_transmission_node": false
+    },
+    {
+      "id": "layer4_2",
+      "op_type": "Bottleneck",
+      "succ_ids": [
+        "head"
+      ],
+      "edge_ms": 7.109559999992143,
+      "cloud_ms": 0.6282199999986915,
+      "transmission_ms": 3211.264,
+      "output_bytes": 401408,
+      "partition": "edge",
+      "is_transmission_node": false
+    },
+    {
+      "id": "head",
+      "op_type": "ResNetHead",
+      "succ_ids": [],
+      "edge_ms": 1.0349599999926795,
+      "cloud_ms": 0.2386400000006006,
+      "transmission_ms": 32.0,
+      "output_bytes": 4000,
+      "partition": "edge",
+      "is_transmission_node": false
+    }
+  ],
+  "flow_edges": [
+    {
+      "src": "__input__",
+      "dst": "__sink__",
+      "capacity_ms": 0.0,
+      "role": "edge",
+      "is_cut_edge": true
+    },
+    {
+      "src": "__input__",
+      "dst": "stem",
+      "capacity_ms": 4816.896,
+      "role": "transmission",
+      "is_cut_edge": false
+    },
+    {
+      "src": "__source__",
+      "dst": "__input__",
+      "capacity_ms": 187977.49019999988,
+      "role": "cloud",
+      "is_cut_edge": false
+    },
+    {
+      "src": "__source__",
+      "dst": "head",
+      "capacity_ms": 0.2386400000006006,
+      "role": "cloud",
+      "is_cut_edge": false
+    },
+    {
+      "src": "__source__",
+      "dst": "layer1_0",
+      "capacity_ms": 0.8819799999997713,
+      "role": "cloud",
+      "is_cut_edge": false
+    },
+    {
+      "src": "__source__",
+      "dst": "layer1_1",
+      "capacity_ms": 0.6613800000025094,
+      "role": "cloud",
+      "is_cut_edge": false
+    },
+    {
+      "src": "__source__",
+      "dst": "layer1_2",
+      "capacity_ms": 0.6458999999978232,
+      "role": "cloud",
+      "is_cut_edge": false
+    },
+    {
+      "src": "__source__",
+      "dst": "layer2_0",
+      "capacity_ms": 0.8130000000008408,
+      "role": "cloud",
+      "is_cut_edge": false
+    },
+    {
+      "src": "__source__",
+      "dst": "layer2_1",
+      "capacity_ms": 0.5602600000017333,
+      "role": "cloud",
+      "is_cut_edge": false
+    },
+    {
+      "src": "__source__",
+      "dst": "layer2_2",
+      "capacity_ms": 0.5554000000017822,
+      "role": "cloud",
+      "is_cut_edge": false
+    },
+    {
+      "src": "__source__",
+      "dst": "layer2_3",
+      "capacity_ms": 0.5602400000000785,
+      "role": "cloud",
+      "is_cut_edge": false
+    },
+    {
+      "src": "__source__",
+      "dst": "layer3_0",
+      "capacity_ms": 0.8112199999985137,
+      "role": "cloud",
+      "is_cut_edge": false
+    },
+    {
+      "src": "__source__",
+      "dst": "layer3_1",
+      "capacity_ms": 0.5812800000015272,
+      "role": "cloud",
+      "is_cut_edge": false
+    },
+    {
+      "src": "__source__",
+      "dst": "layer3_2",
+      "capacity_ms": 0.5756400000009876,
+      "role": "cloud",
+      "is_cut_edge": false
+    },
+    {
+      "src": "__source__",
+      "dst": "layer3_3",
+      "capacity_ms": 0.5765400000001364,
+      "role": "cloud",
+      "is_cut_edge": false
+    },
+    {
+      "src": "__source__",
+      "dst": "layer3_4",
+      "capacity_ms": 0.5750200000022687,
+      "role": "cloud",
+      "is_cut_edge": false
+    },
+    {
+      "src": "__source__",
+      "dst": "layer3_5",
+      "capacity_ms": 0.5693999999991206,
+      "role": "cloud",
+      "is_cut_edge": false
+    },
+    {
+      "src": "__source__",
+      "dst": "layer4_0",
+      "capacity_ms": 1.0346999999981676,
+      "role": "cloud",
+      "is_cut_edge": false
+    },
+    {
+      "src": "__source__",
+      "dst": "layer4_1",
+      "capacity_ms": 0.7116800000005696,
+      "role": "cloud",
+      "is_cut_edge": false
+    },
+    {
+      "src": "__source__",
+      "dst": "layer4_2",
+      "capacity_ms": 0.6282199999986915,
+      "role": "cloud",
+      "is_cut_edge": false
+    },
+    {
+      "src": "__source__",
+      "dst": "stem",
+      "capacity_ms": 0.38176000000049726,
+      "role": "cloud",
+      "is_cut_edge": false
+    },
+    {
+      "src": "head",
+      "dst": "__sink__",
+      "capacity_ms": 1.0349599999926795,
+      "role": "edge",
+      "is_cut_edge": true
+    },
+    {
+      "src": "head",
+      "dst": "layer4_2",
+      "capacity_ms": 187977.49019999988,
+      "role": "precedence_constraint",
+      "is_cut_edge": false
+    },
+    {
+      "src": "layer1_0",
+      "dst": "__sink__",
+      "capacity_ms": 10.173799999995481,
+      "role": "edge",
+      "is_cut_edge": true
+    },
+    {
+      "src": "layer1_0",
+      "dst": "layer1_1",
+      "capacity_ms": 25690.112,
+      "role": "transmission",
+      "is_cut_edge": false
+    },
+    {
+      "src": "layer1_0",
+      "dst": "stem",
+      "capacity_ms": 187977.49019999988,
+      "role": "precedence_constraint",
+      "is_cut_edge": false
+    },
+    {
+      "src": "layer1_1",
+      "dst": "__sink__",
+      "capacity_ms": 6.261939999978949,
+      "role": "edge",
+      "is_cut_edge": true
+    },
+    {
+      "src": "layer1_1",
+      "dst": "layer1_0",
+      "capacity_ms": 187977.49019999988,
+      "role": "precedence_constraint",
+      "is_cut_edge": false
+    },
+    {
+      "src": "layer1_1",
+      "dst": "layer1_2",
+      "capacity_ms": 25690.112,
+      "role": "transmission",
+      "is_cut_edge": false
+    },
+    {
+      "src": "layer1_2",
+      "dst": "__sink__",
+      "capacity_ms": 6.466100000000097,
+      "role": "edge",
+      "is_cut_edge": true
+    },
+    {
+      "src": "layer1_2",
+      "dst": "layer1_1",
+      "capacity_ms": 187977.49019999988,
+      "role": "precedence_constraint",
+      "is_cut_edge": false
+    },
+    {
+      "src": "layer1_2",
+      "dst": "layer2_0",
+      "capacity_ms": 25690.112,
+      "role": "transmission",
+      "is_cut_edge": false
+    },
+    {
+      "src": "layer2_0",
+      "dst": "__sink__",
+      "capacity_ms": 9.297719999995024,
+      "role": "edge",
+      "is_cut_edge": true
+    },
+    {
+      "src": "layer2_0",
+      "dst": "layer1_2",
+      "capacity_ms": 187977.49019999988,
+      "role": "precedence_constraint",
+      "is_cut_edge": false
+    },
+    {
+      "src": "layer2_0",
+      "dst": "layer2_1",
+      "capacity_ms": 12845.056,
+      "role": "transmission",
+      "is_cut_edge": false
+    },
+    {
+      "src": "layer2_1",
+      "dst": "__sink__",
+      "capacity_ms": 3.952060000005986,
+      "role": "edge",
+      "is_cut_edge": true
+    },
+    {
+      "src": "layer2_1",
+      "dst": "layer2_0",
+      "capacity_ms": 187977.49019999988,
+      "role": "precedence_constraint",
+      "is_cut_edge": false
+    },
+    {
+      "src": "layer2_1",
+      "dst": "layer2_2",
+      "capacity_ms": 12845.056,
+      "role": "transmission",
+      "is_cut_edge": false
+    },
+    {
+      "src": "layer2_2",
+      "dst": "__sink__",
+      "capacity_ms": 3.4935599999926126,
+      "role": "edge",
+      "is_cut_edge": true
+    },
+    {
+      "src": "layer2_2",
+      "dst": "layer2_1",
+      "capacity_ms": 187977.49019999988,
+      "role": "precedence_constraint",
+      "is_cut_edge": false
+    },
+    {
+      "src": "layer2_2",
+      "dst": "layer2_3",
+      "capacity_ms": 12845.056,
+      "role": "transmission",
+      "is_cut_edge": false
+    },
+    {
+      "src": "layer2_3",
+      "dst": "__sink__",
+      "capacity_ms": 3.434760000004644,
+      "role": "edge",
+      "is_cut_edge": true
+    },
+    {
+      "src": "layer2_3",
+      "dst": "layer2_2",
+      "capacity_ms": 187977.49019999988,
+      "role": "precedence_constraint",
+      "is_cut_edge": false
+    },
+    {
+      "src": "layer2_3",
+      "dst": "layer3_0",
+      "capacity_ms": 12845.056,
+      "role": "transmission",
+      "is_cut_edge": false
+    },
+    {
+      "src": "layer3_0",
+      "dst": "__sink__",
+      "capacity_ms": 7.255820000000313,
+      "role": "edge",
+      "is_cut_edge": true
+    },
+    {
+      "src": "layer3_0",
+      "dst": "layer2_3",
+      "capacity_ms": 187977.49019999988,
+      "role": "precedence_constraint",
+      "is_cut_edge": false
+    },
+    {
+      "src": "layer3_0",
+      "dst": "layer3_1",
+      "capacity_ms": 6422.528,
+      "role": "transmission",
+      "is_cut_edge": false
+    },
+    {
+      "src": "layer3_1",
+      "dst": "__sink__",
+      "capacity_ms": 4.020759999980328,
+      "role": "edge",
+      "is_cut_edge": true
+    },
+    {
+      "src": "layer3_1",
+      "dst": "layer3_0",
+      "capacity_ms": 187977.49019999988,
+      "role": "precedence_constraint",
+      "is_cut_edge": false
+    },
+    {
+      "src": "layer3_1",
+      "dst": "layer3_2",
+      "capacity_ms": 6422.528,
+      "role": "transmission",
+      "is_cut_edge": false
+    },
+    {
+      "src": "layer3_2",
+      "dst": "__sink__",
+      "capacity_ms": 3.743480000002819,
+      "role": "edge",
+      "is_cut_edge": true
+    },
+    {
+      "src": "layer3_2",
+      "dst": "layer3_1",
+      "capacity_ms": 187977.49019999988,
+      "role": "precedence_constraint",
+      "is_cut_edge": false
+    },
+    {
+      "src": "layer3_2",
+      "dst": "layer3_3",
+      "capacity_ms": 6422.528,
+      "role": "transmission",
+      "is_cut_edge": false
+    },
+    {
+      "src": "layer3_3",
+      "dst": "__sink__",
+      "capacity_ms": 4.26838000000771,
+      "role": "edge",
+      "is_cut_edge": true
+    },
+    {
+      "src": "layer3_3",
+      "dst": "layer3_2",
+      "capacity_ms": 187977.49019999988,
+      "role": "precedence_constraint",
+      "is_cut_edge": false
+    },
+    {
+      "src": "layer3_3",
+      "dst": "layer3_4",
+      "capacity_ms": 6422.528,
+      "role": "transmission",
+      "is_cut_edge": false
+    },
+    {
+      "src": "layer3_4",
+      "dst": "__sink__",
+      "capacity_ms": 3.841459999989638,
+      "role": "edge",
+      "is_cut_edge": true
+    },
+    {
+      "src": "layer3_4",
+      "dst": "layer3_3",
+      "capacity_ms": 187977.49019999988,
+      "role": "precedence_constraint",
+      "is_cut_edge": false
+    },
+    {
+      "src": "layer3_4",
+      "dst": "layer3_5",
+      "capacity_ms": 6422.528,
+      "role": "transmission",
+      "is_cut_edge": false
+    },
+    {
+      "src": "layer3_5",
+      "dst": "__sink__",
+      "capacity_ms": 4.728080000006685,
+      "role": "edge",
+      "is_cut_edge": true
+    },
+    {
+      "src": "layer3_5",
+      "dst": "layer3_4",
+      "capacity_ms": 187977.49019999988,
+      "role": "precedence_constraint",
+      "is_cut_edge": false
+    },
+    {
+      "src": "layer3_5",
+      "dst": "layer4_0",
+      "capacity_ms": 6422.528,
+      "role": "transmission",
+      "is_cut_edge": false
+    },
+    {
+      "src": "layer4_0",
+      "dst": "__sink__",
+      "capacity_ms": 13.073580000002494,
+      "role": "edge",
+      "is_cut_edge": true
+    },
+    {
+      "src": "layer4_0",
+      "dst": "layer3_5",
+      "capacity_ms": 187977.49019999988,
+      "role": "precedence_constraint",
+      "is_cut_edge": false
+    },
+    {
+      "src": "layer4_0",
+      "dst": "layer4_1",
+      "capacity_ms": 3211.264,
+      "role": "transmission",
+      "is_cut_edge": false
+    },
+    {
+      "src": "layer4_1",
+      "dst": "__sink__",
+      "capacity_ms": 8.021640000004027,
+      "role": "edge",
+      "is_cut_edge": true
+    },
+    {
+      "src": "layer4_1",
+      "dst": "layer4_0",
+      "capacity_ms": 187977.49019999988,
+      "role": "precedence_constraint",
+      "is_cut_edge": false
+    },
+    {
+      "src": "layer4_1",
+      "dst": "layer4_2",
+      "capacity_ms": 3211.264,
+      "role": "transmission",
+      "is_cut_edge": false
+    },
+    {
+      "src": "layer4_2",
+      "dst": "__sink__",
+      "capacity_ms": 7.109559999992143,
+      "role": "edge",
+      "is_cut_edge": true
+    },
+    {
+      "src": "layer4_2",
+      "dst": "head",
+      "capacity_ms": 3211.264,
+      "role": "transmission",
+      "is_cut_edge": false
+    },
+    {
+      "src": "layer4_2",
+      "dst": "layer4_1",
+      "capacity_ms": 187977.49019999988,
+      "role": "precedence_constraint",
+      "is_cut_edge": false
+    },
+    {
+      "src": "stem",
+      "dst": "__input__",
+      "capacity_ms": 187977.49019999988,
+      "role": "precedence_constraint",
+      "is_cut_edge": false
+    },
+    {
+      "src": "stem",
+      "dst": "__sink__",
+      "capacity_ms": 6.0062799999968775,
+      "role": "edge",
+      "is_cut_edge": true
+    },
+    {
+      "src": "stem",
+      "dst": "layer1_0",
+      "capacity_ms": 6422.528,
+      "role": "transmission",
+      "is_cut_edge": false
+    }
+  ],
+  "cut_edges": [
+    [
+      "__input__",
+      "__sink__"
+    ],
+    [
+      "head",
+      "__sink__"
+    ],
+    [
+      "layer1_0",
+      "__sink__"
+    ],
+    [
+      "layer1_1",
+      "__sink__"
+    ],
+    [
+      "layer1_2",
+      "__sink__"
+    ],
+    [
+      "layer2_0",
+      "__sink__"
+    ],
+    [
+      "layer2_1",
+      "__sink__"
+    ],
+    [
+      "layer2_2",
+      "__sink__"
+    ],
+    [
+      "layer2_3",
+      "__sink__"
+    ],
+    [
+      "layer3_0",
+      "__sink__"
+    ],
+    [
+      "layer3_1",
+      "__sink__"
+    ],
+    [
+      "layer3_2",
+      "__sink__"
+    ],
+    [
+      "layer3_3",
+      "__sink__"
+    ],
+    [
+      "layer3_4",
+      "__sink__"
+    ],
+    [
+      "layer3_5",
+      "__sink__"
+    ],
+    [
+      "layer4_0",
+      "__sink__"
+    ],
+    [
+      "layer4_1",
+      "__sink__"
+    ],
+    [
+      "layer4_2",
+      "__sink__"
+    ],
+    [
+      "stem",
+      "__sink__"
+    ]
+  ],
+  "aux_nodes": {}
+}

@@ -5,7 +5,7 @@ from time import perf_counter
 from typing import Any, Optional
 
 from .dsl import VIRTUAL_INPUT_ID
-from .profile import _require_torch, _resolve_model_builder
+from .profile import _require_torch, build_partition_model, trace_partition_model, validate_partition_granularity
 
 
 @dataclass
@@ -15,16 +15,22 @@ class RuntimeModel:
     traced: Any
     device: Any
     profile_node_ids: set[str]
+    partition_granularity: str
 
 
-def build_runtime_model(model_name: str, device_name: str = "cpu", profile_node_ids: Optional[set[str]] = None) -> RuntimeModel:
+def build_runtime_model(
+    model_name: str,
+    device_name: str = "cpu",
+    profile_node_ids: Optional[set[str]] = None,
+    partition_granularity: str = "node",
+) -> RuntimeModel:
+    partition_granularity = validate_partition_granularity(partition_granularity)
     torch, fx, torchvision_models = _require_torch()
     if device_name == "cuda" and not torch.cuda.is_available():
         raise RuntimeError("CUDA was requested but is not available.")
     device = torch.device(device_name)
-    model = _resolve_model_builder(model_name, torchvision_models)()
-    model.eval()
-    traced = fx.symbolic_trace(model).to(device)
+    model, leaf_module_names = build_partition_model(model_name, torchvision_models, torch, partition_granularity)
+    traced = trace_partition_model(model, fx, leaf_module_names).to(device)
     traced.eval()
     return RuntimeModel(
         torch=torch,
@@ -32,6 +38,7 @@ def build_runtime_model(model_name: str, device_name: str = "cpu", profile_node_
         traced=traced,
         device=device,
         profile_node_ids=profile_node_ids or set(),
+        partition_granularity=partition_granularity,
     )
 
 

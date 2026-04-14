@@ -134,6 +134,7 @@ def _execute_strategy_once(
     bandwidth_mbps: float,
     runtime_profile_node_ids: set[str],
     plan: StrategyPlan,
+    partition_granularity: str = "node",
 ) -> dict[str, Any]:
     input_tensor = make_random_input(edge_runtime.torch, input_shape, "cpu")
     captured, edge_actual_ms, local_output = execute_edge_partition(
@@ -160,6 +161,7 @@ def _execute_strategy_once(
                 "transmission_nodes": plan.transmission_nodes,
                 "cloud_nodes": plan.cloud_nodes,
                 "profile_node_ids": list(runtime_profile_node_ids),
+                "partition_granularity": partition_granularity,
                 "tensors": payloads,
             }
         )
@@ -230,6 +232,7 @@ def _write_json(path: str, payload: dict[str, Any]) -> None:
 def run_experiment(config: dict[str, Any]) -> dict[str, Any]:
     server = str(config.get("server", "localhost:50051"))
     model_name = str(config.get("model", "mobilenet_v2"))
+    partition_granularity = str(config.get("partition_granularity", "node"))
     input_shape = [int(item) for item in config.get("input_shape", [1, 3, 224, 224])]
     bandwidths_mbps = _float_list(config, "bandwidths_mbps", [20, 50, 100, 200, 500, 1000])
     cpu_load_targets = _float_list(config, "cpu_load_targets", [0, 30, 60])
@@ -263,11 +266,12 @@ def run_experiment(config: dict[str, Any]) -> dict[str, Any]:
                     cloud_warmup_runs=0,
                     cloud_profile_runs=1,
                     cloud_device="cpu",
+                    partition_granularity=partition_granularity,
                 ),
             )
-            cloud_profile = _request_cloud_profile(stub, model_name, input_shape, profile_warmup_runs, profile_runs)
+            cloud_profile = _request_cloud_profile(stub, model_name, input_shape, profile_warmup_runs, profile_runs, partition_granularity)
             merged = _merge_profiles(edge_profile, cloud_profile)
-            edge_runtime = build_runtime_model(model_name, "cpu", set(node.id for node in merged.nodes))
+            edge_runtime = build_runtime_model(model_name, "cpu", set(node.id for node in merged.nodes), partition_granularity)
             sample_input = make_random_input(edge_runtime.torch, input_shape, "cpu")
             profile_with_input = with_virtual_input_node(merged, tensor_nbytes(sample_input))
             runtime_profile_node_ids = set(node.id for node in merged.nodes)
@@ -294,6 +298,7 @@ def run_experiment(config: dict[str, Any]) -> dict[str, Any]:
                             bandwidth_mbps=bandwidth_mbps,
                             runtime_profile_node_ids=runtime_profile_node_ids,
                             plan=plan,
+                            partition_granularity=partition_granularity,
                         ),
                         repeats=repeats,
                         actual_warmup_runs=actual_warmup_runs,

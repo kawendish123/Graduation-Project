@@ -16,6 +16,11 @@ from .types import ModelProfile, ModelProfileNode
 
 
 def _merge_profiles(edge_profile: ModelProfile, cloud_profile: ModelProfile) -> ModelProfile:
+    edge_granularity = (edge_profile.metadata or {}).get("partition_granularity", "node")
+    cloud_granularity = (cloud_profile.metadata or {}).get("partition_granularity", "node")
+    if edge_granularity != cloud_granularity:
+        raise ValueError(f"Profile partition granularity mismatch. edge={edge_granularity}, cloud={cloud_granularity}")
+
     edge_map = edge_profile.node_map()
     cloud_map = cloud_profile.node_map()
     if set(edge_map) != set(cloud_map):
@@ -46,13 +51,21 @@ def _merge_profiles(edge_profile: ModelProfile, cloud_profile: ModelProfile) -> 
     )
 
 
-def _request_cloud_profile(stub: DadsCloudStub, model_name: str, input_shape: list[int], warmup_runs: int, profile_runs: int) -> ModelProfile:
+def _request_cloud_profile(
+    stub: DadsCloudStub,
+    model_name: str,
+    input_shape: list[int],
+    warmup_runs: int,
+    profile_runs: int,
+    partition_granularity: str = "node",
+) -> ModelProfile:
     response = stub.get_cloud_profile(
         {
             "model_name": model_name,
             "input_shape": input_shape,
             "warmup_runs": warmup_runs,
             "profile_runs": profile_runs,
+            "partition_granularity": partition_granularity,
         }
     )
     if response.get("status") != "ok":
@@ -78,6 +91,7 @@ def run_client_once(
     profile_runs: int,
     profile_warmup_runs: int,
     debug_output: Optional[str] = None,
+    partition_granularity: str = "node",
 ) -> dict[str, Any]:
     channel = make_channel(server)
     stub = DadsCloudStub(channel)
@@ -93,12 +107,13 @@ def run_client_once(
                 cloud_warmup_runs=0,
                 cloud_profile_runs=1,
                 cloud_device="cpu",
+                partition_granularity=partition_granularity,
             ),
         )
-        cloud_profile = _request_cloud_profile(stub, model_name, input_shape, profile_warmup_runs, profile_runs)
+        cloud_profile = _request_cloud_profile(stub, model_name, input_shape, profile_warmup_runs, profile_runs, partition_granularity)
         merged = _merge_profiles(edge_profile, cloud_profile)
 
-        edge_runtime = build_runtime_model(model_name, "cpu", set(node.id for node in merged.nodes))
+        edge_runtime = build_runtime_model(model_name, "cpu", set(node.id for node in merged.nodes), partition_granularity)
         input_tensor = make_random_input(edge_runtime.torch, input_shape, "cpu")
         profile_with_input = with_virtual_input_node(merged, tensor_nbytes(input_tensor))
         solution = solve_dsl(profile_with_input, bandwidth_mbps)
@@ -129,6 +144,7 @@ def run_client_once(
                     "transmission_nodes": solution.transmission_nodes,
                     "cloud_nodes": solution.cloud_nodes,
                     "profile_node_ids": list(runtime_profile_node_ids),
+                    "partition_granularity": partition_granularity,
                     "tensors": payloads,
                 }
             )

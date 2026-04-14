@@ -1,0 +1,375 @@
+{
+  "model_name": "vgg16",
+  "input_shape": [
+    1,
+    3,
+    224,
+    224
+  ],
+  "bandwidth_mbps": 2.0,
+  "summary": {
+    "edge_node_count": 7,
+    "cloud_node_count": 0,
+    "transmission_node_count": 0,
+    "dsl_estimated_edge_ms": 125.99835999999414,
+    "dsl_estimated_transfer_ms": 0,
+    "dsl_estimated_cloud_ms": 0,
+    "dsl_estimated_total_ms": 125.99835999999414,
+    "all_edge_estimated_ms": 125.99835999999414
+  },
+  "partition": {
+    "model_name": "vgg16",
+    "bandwidth_mbps": 2.0,
+    "total_inference_ms": 125.99835999999414,
+    "edge_stage_ms": 125.99835999999414,
+    "transmission_stage_ms": 0,
+    "cloud_stage_ms": 0,
+    "edge_nodes": [
+      "__input__",
+      "features_block1",
+      "features_block2",
+      "features_block3",
+      "features_block4",
+      "features_block5",
+      "head"
+    ],
+    "transmission_nodes": [],
+    "cloud_nodes": [],
+    "cut_edges": [
+      [
+        "__input__",
+        "__sink__"
+      ],
+      [
+        "features_block1",
+        "__sink__"
+      ],
+      [
+        "features_block2",
+        "__sink__"
+      ],
+      [
+        "features_block3",
+        "__sink__"
+      ],
+      [
+        "features_block4",
+        "__sink__"
+      ],
+      [
+        "features_block5",
+        "__sink__"
+      ],
+      [
+        "head",
+        "__sink__"
+      ]
+    ]
+  },
+  "nodes": [
+    {
+      "id": "__input__",
+      "op_type": "Input",
+      "succ_ids": [
+        "features_block1"
+      ],
+      "edge_ms": 0.0,
+      "cloud_ms": 0.0,
+      "transmission_ms": 2408.448,
+      "output_bytes": 602112,
+      "partition": "edge",
+      "is_transmission_node": false
+    },
+    {
+      "id": "features_block1",
+      "op_type": "Sequential",
+      "succ_ids": [
+        "features_block2"
+      ],
+      "edge_ms": 22.20004000000131,
+      "cloud_ms": 1.922340000010081,
+      "transmission_ms": 12845.056,
+      "output_bytes": 3211264,
+      "partition": "edge",
+      "is_transmission_node": false
+    },
+    {
+      "id": "features_block2",
+      "op_type": "Sequential",
+      "succ_ids": [
+        "features_block3"
+      ],
+      "edge_ms": 18.561419999997497,
+      "cloud_ms": 1.860979999992196,
+      "transmission_ms": 6422.528,
+      "output_bytes": 1605632,
+      "partition": "edge",
+      "is_transmission_node": false
+    },
+    {
+      "id": "features_block3",
+      "op_type": "Sequential",
+      "succ_ids": [
+        "features_block4"
+      ],
+      "edge_ms": 25.558119999993778,
+      "cloud_ms": 2.5580799999943338,
+      "transmission_ms": 3211.264,
+      "output_bytes": 802816,
+      "partition": "edge",
+      "is_transmission_node": false
+    },
+    {
+      "id": "features_block4",
+      "op_type": "Sequential",
+      "succ_ids": [
+        "features_block5"
+      ],
+      "edge_ms": 25.339259999998376,
+      "cloud_ms": 3.05441999996674,
+      "transmission_ms": 1605.632,
+      "output_bytes": 401408,
+      "partition": "edge",
+      "is_transmission_node": false
+    },
+    {
+      "id": "features_block5",
+      "op_type": "Sequential",
+      "succ_ids": [
+        "head"
+      ],
+      "edge_ms": 11.832219999996596,
+      "cloud_ms": 1.4064800000141986,
+      "transmission_ms": 401.408,
+      "output_bytes": 100352,
+      "partition": "edge",
+      "is_transmission_node": false
+    },
+    {
+      "id": "head",
+      "op_type": "VGGHead",
+      "succ_ids": [],
+      "edge_ms": 22.50730000000658,
+      "cloud_ms": 3.508220000003348,
+      "transmission_ms": 16.0,
+      "output_bytes": 4000,
+      "partition": "edge",
+      "is_transmission_node": false
+    }
+  ],
+  "flow_edges": [
+    {
+      "src": "__input__",
+      "dst": "__sink__",
+      "capacity_ms": 0.0,
+      "role": "edge",
+      "is_cut_edge": true
+    },
+    {
+      "src": "__input__",
+      "dst": "features_block1",
+      "capacity_ms": 2408.448,
+      "role": "transmission",
+      "is_cut_edge": false
+    },
+    {
+      "src": "__source__",
+      "dst": "__input__",
+      "capacity_ms": 27035.644879999978,
+      "role": "cloud",
+      "is_cut_edge": false
+    },
+    {
+      "src": "__source__",
+      "dst": "features_block1",
+      "capacity_ms": 1.922340000010081,
+      "role": "cloud",
+      "is_cut_edge": false
+    },
+    {
+      "src": "__source__",
+      "dst": "features_block2",
+      "capacity_ms": 1.860979999992196,
+      "role": "cloud",
+      "is_cut_edge": false
+    },
+    {
+      "src": "__source__",
+      "dst": "features_block3",
+      "capacity_ms": 2.5580799999943338,
+      "role": "cloud",
+      "is_cut_edge": false
+    },
+    {
+      "src": "__source__",
+      "dst": "features_block4",
+      "capacity_ms": 3.05441999996674,
+      "role": "cloud",
+      "is_cut_edge": false
+    },
+    {
+      "src": "__source__",
+      "dst": "features_block5",
+      "capacity_ms": 1.4064800000141986,
+      "role": "cloud",
+      "is_cut_edge": false
+    },
+    {
+      "src": "__source__",
+      "dst": "head",
+      "capacity_ms": 3.508220000003348,
+      "role": "cloud",
+      "is_cut_edge": false
+    },
+    {
+      "src": "features_block1",
+      "dst": "__input__",
+      "capacity_ms": 27035.644879999978,
+      "role": "precedence_constraint",
+      "is_cut_edge": false
+    },
+    {
+      "src": "features_block1",
+      "dst": "__sink__",
+      "capacity_ms": 22.20004000000131,
+      "role": "edge",
+      "is_cut_edge": true
+    },
+    {
+      "src": "features_block1",
+      "dst": "features_block2",
+      "capacity_ms": 12845.056,
+      "role": "transmission",
+      "is_cut_edge": false
+    },
+    {
+      "src": "features_block2",
+      "dst": "__sink__",
+      "capacity_ms": 18.561419999997497,
+      "role": "edge",
+      "is_cut_edge": true
+    },
+    {
+      "src": "features_block2",
+      "dst": "features_block1",
+      "capacity_ms": 27035.644879999978,
+      "role": "precedence_constraint",
+      "is_cut_edge": false
+    },
+    {
+      "src": "features_block2",
+      "dst": "features_block3",
+      "capacity_ms": 6422.528,
+      "role": "transmission",
+      "is_cut_edge": false
+    },
+    {
+      "src": "features_block3",
+      "dst": "__sink__",
+      "capacity_ms": 25.558119999993778,
+      "role": "edge",
+      "is_cut_edge": true
+    },
+    {
+      "src": "features_block3",
+      "dst": "features_block2",
+      "capacity_ms": 27035.644879999978,
+      "role": "precedence_constraint",
+      "is_cut_edge": false
+    },
+    {
+      "src": "features_block3",
+      "dst": "features_block4",
+      "capacity_ms": 3211.264,
+      "role": "transmission",
+      "is_cut_edge": false
+    },
+    {
+      "src": "features_block4",
+      "dst": "__sink__",
+      "capacity_ms": 25.339259999998376,
+      "role": "edge",
+      "is_cut_edge": true
+    },
+    {
+      "src": "features_block4",
+      "dst": "features_block3",
+      "capacity_ms": 27035.644879999978,
+      "role": "precedence_constraint",
+      "is_cut_edge": false
+    },
+    {
+      "src": "features_block4",
+      "dst": "features_block5",
+      "capacity_ms": 1605.632,
+      "role": "transmission",
+      "is_cut_edge": false
+    },
+    {
+      "src": "features_block5",
+      "dst": "__sink__",
+      "capacity_ms": 11.832219999996596,
+      "role": "edge",
+      "is_cut_edge": true
+    },
+    {
+      "src": "features_block5",
+      "dst": "features_block4",
+      "capacity_ms": 27035.644879999978,
+      "role": "precedence_constraint",
+      "is_cut_edge": false
+    },
+    {
+      "src": "features_block5",
+      "dst": "head",
+      "capacity_ms": 401.408,
+      "role": "transmission",
+      "is_cut_edge": false
+    },
+    {
+      "src": "head",
+      "dst": "__sink__",
+      "capacity_ms": 22.50730000000658,
+      "role": "edge",
+      "is_cut_edge": true
+    },
+    {
+      "src": "head",
+      "dst": "features_block5",
+      "capacity_ms": 27035.644879999978,
+      "role": "precedence_constraint",
+      "is_cut_edge": false
+    }
+  ],
+  "cut_edges": [
+    [
+      "__input__",
+      "__sink__"
+    ],
+    [
+      "features_block1",
+      "__sink__"
+    ],
+    [
+      "features_block2",
+      "__sink__"
+    ],
+    [
+      "features_block3",
+      "__sink__"
+    ],
+    [
+      "features_block4",
+      "__sink__"
+    ],
+    [
+      "features_block5",
+      "__sink__"
+    ],
+    [
+      "head",
+      "__sink__"
+    ]
+  ],
+  "aux_nodes": {}
+}
