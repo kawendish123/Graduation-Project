@@ -1,0 +1,675 @@
+{
+  "model_name": "googlenet",
+  "input_shape": [
+    1,
+    3,
+    224,
+    224
+  ],
+  "bandwidth_mbps": 5.0,
+  "summary": {
+    "edge_node_count": 13,
+    "cloud_node_count": 0,
+    "transmission_node_count": 0,
+    "dsl_estimated_edge_ms": 39.14813999999982,
+    "dsl_estimated_transfer_ms": 0,
+    "dsl_estimated_cloud_ms": 0,
+    "dsl_estimated_total_ms": 39.14813999999982,
+    "all_edge_estimated_ms": 39.14813999999982
+  },
+  "partition": {
+    "model_name": "googlenet",
+    "bandwidth_mbps": 5.0,
+    "total_inference_ms": 39.14813999999982,
+    "edge_stage_ms": 39.14813999999982,
+    "transmission_stage_ms": 0,
+    "cloud_stage_ms": 0,
+    "edge_nodes": [
+      "__input__",
+      "stem1",
+      "stem2",
+      "inception3a",
+      "inception3b",
+      "inception4a",
+      "inception4b",
+      "inception4c",
+      "inception4d",
+      "inception4e",
+      "inception5a",
+      "inception5b",
+      "head"
+    ],
+    "transmission_nodes": [],
+    "cloud_nodes": [],
+    "cut_edges": [
+      [
+        "__input__",
+        "__sink__"
+      ],
+      [
+        "head",
+        "__sink__"
+      ],
+      [
+        "inception3a",
+        "__sink__"
+      ],
+      [
+        "inception3b",
+        "__sink__"
+      ],
+      [
+        "inception4a",
+        "__sink__"
+      ],
+      [
+        "inception4b",
+        "__sink__"
+      ],
+      [
+        "inception4c",
+        "__sink__"
+      ],
+      [
+        "inception4d",
+        "__sink__"
+      ],
+      [
+        "inception4e",
+        "__sink__"
+      ],
+      [
+        "inception5a",
+        "__sink__"
+      ],
+      [
+        "inception5b",
+        "__sink__"
+      ],
+      [
+        "stem1",
+        "__sink__"
+      ],
+      [
+        "stem2",
+        "__sink__"
+      ]
+    ]
+  },
+  "nodes": [
+    {
+      "id": "__input__",
+      "op_type": "Input",
+      "succ_ids": [
+        "stem1"
+      ],
+      "edge_ms": 0.0,
+      "cloud_ms": 0.0,
+      "transmission_ms": 963.3792,
+      "output_bytes": 602112,
+      "partition": "edge",
+      "is_transmission_node": false
+    },
+    {
+      "id": "stem1",
+      "op_type": "GoogLeNetStem1",
+      "succ_ids": [
+        "stem2"
+      ],
+      "edge_ms": 3.4345800000000537,
+      "cloud_ms": 0.5618999999569496,
+      "transmission_ms": 1284.5056,
+      "output_bytes": 802816,
+      "partition": "edge",
+      "is_transmission_node": false
+    },
+    {
+      "id": "stem2",
+      "op_type": "GoogLeNetStem2",
+      "succ_ids": [
+        "inception3a"
+      ],
+      "edge_ms": 4.339739999999637,
+      "cloud_ms": 0.7748599999104044,
+      "transmission_ms": 963.3792,
+      "output_bytes": 602112,
+      "partition": "edge",
+      "is_transmission_node": false
+    },
+    {
+      "id": "inception3a",
+      "op_type": "Inception",
+      "succ_ids": [
+        "inception3b"
+      ],
+      "edge_ms": 4.067039999999622,
+      "cloud_ms": 1.349259999824426,
+      "transmission_ms": 1284.5056,
+      "output_bytes": 802816,
+      "partition": "edge",
+      "is_transmission_node": false
+    },
+    {
+      "id": "inception3b",
+      "op_type": "Inception",
+      "succ_ids": [
+        "inception4a"
+      ],
+      "edge_ms": 4.827600000000132,
+      "cloud_ms": 1.432320000094478,
+      "transmission_ms": 2408.448,
+      "output_bytes": 1505280,
+      "partition": "edge",
+      "is_transmission_node": false
+    },
+    {
+      "id": "inception4a",
+      "op_type": "PoolThenBlock",
+      "succ_ids": [
+        "inception4b"
+      ],
+      "edge_ms": 3.469439999999935,
+      "cloud_ms": 1.5405000001919689,
+      "transmission_ms": 642.2528,
+      "output_bytes": 401408,
+      "partition": "edge",
+      "is_transmission_node": false
+    },
+    {
+      "id": "inception4b",
+      "op_type": "Inception",
+      "succ_ids": [
+        "inception4c"
+      ],
+      "edge_ms": 2.819479999999963,
+      "cloud_ms": 1.4121600000180479,
+      "transmission_ms": 642.2528,
+      "output_bytes": 401408,
+      "partition": "edge",
+      "is_transmission_node": false
+    },
+    {
+      "id": "inception4c",
+      "op_type": "Inception",
+      "succ_ids": [
+        "inception4d"
+      ],
+      "edge_ms": 2.951239999999977,
+      "cloud_ms": 1.3856999999916297,
+      "transmission_ms": 642.2528,
+      "output_bytes": 401408,
+      "partition": "edge",
+      "is_transmission_node": false
+    },
+    {
+      "id": "inception4d",
+      "op_type": "Inception",
+      "succ_ids": [
+        "inception4e"
+      ],
+      "edge_ms": 2.9051200000001387,
+      "cloud_ms": 1.2612399998943147,
+      "transmission_ms": 662.3232,
+      "output_bytes": 413952,
+      "partition": "edge",
+      "is_transmission_node": false
+    },
+    {
+      "id": "inception4e",
+      "op_type": "Inception",
+      "succ_ids": [
+        "inception5a"
+      ],
+      "edge_ms": 4.297720000000282,
+      "cloud_ms": 1.2009399999442394,
+      "transmission_ms": 1043.6608,
+      "output_bytes": 652288,
+      "partition": "edge",
+      "is_transmission_node": false
+    },
+    {
+      "id": "inception5a",
+      "op_type": "PoolThenBlock",
+      "succ_ids": [
+        "inception5b"
+      ],
+      "edge_ms": 2.8901000000001176,
+      "cloud_ms": 1.4105000000199652,
+      "transmission_ms": 260.9152,
+      "output_bytes": 163072,
+      "partition": "edge",
+      "is_transmission_node": false
+    },
+    {
+      "id": "inception5b",
+      "op_type": "Inception",
+      "succ_ids": [
+        "head"
+      ],
+      "edge_ms": 2.5912599999998065,
+      "cloud_ms": 1.2006400000245776,
+      "transmission_ms": 321.1264,
+      "output_bytes": 200704,
+      "partition": "edge",
+      "is_transmission_node": false
+    },
+    {
+      "id": "head",
+      "op_type": "GoogLeNetHead",
+      "succ_ids": [],
+      "edge_ms": 0.5548200000001557,
+      "cloud_ms": 0.2712999999857857,
+      "transmission_ms": 6.4,
+      "output_bytes": 4000,
+      "partition": "edge",
+      "is_transmission_node": false
+    }
+  ],
+  "flow_edges": [
+    {
+      "src": "__input__",
+      "dst": "__sink__",
+      "capacity_ms": 0.0,
+      "role": "edge",
+      "is_cut_edge": true
+    },
+    {
+      "src": "__input__",
+      "dst": "stem1",
+      "capacity_ms": 963.3792,
+      "role": "transmission",
+      "is_cut_edge": false
+    },
+    {
+      "src": "__source__",
+      "dst": "__input__",
+      "capacity_ms": 11172.951059999854,
+      "role": "cloud",
+      "is_cut_edge": false
+    },
+    {
+      "src": "__source__",
+      "dst": "head",
+      "capacity_ms": 0.2712999999857857,
+      "role": "cloud",
+      "is_cut_edge": false
+    },
+    {
+      "src": "__source__",
+      "dst": "inception3a",
+      "capacity_ms": 1.349259999824426,
+      "role": "cloud",
+      "is_cut_edge": false
+    },
+    {
+      "src": "__source__",
+      "dst": "inception3b",
+      "capacity_ms": 1.432320000094478,
+      "role": "cloud",
+      "is_cut_edge": false
+    },
+    {
+      "src": "__source__",
+      "dst": "inception4a",
+      "capacity_ms": 1.5405000001919689,
+      "role": "cloud",
+      "is_cut_edge": false
+    },
+    {
+      "src": "__source__",
+      "dst": "inception4b",
+      "capacity_ms": 1.4121600000180479,
+      "role": "cloud",
+      "is_cut_edge": false
+    },
+    {
+      "src": "__source__",
+      "dst": "inception4c",
+      "capacity_ms": 1.3856999999916297,
+      "role": "cloud",
+      "is_cut_edge": false
+    },
+    {
+      "src": "__source__",
+      "dst": "inception4d",
+      "capacity_ms": 1.2612399998943147,
+      "role": "cloud",
+      "is_cut_edge": false
+    },
+    {
+      "src": "__source__",
+      "dst": "inception4e",
+      "capacity_ms": 1.2009399999442394,
+      "role": "cloud",
+      "is_cut_edge": false
+    },
+    {
+      "src": "__source__",
+      "dst": "inception5a",
+      "capacity_ms": 1.4105000000199652,
+      "role": "cloud",
+      "is_cut_edge": false
+    },
+    {
+      "src": "__source__",
+      "dst": "inception5b",
+      "capacity_ms": 1.2006400000245776,
+      "role": "cloud",
+      "is_cut_edge": false
+    },
+    {
+      "src": "__source__",
+      "dst": "stem1",
+      "capacity_ms": 0.5618999999569496,
+      "role": "cloud",
+      "is_cut_edge": false
+    },
+    {
+      "src": "__source__",
+      "dst": "stem2",
+      "capacity_ms": 0.7748599999104044,
+      "role": "cloud",
+      "is_cut_edge": false
+    },
+    {
+      "src": "head",
+      "dst": "__sink__",
+      "capacity_ms": 0.5548200000001557,
+      "role": "edge",
+      "is_cut_edge": true
+    },
+    {
+      "src": "head",
+      "dst": "inception5b",
+      "capacity_ms": 11172.951059999854,
+      "role": "precedence_constraint",
+      "is_cut_edge": false
+    },
+    {
+      "src": "inception3a",
+      "dst": "__sink__",
+      "capacity_ms": 4.067039999999622,
+      "role": "edge",
+      "is_cut_edge": true
+    },
+    {
+      "src": "inception3a",
+      "dst": "inception3b",
+      "capacity_ms": 1284.5056,
+      "role": "transmission",
+      "is_cut_edge": false
+    },
+    {
+      "src": "inception3a",
+      "dst": "stem2",
+      "capacity_ms": 11172.951059999854,
+      "role": "precedence_constraint",
+      "is_cut_edge": false
+    },
+    {
+      "src": "inception3b",
+      "dst": "__sink__",
+      "capacity_ms": 4.827600000000132,
+      "role": "edge",
+      "is_cut_edge": true
+    },
+    {
+      "src": "inception3b",
+      "dst": "inception3a",
+      "capacity_ms": 11172.951059999854,
+      "role": "precedence_constraint",
+      "is_cut_edge": false
+    },
+    {
+      "src": "inception3b",
+      "dst": "inception4a",
+      "capacity_ms": 2408.448,
+      "role": "transmission",
+      "is_cut_edge": false
+    },
+    {
+      "src": "inception4a",
+      "dst": "__sink__",
+      "capacity_ms": 3.469439999999935,
+      "role": "edge",
+      "is_cut_edge": true
+    },
+    {
+      "src": "inception4a",
+      "dst": "inception3b",
+      "capacity_ms": 11172.951059999854,
+      "role": "precedence_constraint",
+      "is_cut_edge": false
+    },
+    {
+      "src": "inception4a",
+      "dst": "inception4b",
+      "capacity_ms": 642.2528,
+      "role": "transmission",
+      "is_cut_edge": false
+    },
+    {
+      "src": "inception4b",
+      "dst": "__sink__",
+      "capacity_ms": 2.819479999999963,
+      "role": "edge",
+      "is_cut_edge": true
+    },
+    {
+      "src": "inception4b",
+      "dst": "inception4a",
+      "capacity_ms": 11172.951059999854,
+      "role": "precedence_constraint",
+      "is_cut_edge": false
+    },
+    {
+      "src": "inception4b",
+      "dst": "inception4c",
+      "capacity_ms": 642.2528,
+      "role": "transmission",
+      "is_cut_edge": false
+    },
+    {
+      "src": "inception4c",
+      "dst": "__sink__",
+      "capacity_ms": 2.951239999999977,
+      "role": "edge",
+      "is_cut_edge": true
+    },
+    {
+      "src": "inception4c",
+      "dst": "inception4b",
+      "capacity_ms": 11172.951059999854,
+      "role": "precedence_constraint",
+      "is_cut_edge": false
+    },
+    {
+      "src": "inception4c",
+      "dst": "inception4d",
+      "capacity_ms": 642.2528,
+      "role": "transmission",
+      "is_cut_edge": false
+    },
+    {
+      "src": "inception4d",
+      "dst": "__sink__",
+      "capacity_ms": 2.9051200000001387,
+      "role": "edge",
+      "is_cut_edge": true
+    },
+    {
+      "src": "inception4d",
+      "dst": "inception4c",
+      "capacity_ms": 11172.951059999854,
+      "role": "precedence_constraint",
+      "is_cut_edge": false
+    },
+    {
+      "src": "inception4d",
+      "dst": "inception4e",
+      "capacity_ms": 662.3232,
+      "role": "transmission",
+      "is_cut_edge": false
+    },
+    {
+      "src": "inception4e",
+      "dst": "__sink__",
+      "capacity_ms": 4.297720000000282,
+      "role": "edge",
+      "is_cut_edge": true
+    },
+    {
+      "src": "inception4e",
+      "dst": "inception4d",
+      "capacity_ms": 11172.951059999854,
+      "role": "precedence_constraint",
+      "is_cut_edge": false
+    },
+    {
+      "src": "inception4e",
+      "dst": "inception5a",
+      "capacity_ms": 1043.6608,
+      "role": "transmission",
+      "is_cut_edge": false
+    },
+    {
+      "src": "inception5a",
+      "dst": "__sink__",
+      "capacity_ms": 2.8901000000001176,
+      "role": "edge",
+      "is_cut_edge": true
+    },
+    {
+      "src": "inception5a",
+      "dst": "inception4e",
+      "capacity_ms": 11172.951059999854,
+      "role": "precedence_constraint",
+      "is_cut_edge": false
+    },
+    {
+      "src": "inception5a",
+      "dst": "inception5b",
+      "capacity_ms": 260.9152,
+      "role": "transmission",
+      "is_cut_edge": false
+    },
+    {
+      "src": "inception5b",
+      "dst": "__sink__",
+      "capacity_ms": 2.5912599999998065,
+      "role": "edge",
+      "is_cut_edge": true
+    },
+    {
+      "src": "inception5b",
+      "dst": "head",
+      "capacity_ms": 321.1264,
+      "role": "transmission",
+      "is_cut_edge": false
+    },
+    {
+      "src": "inception5b",
+      "dst": "inception5a",
+      "capacity_ms": 11172.951059999854,
+      "role": "precedence_constraint",
+      "is_cut_edge": false
+    },
+    {
+      "src": "stem1",
+      "dst": "__input__",
+      "capacity_ms": 11172.951059999854,
+      "role": "precedence_constraint",
+      "is_cut_edge": false
+    },
+    {
+      "src": "stem1",
+      "dst": "__sink__",
+      "capacity_ms": 3.4345800000000537,
+      "role": "edge",
+      "is_cut_edge": true
+    },
+    {
+      "src": "stem1",
+      "dst": "stem2",
+      "capacity_ms": 1284.5056,
+      "role": "transmission",
+      "is_cut_edge": false
+    },
+    {
+      "src": "stem2",
+      "dst": "__sink__",
+      "capacity_ms": 4.339739999999637,
+      "role": "edge",
+      "is_cut_edge": true
+    },
+    {
+      "src": "stem2",
+      "dst": "inception3a",
+      "capacity_ms": 963.3792,
+      "role": "transmission",
+      "is_cut_edge": false
+    },
+    {
+      "src": "stem2",
+      "dst": "stem1",
+      "capacity_ms": 11172.951059999854,
+      "role": "precedence_constraint",
+      "is_cut_edge": false
+    }
+  ],
+  "cut_edges": [
+    [
+      "__input__",
+      "__sink__"
+    ],
+    [
+      "head",
+      "__sink__"
+    ],
+    [
+      "inception3a",
+      "__sink__"
+    ],
+    [
+      "inception3b",
+      "__sink__"
+    ],
+    [
+      "inception4a",
+      "__sink__"
+    ],
+    [
+      "inception4b",
+      "__sink__"
+    ],
+    [
+      "inception4c",
+      "__sink__"
+    ],
+    [
+      "inception4d",
+      "__sink__"
+    ],
+    [
+      "inception4e",
+      "__sink__"
+    ],
+    [
+      "inception5a",
+      "__sink__"
+    ],
+    [
+      "inception5b",
+      "__sink__"
+    ],
+    [
+      "stem1",
+      "__sink__"
+    ],
+    [
+      "stem2",
+      "__sink__"
+    ]
+  ],
+  "aux_nodes": {}
+}
