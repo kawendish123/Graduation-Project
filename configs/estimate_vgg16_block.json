@@ -1,0 +1,20 @@
+{
+  "command": "estimate-experiment",
+  "model": "vgg16",
+  "partition_granularity": "block",
+  "bandwidths_mbps": [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 12, 15, 18, 20, 25, 30, 40, 50, 60, 70, 80, 90, 100],
+  "cpu_load_targets": [0, 10, 20, 30],
+  "input_shape": [1, 3, 224, 224],
+  "edge_profiles": {
+    "0": "profiles/vgg16_block/edge_load0.json",
+    "10": "profiles/vgg16_block/edge_load10.json",
+    "20": "profiles/vgg16_block/edge_load20.json",
+    "30": "profiles/vgg16_block/edge_load30.json"
+  },
+  "cloud_profile": "profiles/vgg16_block/cloud_cuda.json",
+  "report_csv": "results/estimate_vgg16_block.csv",
+  "report_json": "results/estimate_vgg16_block.json",
+  "debug_dir": "results/debug_estimate_vgg16_block",
+  "plot_dir": "results/plots_estimate_vgg16_block",
+  "plot_format": "png"
+}

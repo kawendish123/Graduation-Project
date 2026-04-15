@@ -9,7 +9,7 @@ from typing import Any, Optional
 from .types import ModelProfile, ModelProfileNode
 
 AVAILABLE_MODELS = ("mobilenet_v2", "googlenet", "resnet50", "vgg16")
-PARTITION_GRANULARITIES = ("node", "block")
+PARTITION_GRANULARITIES = ("node", "node_filtered", "block")
 
 PASS_THROUGH_FUNCTIONS = {"getitem", "getattr"}
 PASS_THROUGH_METHODS = {
@@ -24,6 +24,70 @@ PASS_THROUGH_METHODS = {
     "transpose",
     "unsqueeze",
     "view",
+}
+FILTERED_MODULE_TYPES = {
+    "BatchNorm1d",
+    "BatchNorm2d",
+    "BatchNorm3d",
+    "Dropout",
+    "Dropout1d",
+    "Dropout2d",
+    "Dropout3d",
+    "Flatten",
+    "Hardsigmoid",
+    "Hardswish",
+    "Identity",
+    "ReLU",
+    "ReLU6",
+    "SELU",
+    "SiLU",
+    "Sigmoid",
+    "Tanh",
+}
+KEEP_MODULE_TYPES = {
+    "AdaptiveAvgPool1d",
+    "AdaptiveAvgPool2d",
+    "AdaptiveAvgPool3d",
+    "AvgPool1d",
+    "AvgPool2d",
+    "AvgPool3d",
+    "Conv1d",
+    "Conv2d",
+    "Conv3d",
+    "Linear",
+    "MaxPool1d",
+    "MaxPool2d",
+    "MaxPool3d",
+}
+FILTERED_FUNCTIONS = {
+    "adaptive_max_pool2d_with_indices",
+    "dropout",
+    "flatten",
+    "hardtanh",
+    "hardsigmoid",
+    "hardswish",
+    "relu",
+    "relu6",
+    "sigmoid",
+    "silu",
+    "tanh",
+}
+KEEP_FUNCTIONS = {
+    "adaptive_avg_pool1d",
+    "adaptive_avg_pool2d",
+    "adaptive_avg_pool3d",
+    "add",
+    "avg_pool1d",
+    "avg_pool2d",
+    "avg_pool3d",
+    "cat",
+    "concat",
+    "concatenate",
+    "linear",
+    "matmul",
+    "max_pool1d",
+    "max_pool2d",
+    "max_pool3d",
 }
 
 
@@ -98,6 +162,42 @@ def _is_cut_candidate(node, output: Any) -> bool:
     return True
 
 
+def _function_name(node) -> str:
+    return getattr(node.target, "__name__", str(node.target))
+
+
+def _is_multi_input_tensor_op(node) -> bool:
+    return len(node.all_input_nodes) > 1
+
+
+def _is_filtered_cut_candidate(node, traced_module, output: Any) -> bool:
+    if not _is_cut_candidate(node, output):
+        return False
+    if _is_multi_input_tensor_op(node):
+        return True
+    if node.op == "call_module":
+        op_type = _op_type(node, traced_module)
+        if op_type in FILTERED_MODULE_TYPES:
+            return False
+        if op_type in KEEP_MODULE_TYPES:
+            return True
+        return True
+    if node.op == "call_function":
+        name = _function_name(node)
+        if name in FILTERED_FUNCTIONS:
+            return False
+        if name in KEEP_FUNCTIONS:
+            return True
+        return True
+    if node.op == "call_method":
+        return False
+    return True
+
+
+def _contains_tensor_output(node, outputs: dict[str, Any]) -> bool:
+    return _contains_tensor(outputs.get(node.name))
+
+
 class _ProfilingInterpreter:
     def __init__(self, fx, module, torch_mod, device, capture_outputs: bool):
         self._fx = fx
@@ -138,7 +238,7 @@ def _mean(values: list[float]) -> float:
 def validate_partition_granularity(partition_granularity: str) -> str:
     value = str(partition_granularity)
     if value not in PARTITION_GRANULARITIES:
-        raise ValueError("partition_granularity must be 'node' or 'block'.")
+        raise ValueError("partition_granularity must be 'node', 'node_filtered', or 'block'.")
     return value
 
 
@@ -401,7 +501,7 @@ def build_partition_model(model_name: str, torchvision_models: Any, torch_mod: A
     partition_granularity = validate_partition_granularity(partition_granularity)
     base_model = _resolve_model_builder(model_name, torchvision_models)()
     base_model.eval()
-    if partition_granularity == "node":
+    if partition_granularity in {"node", "node_filtered"}:
         return base_model, set()
     block_model, leaf_module_names = _make_block_model(model_name, base_model, torch_mod)
     block_model.eval()
@@ -449,6 +549,62 @@ def _nearest_kept_predecessors(node, keep_names: set[str], cache: dict[str, set[
             predecessors.update(_nearest_kept_predecessors(input_node, keep_names, cache))
     cache[node.name] = predecessors
     return predecessors
+
+
+def _initial_keep_names(traced, outputs: dict[str, Any], partition_granularity: str) -> set[str]:
+    if partition_granularity == "node_filtered":
+        return {
+            node.name
+            for node in traced.graph.nodes
+            if _is_filtered_cut_candidate(node, traced, outputs.get(node.name))
+        }
+    return {
+        node.name
+        for node in traced.graph.nodes
+        if _is_cut_candidate(node, outputs.get(node.name))
+    }
+
+
+def _node_can_be_folded(node, outputs: Optional[dict[str, Any]]) -> bool:
+    if node.op not in {"call_module", "call_function", "call_method"}:
+        return False
+    if outputs is None:
+        return True
+    return _contains_tensor(outputs.get(node.name))
+
+
+def _promote_ambiguous_filtered_nodes(traced, keep_names: set[str], outputs: dict[str, Any]) -> set[str]:
+    promoted = set(keep_names)
+    changed = True
+    while changed:
+        changed = False
+        cache: dict[str, set[str]] = {}
+        for node in traced.graph.nodes:
+            if node.name in promoted or not _node_can_be_folded(node, outputs):
+                continue
+            predecessors = _nearest_kept_predecessors(node, promoted, cache)
+            if len(predecessors) > 1:
+                promoted.add(node.name)
+                changed = True
+                break
+    return promoted
+
+
+def _folded_nodes_by_predecessor(traced, keep_names: set[str], outputs: Optional[dict[str, Any]]) -> dict[str, list[str]]:
+    cache: dict[str, set[str]] = {}
+    folded: dict[str, list[str]] = defaultdict(list)
+    for node in traced.graph.nodes:
+        if node.name in keep_names or not _node_can_be_folded(node, outputs):
+            continue
+        predecessors = _nearest_kept_predecessors(node, keep_names, cache)
+        if len(predecessors) == 1:
+            folded[next(iter(predecessors))].append(node.name)
+    return dict(folded)
+
+
+def folded_output_aliases(traced, keep_names: set[str], outputs: Optional[dict[str, Any]] = None) -> dict[str, str]:
+    folded = _folded_nodes_by_predecessor(traced, keep_names, outputs)
+    return {node_id: folded_nodes[-1] for node_id, folded_nodes in folded.items() if folded_nodes}
 
 
 @dataclass
@@ -508,11 +664,11 @@ def profile_model(model_name: str, config: Optional[ProfileRunConfig] = None) ->
         cloud_timings = dict(cloud_profiler.timings_ms)
         cloud_device_label = str(cloud_device)
 
-    keep_names = {
-        node.name
-        for node in traced.graph.nodes
-        if _is_cut_candidate(node, edge_profiler.outputs.get(node.name))
-    }
+    keep_names = _initial_keep_names(traced, edge_profiler.outputs, partition_granularity)
+    if partition_granularity == "node_filtered":
+        keep_names = _promote_ambiguous_filtered_nodes(traced, keep_names, edge_profiler.outputs)
+    folded_nodes = _folded_nodes_by_predecessor(traced, keep_names, edge_profiler.outputs) if partition_granularity == "node_filtered" else {}
+    folded_aliases = folded_output_aliases(traced, keep_names, edge_profiler.outputs) if partition_granularity == "node_filtered" else {}
 
     cache: dict[str, set[str]] = {}
     successors: dict[str, set[str]] = {name: set() for name in keep_names}
@@ -527,14 +683,24 @@ def profile_model(model_name: str, config: Optional[ProfileRunConfig] = None) ->
         if node.name not in keep_names:
             continue
         op_type = _op_type(node, traced)
+        folded_node_ids = folded_nodes.get(node.name, [])
+        edge_ms = _mean(edge_profiler.timings_ms[node.name]) + sum(
+            _mean(edge_profiler.timings_ms[folded_node_id])
+            for folded_node_id in folded_node_ids
+        )
+        cloud_ms = _mean(list(cloud_timings[node.name])) + sum(
+            _mean(list(cloud_timings.get(folded_node_id, [])))
+            for folded_node_id in folded_node_ids
+        )
+        output_node_id = folded_aliases.get(node.name, node.name)
         nodes.append(
             ModelProfileNode(
                 id=node.name,
                 op_type=op_type,
                 succ_ids=sorted(successors[node.name]),
-                edge_ms=_mean(edge_profiler.timings_ms[node.name]),
-                cloud_ms=_mean(list(cloud_timings[node.name])),
-                output_bytes=_tensor_bytes(edge_profiler.outputs[node.name]),
+                edge_ms=edge_ms,
+                cloud_ms=cloud_ms,
+                output_bytes=_tensor_bytes(edge_profiler.outputs[output_node_id]),
             )
         )
 
@@ -548,5 +714,6 @@ def profile_model(model_name: str, config: Optional[ProfileRunConfig] = None) ->
             "edge_profile_runs": config.edge_profile_runs,
             "cloud_profile_runs": config.cloud_profile_runs if cloud_device.type == "cuda" else config.edge_profile_runs,
             "partition_granularity": partition_granularity,
+            "folded_output_nodes": folded_aliases,
         },
     )

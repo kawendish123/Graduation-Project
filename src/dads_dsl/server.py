@@ -1,7 +1,7 @@
 from __future__ import annotations
 
 from concurrent import futures
-from typing import Any
+from typing import Any, Optional
 
 import grpc
 
@@ -42,10 +42,17 @@ class CloudRuntimeCache:
             )
         return self._profiles[key]
 
-    def get_runtime(self, model_name: str, profile_node_ids: set[str], partition_granularity: str = "node") -> Any:
-        key = f"{model_name}:{self.device}:{partition_granularity}"
+    def get_runtime(
+        self,
+        model_name: str,
+        profile_node_ids: set[str],
+        partition_granularity: str = "node",
+        capture_aliases: Optional[dict[str, str]] = None,
+    ) -> Any:
+        alias_items = tuple(sorted((capture_aliases or {}).items()))
+        key = f"{model_name}:{self.device}:{partition_granularity}:{tuple(sorted(profile_node_ids))}:{alias_items}"
         if key not in self._runtimes:
-            self._runtimes[key] = build_runtime_model(model_name, self.device, profile_node_ids, partition_granularity)
+            self._runtimes[key] = build_runtime_model(model_name, self.device, profile_node_ids, partition_granularity, capture_aliases)
         return self._runtimes[key]
 
 
@@ -72,7 +79,8 @@ class DadsCloudServicer:
             cloud_nodes = [str(item) for item in request.get("cloud_nodes", [])]
             profile_node_ids = set(str(item) for item in request.get("profile_node_ids", []))
             partition_granularity = str(request.get("partition_granularity", "node"))
-            runtime = self.cache.get_runtime(model_name, profile_node_ids, partition_granularity)
+            capture_aliases = {str(key): str(value) for key, value in request.get("capture_aliases", {}).items()}
+            runtime = self.cache.get_runtime(model_name, profile_node_ids, partition_granularity, capture_aliases)
             tensors = {
                 payload["node_id"]: payload_to_tensor(payload, runtime.torch, runtime.device)
                 for payload in request.get("tensors", [])

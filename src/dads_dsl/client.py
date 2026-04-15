@@ -25,6 +25,10 @@ def _merge_profiles(edge_profile: ModelProfile, cloud_profile: ModelProfile) -> 
     cloud_granularity = (cloud_profile.metadata or {}).get("partition_granularity", "node")
     if edge_granularity != cloud_granularity:
         raise ValueError(f"Profile partition granularity mismatch. edge={edge_granularity}, cloud={cloud_granularity}")
+    edge_aliases = (edge_profile.metadata or {}).get("folded_output_nodes", {})
+    cloud_aliases = (cloud_profile.metadata or {}).get("folded_output_nodes", {})
+    if edge_aliases != cloud_aliases:
+        raise ValueError("Profile folded output alias mismatch.")
 
     edge_map = edge_profile.node_map()
     cloud_map = cloud_profile.node_map()
@@ -48,11 +52,18 @@ def _merge_profiles(edge_profile: ModelProfile, cloud_profile: ModelProfile) -> 
                 output_bytes=edge_node.output_bytes,
             )
         )
+    edge_metadata = edge_profile.metadata or {}
+    cloud_metadata = cloud_profile.metadata or {}
     return ModelProfile(
         model_name=edge_profile.model_name,
         input_shape=list(edge_profile.input_shape),
         nodes=nodes,
-        metadata={"edge": edge_profile.metadata or {}, "cloud": cloud_profile.metadata or {}},
+        metadata={
+            "edge": edge_metadata,
+            "cloud": cloud_metadata,
+            "partition_granularity": edge_granularity,
+            "folded_output_nodes": edge_aliases,
+        },
     )
 
 
@@ -118,7 +129,8 @@ def run_client_once(
         cloud_profile = _request_cloud_profile(stub, model_name, input_shape, profile_warmup_runs, profile_runs, partition_granularity)
         merged = _merge_profiles(edge_profile, cloud_profile)
 
-        edge_runtime = build_runtime_model(model_name, "cpu", set(node.id for node in merged.nodes), partition_granularity)
+        capture_aliases = (merged.metadata or {}).get("folded_output_nodes", {})
+        edge_runtime = build_runtime_model(model_name, "cpu", set(node.id for node in merged.nodes), partition_granularity, capture_aliases)
         input_tensor = make_random_input(edge_runtime.torch, input_shape, "cpu")
         profile_with_input = with_virtual_input_node(merged, tensor_nbytes(input_tensor))
         solution = solve_dsl(profile_with_input, bandwidth_mbps)
@@ -150,6 +162,7 @@ def run_client_once(
                     "cloud_nodes": solution.cloud_nodes,
                     "profile_node_ids": list(runtime_profile_node_ids),
                     "partition_granularity": partition_granularity,
+                    "capture_aliases": capture_aliases,
                     "tensors": payloads,
                 }
             )

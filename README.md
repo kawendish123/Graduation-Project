@@ -66,17 +66,21 @@ Run one edge/client inference:
 start
 
 ```powershell
+提前测量边缘实验
 python.exe .\run_dads_dsl.py profile-cache --role edge --model resnet50 --partition-granularity block --cpu-load-target 0 --profile-runs 5 --warmup-runs 3 --output profiles/resnet50_block/edge_load0.json
 ```
 ```powershell
+提前测量边缘实验
 python.exe .\run_dads_dsl.py profile-cache --role edge --model resnet50 --partition-granularity block --cpu-load-target 30 --profile-runs 5 --warmup-runs 3 --output profiles/resnet50_block/edge_load30.json
 ```
 ```powershell
+提前测量边缘实验
 python.exe .\run_dads_dsl.py profile-cache --role edge --model resnet50 --partition-granularity block --cpu-load-target 60 --profile-runs 5 --warmup-runs 3 --output profiles/resnet50_block/edge_load60.json
 ```
 
 ```powershell
-python.exe .\run_dads_dsl.py profile-cache --role cloud --model resnet50 --partition-granularity block --device cuda --profile-runs 5 --warmup-runs 3 --output profiles/resnet50_block/cloud_cuda.json
+提前测量云端时延
+python.exe ./run_dads_dsl.py profile-cache --role cloud --model resnet50 --partition-granularity block --device cuda --profile-runs 5 --warmup-runs 3 --output profiles/resnet50_block/cloud_cuda.json
 ```
 ```server
 python.exe .\run_dads_dsl.py run-config --config configs\serve_cuda.json
@@ -84,6 +88,7 @@ python.exe .\run_dads_dsl.py run-config --config configs\serve_cuda.json
 
 
 ```powershell
+运行时延
 python.exe .\run_dads_dsl.py experiment --config configs\experiment_mobilenet_v2.json
 ```
 
@@ -92,9 +97,52 @@ python ./run_dads_dsl.py experiment --config configs/experiment_googlenet_block.
 ```
 
 
-
+边缘端设置线程
 set OMP_NUM_THREADS=1
 set MKL_NUM_THREADS=1
 set OPENBLAS_NUM_THREADS=1
 set NUMEXPR_NUM_THREADS=1
 set TORCH_NUM_THREADS=1
+
+边缘端测量时延
+
+start "" /wait /affinity 1 python .\run_dads_dsl.py profile-cache --role edge --model resnet50 --partition-granularity block --cpu-load-target 0 --profile-runs 5 --warmup-runs 3 --output profiles\resnet50_block\edge_load0.json
+
+start "" /wait /affinity 1 python .\run_dads_dsl.py profile-cache --role edge --model resnet50 --partition-granularity block --cpu-load-target 30 --profile-runs 5 --warmup-runs 3 --output profiles\resnet50_block\edge_load30.json
+
+start "" /wait /affinity 1 python .\run_dads_dsl.py profile-cache --role edge --model resnet50 --partition-granularity block --cpu-load-target 60 --profile-runs 5 --warmup-runs 3 --output profiles\resnet50_block\edge_load60.json
+
+
+
+云端测量时延
+python.exe ./run_dads_dsl.py profile-cache --role cloud --model resnet50 --partition-granularity block --device cuda --profile-runs 5 --warmup-runs 3 --output profiles/resnet50_block/cloud_cuda.json
+
+
+拷贝
+服务端实验
+python ./run_dads_dsl.py serve --host 0.0.0.0 --port 6006 --device cuda
+
+
+边缘端进行实验
+start "" /wait /affinity 1 python .\run_dads_dsl.py experiment --config configs\experiment_resnet50_block_cached.json
+
+
+
+###start
+获取云端时延
+python ./run_dads_dsl.py profile-cache --role cloud --model vgg16 --partition-granularity block --device cuda --profile-runs 20 --warmup-runs 5 --output profiles/vgg16_block/cloud_cuda.json
+
+python ./run_dads_dsl.py profile-cache --role cloud --model resnet50 --partition-granularity block --device cuda --profile-runs 20 --warmup-runs 5 --output profiles/resnet50_block/cloud_cuda.json
+
+python ./run_dads_dsl.py profile-cache --role cloud --model googlenet --partition-granularity block --device cuda --profile-runs 20 --warmup-runs 5 --output profiles/google_block/cloud_cuda.json
+
+python ./run_dads_dsl.py profile-cache --role cloud --model mobilenet_v2 --partition-granularity block --device cuda --profile-runs 20 --warmup-runs 5 --output profiles/mobilenet_v2_block/cloud_cuda.json
+
+
+边缘端：
+
+
+start "" /wait /affinity 1 python .\run_dads_dsl.py profile-cache --role edge --model mobilenet_v2 --partition-granularity block --cpu-load-target 30 --cpu-load-tolerance 5 --cpu-load-interval 0.5 --cpu-load-ramp-seconds 2 --input-shape 1 3 224 224 --warmup-runs 5 --profile-runs 20 --output "profiles/mobilenet_v2_block/edge_load30.json"
+
+
+python.exe .\run_dads_dsl.py estimate-experiment --config configs\estimate_vgg16_block.json

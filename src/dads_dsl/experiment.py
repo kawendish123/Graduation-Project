@@ -135,6 +135,7 @@ def _execute_strategy_once(
     runtime_profile_node_ids: set[str],
     plan: StrategyPlan,
     partition_granularity: str = "node",
+    capture_aliases: Optional[dict[str, str]] = None,
 ) -> dict[str, Any]:
     input_tensor = make_random_input(edge_runtime.torch, input_shape, "cpu")
     captured, edge_actual_ms, local_output = execute_edge_partition(
@@ -162,6 +163,7 @@ def _execute_strategy_once(
                 "cloud_nodes": plan.cloud_nodes,
                 "profile_node_ids": list(runtime_profile_node_ids),
                 "partition_granularity": partition_granularity,
+                "capture_aliases": capture_aliases or {},
                 "tensors": payloads,
             }
         )
@@ -312,7 +314,8 @@ def run_experiment(config: dict[str, Any]) -> dict[str, Any]:
             if cloud_profile is None:
                 raise RuntimeError("Cloud profile was not loaded.")
             merged = _merge_profiles(edge_profile, cloud_profile)
-            edge_runtime = build_runtime_model(model_name, "cpu", set(node.id for node in merged.nodes), partition_granularity)
+            capture_aliases = (merged.metadata or {}).get("folded_output_nodes", {})
+            edge_runtime = build_runtime_model(model_name, "cpu", set(node.id for node in merged.nodes), partition_granularity, capture_aliases)
             sample_input = make_random_input(edge_runtime.torch, input_shape, "cpu")
             profile_with_input = with_virtual_input_node(merged, tensor_nbytes(sample_input))
             runtime_profile_node_ids = set(node.id for node in merged.nodes)
@@ -340,6 +343,7 @@ def run_experiment(config: dict[str, Any]) -> dict[str, Any]:
                             runtime_profile_node_ids=runtime_profile_node_ids,
                             plan=plan,
                             partition_granularity=partition_granularity,
+                            capture_aliases=capture_aliases,
                         ),
                         repeats=repeats,
                         actual_warmup_runs=actual_warmup_runs,

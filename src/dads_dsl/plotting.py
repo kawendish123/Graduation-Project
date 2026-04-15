@@ -95,3 +95,104 @@ def plot_experiment_latency(csv_path: str | Path, output_dir: str | Path, plot_f
         outputs.append(str(destination))
 
     return outputs
+
+
+def plot_estimate_latency(csv_path: str | Path, output_dir: str | Path, plot_format: str = "png") -> list[str]:
+    plt = _load_pyplot()
+    if plt is None:
+        return []
+
+    rows = _read_rows(csv_path)
+    if not rows:
+        return []
+
+    grouped: dict[str, dict[str, list[dict[str, str]]]] = defaultdict(lambda: defaultdict(list))
+    for row in rows:
+        grouped[row["cpu_load_target"]][row["strategy"]].append(row)
+
+    output_path = Path(output_dir)
+    output_path.mkdir(parents=True, exist_ok=True)
+    model_name = rows[0].get("model", "model")
+    outputs = []
+
+    for load_target, by_strategy in sorted(grouped.items(), key=lambda item: float(item[0])):
+        fig, ax = plt.subplots(figsize=(8, 5))
+        for strategy in STRATEGY_ORDER:
+            strategy_rows = sorted(by_strategy.get(strategy, []), key=lambda item: float(item["bandwidth_mbps"]))
+            if not strategy_rows:
+                continue
+            bandwidths = [float(item["bandwidth_mbps"]) for item in strategy_rows]
+            totals = [float(item["estimated_total_ms"]) for item in strategy_rows]
+            ax.plot(
+                bandwidths,
+                totals,
+                marker="o",
+                linewidth=1.8,
+                label=STRATEGY_LABELS.get(strategy, strategy),
+            )
+
+        ax.set_xscale("log", base=10)
+        ax.set_xlabel("Bandwidth (Mbps)")
+        ax.set_ylabel("Estimated Total Latency (ms)")
+        ax.set_title(f"{model_name} estimated latency under CPU load {float(load_target):g}%")
+        ax.grid(True, which="both", linestyle="--", linewidth=0.5, alpha=0.5)
+        ax.legend()
+        fig.tight_layout()
+
+        filename = f"{_safe_token(model_name)}_load{_safe_token(load_target)}_estimated_latency.{plot_format}"
+        destination = output_path / filename
+        fig.savefig(destination, dpi=200)
+        plt.close(fig)
+        outputs.append(str(destination))
+
+    return outputs
+
+
+def plot_estimate_latency_by_bandwidth(csv_path: str | Path, output_dir: str | Path, plot_format: str = "png") -> list[str]:
+    plt = _load_pyplot()
+    if plt is None:
+        return []
+
+    rows = _read_rows(csv_path)
+    if not rows:
+        return []
+
+    grouped: dict[str, dict[str, list[dict[str, str]]]] = defaultdict(lambda: defaultdict(list))
+    for row in rows:
+        grouped[row["bandwidth_mbps"]][row["strategy"]].append(row)
+
+    output_path = Path(output_dir)
+    output_path.mkdir(parents=True, exist_ok=True)
+    model_name = rows[0].get("model", "model")
+    outputs = []
+
+    for bandwidth_mbps, by_strategy in sorted(grouped.items(), key=lambda item: float(item[0])):
+        fig, ax = plt.subplots(figsize=(8, 5))
+        for strategy in STRATEGY_ORDER:
+            strategy_rows = sorted(by_strategy.get(strategy, []), key=lambda item: float(item["cpu_load_target"]))
+            if not strategy_rows:
+                continue
+            loads = [float(item["cpu_load_target"]) for item in strategy_rows]
+            totals = [float(item["estimated_total_ms"]) for item in strategy_rows]
+            ax.plot(
+                loads,
+                totals,
+                marker="o",
+                linewidth=1.8,
+                label=STRATEGY_LABELS.get(strategy, strategy),
+            )
+
+        ax.set_xlabel("CPU Load Target (%)")
+        ax.set_ylabel("Estimated Total Latency (ms)")
+        ax.set_title(f"{model_name} estimated latency at {float(bandwidth_mbps):g} Mbps")
+        ax.grid(True, linestyle="--", linewidth=0.5, alpha=0.5)
+        ax.legend()
+        fig.tight_layout()
+
+        filename = f"{_safe_token(model_name)}_bw{_safe_token(bandwidth_mbps)}_load_sweep_estimated_latency.{plot_format}"
+        destination = output_path / filename
+        fig.savefig(destination, dpi=200)
+        plt.close(fig)
+        outputs.append(str(destination))
+
+    return outputs

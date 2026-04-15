@@ -5,7 +5,7 @@ from time import perf_counter
 from typing import Any, Optional
 
 from .dsl import VIRTUAL_INPUT_ID
-from .profile import _require_torch, build_partition_model, trace_partition_model, validate_partition_granularity
+from .profile import _require_torch, build_partition_model, folded_output_aliases, trace_partition_model, validate_partition_granularity
 
 
 @dataclass
@@ -16,6 +16,7 @@ class RuntimeModel:
     device: Any
     profile_node_ids: set[str]
     partition_granularity: str
+    capture_aliases: dict[str, str]
 
 
 def build_runtime_model(
@@ -23,6 +24,7 @@ def build_runtime_model(
     device_name: str = "cpu",
     profile_node_ids: Optional[set[str]] = None,
     partition_granularity: str = "node",
+    capture_aliases: Optional[dict[str, str]] = None,
 ) -> RuntimeModel:
     partition_granularity = validate_partition_granularity(partition_granularity)
     torch, fx, torchvision_models = _require_torch()
@@ -32,13 +34,17 @@ def build_runtime_model(
     model, leaf_module_names = build_partition_model(model_name, torchvision_models, torch, partition_granularity)
     traced = trace_partition_model(model, fx, leaf_module_names).to(device)
     traced.eval()
+    profile_node_ids = profile_node_ids or set()
+    if capture_aliases is None:
+        capture_aliases = folded_output_aliases(traced, profile_node_ids) if partition_granularity == "node_filtered" else {}
     return RuntimeModel(
         torch=torch,
         fx=fx,
         traced=traced,
         device=device,
-        profile_node_ids=profile_node_ids or set(),
+        profile_node_ids=profile_node_ids,
         partition_granularity=partition_granularity,
+        capture_aliases=dict(capture_aliases),
     )
 
 
@@ -89,6 +95,11 @@ def execute_edge_partition(
     edge_set = set(edge_nodes)
     cloud_set = set(cloud_nodes)
     transmission_set = set(transmission_nodes)
+    capture_alias_to_node = {
+        alias_id: node_id
+        for node_id, alias_id in runtime.capture_aliases.items()
+        if node_id in transmission_set
+    }
     captured: dict[str, Any] = {}
     env: dict[str, Any] = {}
     output_value = None
@@ -117,8 +128,10 @@ def execute_edge_partition(
             if not _args_available(runtime.fx, node, env):
                 continue
             env[node.name] = _execute_node(runtime, node, env)
-            if node.name in transmission_set:
+            if node.name in transmission_set and node.name not in runtime.capture_aliases:
                 captured[node.name] = env[node.name].detach().cpu()
+            if node.name in capture_alias_to_node:
+                captured[capture_alias_to_node[node.name]] = env[node.name].detach().cpu()
     if runtime.device.type == "cuda":
         torch.cuda.synchronize(runtime.device)
     edge_ms = (perf_counter() - start) * 1000.0
@@ -132,7 +145,11 @@ def execute_cloud_partition(
 ) -> tuple[float, Optional[Any]]:
     torch = runtime.torch
     cloud_set = set(cloud_nodes)
-    env: dict[str, Any] = {node_id: tensor.to(runtime.device) for node_id, tensor in tensors.items() if node_id != VIRTUAL_INPUT_ID}
+    env: dict[str, Any] = {
+        runtime.capture_aliases.get(node_id, node_id): tensor.to(runtime.device)
+        for node_id, tensor in tensors.items()
+        if node_id != VIRTUAL_INPUT_ID
+    }
     input_tensor = tensors.get(VIRTUAL_INPUT_ID)
     if input_tensor is not None:
         input_tensor = input_tensor.to(runtime.device)

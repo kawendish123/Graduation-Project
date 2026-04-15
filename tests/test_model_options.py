@@ -14,22 +14,23 @@ def _profile(granularity: str) -> ModelProfile:
     )
 
 
-def test_cli_accepts_new_models_and_block_granularity():
+def test_cli_accepts_new_models_and_granularities():
     parser = build_parser()
     for model in ["mobilenet_v2", "googlenet", "resnet50", "vgg16"]:
-        args = parser.parse_args(
-            [
-                "profile",
-                "--model",
-                model,
-                "--output",
-                "profile.json",
-                "--partition-granularity",
-                "block",
-            ]
-        )
-        assert args.model == model
-        assert args.partition_granularity == "block"
+        for granularity in ["node", "node_filtered", "block"]:
+            args = parser.parse_args(
+                [
+                    "profile",
+                    "--model",
+                    model,
+                    "--output",
+                    "profile.json",
+                    "--partition-granularity",
+                    granularity,
+                ]
+            )
+            assert args.model == model
+            assert args.partition_granularity == granularity
 
 
 def test_cli_accepts_profile_cache_command():
@@ -57,6 +58,7 @@ def test_cli_accepts_profile_cache_command():
 
 def test_partition_granularity_config_validation():
     assert _get_partition_granularity({}) == "node"
+    assert _get_partition_granularity({"partition_granularity": "node_filtered"}) == "node_filtered"
     assert _get_partition_granularity({"partition_granularity": "block"}) == "block"
     with pytest.raises(ValueError):
         _get_partition_granularity({"partition_granularity": "bad"})
@@ -64,7 +66,17 @@ def test_partition_granularity_config_validation():
 
 def test_merge_profiles_rejects_granularity_mismatch():
     with pytest.raises(ValueError, match="granularity mismatch"):
-        _merge_profiles(_profile("node"), _profile("block"))
+        _merge_profiles(_profile("node_filtered"), _profile("block"))
+
+
+def test_merge_profiles_rejects_folded_output_alias_mismatch():
+    edge = _profile("node_filtered")
+    cloud = _profile("node_filtered")
+    edge.metadata["folded_output_nodes"] = {"a": "relu"}
+    cloud.metadata["folded_output_nodes"] = {"a": "bn"}
+
+    with pytest.raises(ValueError, match="folded output alias mismatch"):
+        _merge_profiles(edge, cloud)
 
 
 def test_merge_profiles_rejects_model_and_input_shape_mismatch():
