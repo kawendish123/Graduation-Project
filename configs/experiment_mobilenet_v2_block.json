@@ -17,5 +17,12 @@
   "report_json": "results/experiment_mobilenet_v2_block.json",
   "debug_dir": "results/debug_mobilenet_v2_block",
   "plot_dir": "results/plots_mobilenet_v2_block",
-  "plot_format": "png"
+  "plot_format": "png",
+  "profile_mode": "cached",
+"edge_profiles": {
+  "0": "profiles/mobilenet_v2_block/edge_load0.json",
+  "30": "profiles/mobilenet_v2_block/edge_load30.json",
+  "60": "profiles/mobilenet_v2_block/edge_load60.json"
+},
+"cloud_profile": "profiles/mobilenet_v2_block/cloud_cuda.json"
 }

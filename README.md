@@ -58,6 +58,43 @@ python .\run_dads_dsl.py serve --host 0.0.0.0 --port 50051 --device cuda
 
 Run one edge/client inference:
 
-```powershell
-python .\run_dads_dsl.py client-run --server localhost:50051 --model mobilenet_v2 --bandwidth-mbps 5 --cpu-load-target 0
+```powershell client-run --server localhost:50051 --model mobilenet_v2 --bandwidth-mbps 5 --cpu-load-target 0
 ```
+
+
+
+start
+
+```powershell
+python.exe .\run_dads_dsl.py profile-cache --role edge --model resnet50 --partition-granularity block --cpu-load-target 0 --profile-runs 5 --warmup-runs 3 --output profiles/resnet50_block/edge_load0.json
+```
+```powershell
+python.exe .\run_dads_dsl.py profile-cache --role edge --model resnet50 --partition-granularity block --cpu-load-target 30 --profile-runs 5 --warmup-runs 3 --output profiles/resnet50_block/edge_load30.json
+```
+```powershell
+python.exe .\run_dads_dsl.py profile-cache --role edge --model resnet50 --partition-granularity block --cpu-load-target 60 --profile-runs 5 --warmup-runs 3 --output profiles/resnet50_block/edge_load60.json
+```
+
+```powershell
+python.exe .\run_dads_dsl.py profile-cache --role cloud --model resnet50 --partition-granularity block --device cuda --profile-runs 5 --warmup-runs 3 --output profiles/resnet50_block/cloud_cuda.json
+```
+```server
+python.exe .\run_dads_dsl.py run-config --config configs\serve_cuda.json
+```
+
+
+```powershell
+python.exe .\run_dads_dsl.py experiment --config configs\experiment_mobilenet_v2.json
+```
+
+```linux
+python ./run_dads_dsl.py experiment --config configs/experiment_googlenet_block.json
+```
+
+
+
+set OMP_NUM_THREADS=1
+set MKL_NUM_THREADS=1
+set OPENBLAS_NUM_THREADS=1
+set NUMEXPR_NUM_THREADS=1
+set TORCH_NUM_THREADS=1

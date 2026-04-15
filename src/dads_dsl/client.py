@@ -16,6 +16,11 @@ from .types import ModelProfile, ModelProfileNode
 
 
 def _merge_profiles(edge_profile: ModelProfile, cloud_profile: ModelProfile) -> ModelProfile:
+    if edge_profile.model_name != cloud_profile.model_name:
+        raise ValueError(f"Profile model mismatch. edge={edge_profile.model_name}, cloud={cloud_profile.model_name}")
+    if list(edge_profile.input_shape) != list(cloud_profile.input_shape):
+        raise ValueError(f"Profile input_shape mismatch. edge={edge_profile.input_shape}, cloud={cloud_profile.input_shape}")
+
     edge_granularity = (edge_profile.metadata or {}).get("partition_granularity", "node")
     cloud_granularity = (cloud_profile.metadata or {}).get("partition_granularity", "node")
     if edge_granularity != cloud_granularity:

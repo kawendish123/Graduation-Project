@@ -2,7 +2,15 @@ import json
 
 from dads_dsl.cli import _load_config, build_parser
 from dads_dsl.dsl import VIRTUAL_INPUT_ID, solve_dsl, with_virtual_input_node
-from dads_dsl.experiment import _format_csv_value, _write_csv, _run_strategy_repeats, build_strategy_plans, summarize_measurements
+from dads_dsl.experiment import (
+    _format_csv_value,
+    _resolve_edge_profile_path,
+    _run_strategy_repeats,
+    _validate_profile_mode,
+    _write_csv,
+    build_strategy_plans,
+    summarize_measurements,
+)
 from dads_dsl.types import ModelProfile, ModelProfileNode
 
 
@@ -67,6 +75,34 @@ def test_cli_accepts_experiment_command_and_config(tmp_path):
     assert config["command"] == "experiment"
     assert config["bandwidths_mbps"] == [20]
     assert config["actual_warmup_runs"] == 2
+
+
+def test_profile_mode_validation_accepts_online_and_cached_only():
+    assert _validate_profile_mode("online") == "online"
+    assert _validate_profile_mode("cached") == "cached"
+    assert _validate_profile_mode("CACHED") == "cached"
+    try:
+        _validate_profile_mode("bad")
+    except ValueError as exc:
+        assert "profile_mode" in str(exc)
+    else:
+        raise AssertionError("Expected invalid profile_mode to fail.")
+
+
+def test_cached_edge_profile_path_resolves_integer_and_float_keys():
+    edge_profiles = {"0": "edge0.json", "30.5": "edge30_5.json"}
+
+    assert _resolve_edge_profile_path(edge_profiles, 0.0) == "edge0.json"
+    assert _resolve_edge_profile_path(edge_profiles, 30.5) == "edge30_5.json"
+
+
+def test_cached_edge_profile_path_reports_missing_load():
+    try:
+        _resolve_edge_profile_path({"0": "edge0.json"}, 30.0)
+    except ValueError as exc:
+        assert "Missing edge profile for cpu_load_target=30" in str(exc)
+    else:
+        raise AssertionError("Expected missing cached edge profile to fail.")
 
 
 def test_run_strategy_repeats_excludes_actual_warmup_measurements():

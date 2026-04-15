@@ -1,7 +1,7 @@
 #云端python.exe .\run_dads_dsl.py run-config --config configs\serve_cuda.json
 #边缘端：python.exe .\run_dads_dsl.py run-config --config configs\client.json   
 # 实验：python.exe .\run_dads_dsl.py experiment --config configs\experiment_mobilenet_v2.json
-from __future__ import annotations
+# 实验：python ./run_dads_dsl.py experiment --config configs/experiment_googlenet_block.json
 
 from pathlib import Path
 import sys

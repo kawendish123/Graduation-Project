@@ -2,6 +2,7 @@ from __future__ import annotations
 
 import argparse
 import json
+from datetime import datetime, timezone
 from pathlib import Path
 from typing import Any, Optional
 
@@ -49,6 +50,20 @@ def build_parser() -> argparse.ArgumentParser:
     profile_parser.add_argument("--cloud-profile-runs", type=int, default=3)
     profile_parser.add_argument("--cloud-device", choices=["auto", "cpu", "cuda"], default="auto")
     profile_parser.add_argument("--partition-granularity", choices=list(PARTITION_GRANULARITIES), default="node")
+
+    profile_cache_parser = subparsers.add_parser("profile-cache", help="Generate an edge or cloud profile cache JSON")
+    profile_cache_parser.add_argument("--role", required=True, choices=["edge", "cloud"])
+    profile_cache_parser.add_argument("--model", required=True, choices=list(AVAILABLE_MODELS))
+    profile_cache_parser.add_argument("--output", required=True)
+    profile_cache_parser.add_argument("--input-shape", nargs=4, type=int, default=[1, 3, 224, 224])
+    profile_cache_parser.add_argument("--warmup-runs", type=int, default=1)
+    profile_cache_parser.add_argument("--profile-runs", type=int, default=3)
+    profile_cache_parser.add_argument("--device", choices=["auto", "cpu", "cuda"], default="cuda")
+    profile_cache_parser.add_argument("--cpu-load-target", type=float, default=0.0)
+    profile_cache_parser.add_argument("--cpu-load-tolerance", type=float, default=5.0)
+    profile_cache_parser.add_argument("--cpu-load-interval", type=float, default=0.5)
+    profile_cache_parser.add_argument("--cpu-load-ramp-seconds", type=float, default=2.0)
+    profile_cache_parser.add_argument("--partition-granularity", choices=list(PARTITION_GRANULARITIES), default="node")
 
     dsl_parser = subparsers.add_parser("dsl", help="Solve DSL for one bandwidth")
     dsl_parser.add_argument("--profile", required=True)
@@ -101,6 +116,52 @@ def _emit(payload: dict, output: Optional[str]) -> None:
         print(text)
 
 
+def _build_profile_cache(args: argparse.Namespace) -> ModelProfile:
+    if args.role == "edge":
+        config = ProfileRunConfig(
+            input_shape=tuple(args.input_shape),
+            edge_warmup_runs=args.warmup_runs,
+            edge_profile_runs=args.profile_runs,
+            cloud_warmup_runs=0,
+            cloud_profile_runs=1,
+            cloud_device="cpu",
+            partition_granularity=args.partition_granularity,
+        )
+        from .cpu_load import CpuLoadController
+
+        with CpuLoadController(args.cpu_load_target, args.cpu_load_tolerance, args.cpu_load_interval) as load_controller:
+            load_controller.ramp(args.cpu_load_ramp_seconds)
+            profile = profile_model(args.model, config)
+            cpu_stats = load_controller.stats()
+    else:
+        edge_warmup_runs = args.warmup_runs if args.device in {"auto", "cpu"} else 0
+        edge_profile_runs = args.profile_runs if args.device in {"auto", "cpu"} else 1
+        config = ProfileRunConfig(
+            input_shape=tuple(args.input_shape),
+            edge_warmup_runs=edge_warmup_runs,
+            edge_profile_runs=edge_profile_runs,
+            cloud_warmup_runs=args.warmup_runs,
+            cloud_profile_runs=args.profile_runs,
+            cloud_device=args.device,
+            partition_granularity=args.partition_granularity,
+        )
+        profile = profile_model(args.model, config)
+        cpu_stats = None
+
+    metadata = dict(profile.metadata or {})
+    metadata.update(
+        {
+            "profile_role": args.role,
+            "cpu_load_target": args.cpu_load_target if args.role == "edge" else None,
+            "profile_cache_created_at": datetime.now(timezone.utc).isoformat(),
+        }
+    )
+    if cpu_stats is not None:
+        metadata["cpu_load_stats"] = cpu_stats
+    profile.metadata = metadata
+    return profile
+
+
 def main(argv: Optional[list[str]] = None) -> int:
     parser = build_parser()
     args = parser.parse_args(argv)
@@ -118,6 +179,12 @@ def main(argv: Optional[list[str]] = None) -> int:
                 partition_granularity=args.partition_granularity,
             ),
         )
+        profile.save(args.output)
+        _emit(profile.to_dict(), None)
+        return 0
+
+    if args.command == "profile-cache":
+        profile = _build_profile_cache(args)
         profile.save(args.output)
         _emit(profile.to_dict(), None)
         return 0

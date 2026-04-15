@@ -17,5 +17,12 @@
   "report_json": "results/experiment_vgg16_block.json",
   "debug_dir": "results/debug_vgg16_block",
   "plot_dir": "results/plots_vgg16_block",
-  "plot_format": "png"
+  "plot_format": "png",
+  "profile_mode": "cached",
+"edge_profiles": {
+  "0": "profiles/vgg16_block/edge_load0.json",
+  "30": "profiles/vgg16_block/edge_load30.json",
+  "60": "profiles/vgg16_block/edge_load60.json"
+},
+"cloud_profile": "profiles/vgg16_block/cloud_cuda.json"
 }

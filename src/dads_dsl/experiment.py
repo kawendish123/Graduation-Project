@@ -202,6 +202,30 @@ def _float_list(config: dict[str, Any], key: str, default: list[float]) -> list[
     return [float(item) for item in config.get(key, default)]
 
 
+def _cpu_load_profile_key(cpu_load_target: float) -> str:
+    value = float(cpu_load_target)
+    return str(int(value)) if value.is_integer() else str(value)
+
+
+def _resolve_edge_profile_path(edge_profiles: Any, cpu_load_target: float) -> str:
+    if not isinstance(edge_profiles, dict):
+        raise ValueError("Cached profile mode requires 'edge_profiles' to be an object.")
+    key = _cpu_load_profile_key(cpu_load_target)
+    fallback_key = str(float(cpu_load_target))
+    if key in edge_profiles:
+        return str(edge_profiles[key])
+    if fallback_key in edge_profiles:
+        return str(edge_profiles[fallback_key])
+    raise ValueError(f"Missing edge profile for cpu_load_target={key}")
+
+
+def _validate_profile_mode(profile_mode: str) -> str:
+    value = str(profile_mode).lower()
+    if value not in {"online", "cached"}:
+        raise ValueError("profile_mode must be 'online' or 'cached'.")
+    return value
+
+
 def _format_csv_value(value: Any) -> Any:
     if isinstance(value, list):
         return ";".join(str(item) for item in value)
@@ -233,6 +257,7 @@ def run_experiment(config: dict[str, Any]) -> dict[str, Any]:
     server = str(config.get("server", "localhost:50051"))
     model_name = str(config.get("model", "mobilenet_v2"))
     partition_granularity = str(config.get("partition_granularity", "node"))
+    profile_mode = _validate_profile_mode(str(config.get("profile_mode", "online")))
     input_shape = [int(item) for item in config.get("input_shape", [1, 3, 224, 224])]
     bandwidths_mbps = _float_list(config, "bandwidths_mbps", [20, 50, 100, 200, 500, 1000])
     cpu_load_targets = _float_list(config, "cpu_load_targets", [0, 30, 60])
@@ -248,6 +273,16 @@ def run_experiment(config: dict[str, Any]) -> dict[str, Any]:
     debug_dir = config.get("debug_dir")
     plot_dir = config.get("plot_dir", "results/plots")
     plot_format = str(config.get("plot_format", "png"))
+    edge_profile_paths = config.get("edge_profiles", {})
+    cached_cloud_profile = None
+
+    if profile_mode == "cached":
+        cloud_profile_path = config.get("cloud_profile")
+        if not cloud_profile_path:
+            raise ValueError("Cached profile mode requires 'cloud_profile'.")
+        for cpu_load_target in cpu_load_targets:
+            _resolve_edge_profile_path(edge_profile_paths, cpu_load_target)
+        cached_cloud_profile = ModelProfile.load(str(cloud_profile_path))
 
     channel = make_channel(server)
     stub = DadsCloudStub(channel)
@@ -257,19 +292,25 @@ def run_experiment(config: dict[str, Any]) -> dict[str, Any]:
     for cpu_load_target in cpu_load_targets:
         with CpuLoadController(cpu_load_target, cpu_load_tolerance, cpu_load_interval) as load_controller:
             load_controller.ramp(cpu_load_ramp_seconds)
-            edge_profile = profile_model(
-                model_name,
-                ProfileRunConfig(
-                    input_shape=tuple(input_shape),
-                    edge_warmup_runs=profile_warmup_runs,
-                    edge_profile_runs=profile_runs,
-                    cloud_warmup_runs=0,
-                    cloud_profile_runs=1,
-                    cloud_device="cpu",
-                    partition_granularity=partition_granularity,
-                ),
-            )
-            cloud_profile = _request_cloud_profile(stub, model_name, input_shape, profile_warmup_runs, profile_runs, partition_granularity)
+            if profile_mode == "cached":
+                edge_profile = ModelProfile.load(_resolve_edge_profile_path(edge_profile_paths, cpu_load_target))
+                cloud_profile = cached_cloud_profile
+            else:
+                edge_profile = profile_model(
+                    model_name,
+                    ProfileRunConfig(
+                        input_shape=tuple(input_shape),
+                        edge_warmup_runs=profile_warmup_runs,
+                        edge_profile_runs=profile_runs,
+                        cloud_warmup_runs=0,
+                        cloud_profile_runs=1,
+                        cloud_device="cpu",
+                        partition_granularity=partition_granularity,
+                    ),
+                )
+                cloud_profile = _request_cloud_profile(stub, model_name, input_shape, profile_warmup_runs, profile_runs, partition_granularity)
+            if cloud_profile is None:
+                raise RuntimeError("Cloud profile was not loaded.")
             merged = _merge_profiles(edge_profile, cloud_profile)
             edge_runtime = build_runtime_model(model_name, "cpu", set(node.id for node in merged.nodes), partition_granularity)
             sample_input = make_random_input(edge_runtime.torch, input_shape, "cpu")
