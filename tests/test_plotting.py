@@ -1,6 +1,17 @@
 import importlib.util
 
-from dads_dsl.plotting import plot_estimate_latency, plot_estimate_latency_by_bandwidth, plot_experiment_latency
+from dads_dsl.plotting import (
+    STRATEGY_ORDER,
+    STRATEGY_STYLES,
+    plot_estimate_latency,
+    plot_estimate_latency_by_bandwidth,
+    plot_experiment_latency,
+)
+
+
+def test_dsl_style_is_dashed_and_drawn_last():
+    assert STRATEGY_ORDER[-1] == "dsl"
+    assert STRATEGY_STYLES["dsl"]["linestyle"] == "--"
 
 
 def test_plot_experiment_latency_writes_one_file_per_load(tmp_path):

@@ -1,0 +1,23 @@
+{
+  "command": "estimate-experiment",
+  "model": "efficientnet_b0",
+  "partition_granularity": "block",
+  "bandwidths_mbps": [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20],
+  "cpu_load_targets": [0, 10, 20, 30, 40, 50, 60],
+  "input_shape": [1, 3, 224, 224],
+  "edge_profiles": {
+    "0": "profiles/efficientnet_b0_block/edge_load0.json",
+    "10": "profiles/efficientnet_b0_block/edge_load10.json",
+    "20": "profiles/efficientnet_b0_block/edge_load20.json",
+    "30": "profiles/efficientnet_b0_block/edge_load30.json",
+    "40": "profiles/efficientnet_b0_block/edge_load40.json",
+    "50": "profiles/efficientnet_b0_block/edge_load50.json",
+    "60": "profiles/efficientnet_b0_block/edge_load60.json"
+  },
+  "cloud_profile": "profiles/efficientnet_b0_block/cloud_cuda.json",
+  "report_csv": "results/estimate_efficientnet_b0_block.csv",
+  "report_json": "results/estimate_efficientnet_b0_block.json",
+  "debug_dir": "results/debug_estimate_efficientnet_b0_block",
+  "plot_dir": "results/plots_estimate_efficientnet_b0_block",
+  "plot_format": "png"
+}

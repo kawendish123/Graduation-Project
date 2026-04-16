@@ -67,6 +67,10 @@ def test_googlenet_profile_has_branch_and_solves(tmp_path):
     [
         ("alexnet", {"Conv2d", "MaxPool2d", "Linear"}),
         ("tiny_yolo", {"Conv2d", "MaxPool2d"}),
+        ("shufflenet_v2", {"Conv2d", "MaxPool2d", "Linear"}),
+        ("efficientnet_b0", {"Conv2d", "AdaptiveAvgPool2d", "Linear"}),
+        ("mobilenet_v3_large", {"Conv2d", "AdaptiveAvgPool2d", "Linear"}),
+        ("mobilenet_v3_small", {"Conv2d", "AdaptiveAvgPool2d", "Linear"}),
     ],
 )
 def test_new_models_node_filtered_profile_exports(model_name, expected_ops):
@@ -88,6 +92,8 @@ def test_new_models_node_filtered_profile_exports(model_name, expected_ops):
     assert "BatchNorm2d" not in op_types
     assert "LeakyReLU" not in op_types
     assert "ReLU" not in op_types
+    assert "StochasticDepth" not in op_types
+    assert "stochastic_depth" not in op_types
 
 
 @pytest.mark.slow
@@ -96,6 +102,24 @@ def test_new_models_node_filtered_profile_exports(model_name, expected_ops):
     [
         ("alexnet", {"features_block1", "features_block2", "features_block3", "head"}),
         ("tiny_yolo", {"stage1", "stage2", "stage3", "stage4", "stage5", "neck", "head"}),
+        ("mobilenet_v3_large", {"features_0", "features_1", "features_16", "classifier"}),
+        ("mobilenet_v3_small", {"features_0", "features_1", "features_12", "classifier"}),
+        ("shufflenet_v2", {"stem", "stage2", "stage3", "stage4", "conv5", "head"}),
+        (
+            "efficientnet_b0",
+            {
+                "features_0",
+                "features_1",
+                "features_2",
+                "features_3",
+                "features_4",
+                "features_5",
+                "features_6",
+                "features_7",
+                "features_8",
+                "head",
+            },
+        ),
     ],
 )
 def test_new_models_block_profile_exports_expected_blocks(model_name, expected_ids):

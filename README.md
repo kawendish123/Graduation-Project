@@ -162,3 +162,8 @@ python.exe .\run_dads_dsl.py estimate-experiment --config configs\estimate_resne
 python.exe .\run_dads_dsl.py estimate-experiment --config configs\estimate_googlenet_node_filtered.json
 
 python.exe .\run_dads_dsl.py estimate-experiment --config configs\estimate_vgg16_node_filtered.json
+
+python.exe .\run_dads_dsl.py estimate-experiment --config configs\estimate_alexnet_node_filtered.json
+
+
+python.exe .\run_dads_dsl.py estimate-experiment --config configs\estimate_tiny_yolo_node_filtered.json

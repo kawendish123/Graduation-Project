@@ -7,11 +7,16 @@ import re
 from typing import Any, Optional
 
 
-STRATEGY_ORDER = ["dsl", "pure_edge", "pure_cloud"]
+STRATEGY_ORDER = ["pure_edge", "pure_cloud", "dsl"]
 STRATEGY_LABELS = {
     "dsl": "DSL",
     "pure_edge": "Pure Edge",
     "pure_cloud": "Pure Cloud",
+}
+STRATEGY_STYLES = {
+    "dsl": {"linestyle": "--", "marker": "o", "linewidth": 2.4, "zorder": 5},
+    "pure_edge": {"linestyle": "-", "marker": "s", "linewidth": 1.6, "alpha": 0.75, "zorder": 2},
+    "pure_cloud": {"linestyle": "-", "marker": "^", "linewidth": 1.6, "alpha": 0.75, "zorder": 2},
 }
 
 
@@ -74,10 +79,9 @@ def plot_experiment_latency(csv_path: str | Path, output_dir: str | Path, plot_f
                 bandwidths,
                 means,
                 yerr=stds,
-                marker="o",
-                linewidth=1.8,
                 capsize=3,
                 label=STRATEGY_LABELS.get(strategy, strategy),
+                **STRATEGY_STYLES.get(strategy, {}),
             )
 
         ax.set_xscale("log", base=10)
@@ -126,9 +130,8 @@ def plot_estimate_latency(csv_path: str | Path, output_dir: str | Path, plot_for
             ax.plot(
                 bandwidths,
                 totals,
-                marker="o",
-                linewidth=1.8,
                 label=STRATEGY_LABELS.get(strategy, strategy),
+                **STRATEGY_STYLES.get(strategy, {}),
             )
 
         # ax.set_xscale("log", base=10)
@@ -177,9 +180,8 @@ def plot_estimate_latency_by_bandwidth(csv_path: str | Path, output_dir: str | P
             ax.plot(
                 loads,
                 totals,
-                marker="o",
-                linewidth=1.8,
                 label=STRATEGY_LABELS.get(strategy, strategy),
+                **STRATEGY_STYLES.get(strategy, {}),
             )
 
         ax.set_xlabel("CPU Load Target (%)")

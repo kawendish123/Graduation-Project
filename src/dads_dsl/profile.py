@@ -8,7 +8,18 @@ from typing import Any, Optional
 
 from .types import ModelProfile, ModelProfileNode
 
-AVAILABLE_MODELS = ("mobilenet_v2", "googlenet", "resnet50", "vgg16", "alexnet", "tiny_yolo")
+AVAILABLE_MODELS = (
+    "mobilenet_v2",
+    "mobilenet_v3_large",
+    "mobilenet_v3_small",
+    "googlenet",
+    "resnet50",
+    "vgg16",
+    "alexnet",
+    "tiny_yolo",
+    "shufflenet_v2",
+    "efficientnet_b0",
+)
 PARTITION_GRANULARITIES = ("node", "node_filtered", "block")
 
 PASS_THROUGH_FUNCTIONS = {"getitem", "getattr"}
@@ -43,6 +54,7 @@ FILTERED_MODULE_TYPES = {
     "SELU",
     "SiLU",
     "Sigmoid",
+    "StochasticDepth",
     "Tanh",
 }
 KEEP_MODULE_TYPES = {
@@ -72,6 +84,7 @@ FILTERED_FUNCTIONS = {
     "relu6",
     "sigmoid",
     "silu",
+    "stochastic_depth",
     "tanh",
 }
 KEEP_FUNCTIONS = {
@@ -90,6 +103,8 @@ KEEP_FUNCTIONS = {
     "max_pool1d",
     "max_pool2d",
     "max_pool3d",
+    "mul",
+    "multiply",
 }
 
 
@@ -282,6 +297,8 @@ def _make_tiny_yolo_model(torch_mod: Any) -> Any:
 def _resolve_model_builder(model_name: str, torchvision_models, torch_mod: Any) -> Any:
     builders = {
         "mobilenet_v2": lambda: torchvision_models.mobilenet_v2(weights=None),
+        "mobilenet_v3_large": lambda: torchvision_models.mobilenet_v3_large(weights=None),
+        "mobilenet_v3_small": lambda: torchvision_models.mobilenet_v3_small(weights=None),
         "googlenet": lambda: torchvision_models.googlenet(
             weights=None,
             aux_logits=False,
@@ -291,6 +308,8 @@ def _resolve_model_builder(model_name: str, torchvision_models, torch_mod: Any) 
         "vgg16": lambda: torchvision_models.vgg16(weights=None),
         "alexnet": lambda: torchvision_models.alexnet(weights=None),
         "tiny_yolo": lambda: _make_tiny_yolo_model(torch_mod),
+        "shufflenet_v2": lambda: torchvision_models.shufflenet_v2_x1_0(weights=None),
+        "efficientnet_b0": lambda: torchvision_models.efficientnet_b0(weights=None),
     }
     try:
         return builders[model_name]
@@ -300,7 +319,7 @@ def _resolve_model_builder(model_name: str, torchvision_models, torch_mod: Any) 
         ) from exc
 
 
-def _make_mobilenet_v2_block_model(base_model: Any, torch_mod: Any) -> tuple[Any, set[str]]:
+def _make_mobilenet_block_model(base_model: Any, torch_mod: Any) -> tuple[Any, set[str]]:
     nn = torch_mod.nn
     functional = torch_mod.nn.functional
 
@@ -561,14 +580,95 @@ def _make_tiny_yolo_block_model(base_model: Any, torch_mod: Any) -> tuple[Any, s
     return base_model, leaf_modules
 
 
+def _make_shufflenet_v2_block_model(base_model: Any, torch_mod: Any) -> tuple[Any, set[str]]:
+    nn = torch_mod.nn
+
+    class ShuffleNetStem(nn.Module):
+        def __init__(self, model):
+            super().__init__()
+            self.conv1 = model.conv1
+            self.maxpool = model.maxpool
+
+        def forward(self, x):
+            return self.maxpool(self.conv1(x))
+
+    class ShuffleNetHead(nn.Module):
+        def __init__(self, model):
+            super().__init__()
+            self.fc = model.fc
+
+        def forward(self, x):
+            x = x.mean([2, 3])
+            return self.fc(x)
+
+    class ShuffleNetBlockModel(nn.Module):
+        def __init__(self, model):
+            super().__init__()
+            self.stem = ShuffleNetStem(model)
+            self.stage2 = model.stage2
+            self.stage3 = model.stage3
+            self.stage4 = model.stage4
+            self.conv5 = model.conv5
+            self.head = ShuffleNetHead(model)
+
+        def forward(self, x):
+            x = self.stem(x)
+            x = self.stage2(x)
+            x = self.stage3(x)
+            x = self.stage4(x)
+            x = self.conv5(x)
+            return self.head(x)
+
+    leaf_modules = {"stem", "stage2", "stage3", "stage4", "conv5", "head"}
+    return ShuffleNetBlockModel(base_model), leaf_modules
+
+
+def _make_efficientnet_b0_block_model(base_model: Any, torch_mod: Any) -> tuple[Any, set[str]]:
+    nn = torch_mod.nn
+
+    class EfficientNetHead(nn.Module):
+        def __init__(self, model):
+            super().__init__()
+            self.avgpool = model.avgpool
+            self.classifier = model.classifier
+
+        def forward(self, x):
+            x = self.avgpool(x)
+            x = torch_mod.flatten(x, 1)
+            return self.classifier(x)
+
+    class EfficientNetBlockModel(nn.Module):
+        def __init__(self, model):
+            super().__init__()
+            self._block_names = []
+            for index, block in enumerate(model.features):
+                name = f"features_{index}"
+                setattr(self, name, block)
+                self._block_names.append(name)
+            self.head = EfficientNetHead(model)
+
+        def forward(self, x):
+            for name in self._block_names:
+                x = getattr(self, name)(x)
+            return self.head(x)
+
+    wrapper = EfficientNetBlockModel(base_model)
+    leaf_modules = {"head", *wrapper._block_names}
+    return wrapper, leaf_modules
+
+
 def _make_block_model(model_name: str, base_model: Any, torch_mod: Any) -> tuple[Any, set[str]]:
     builders = {
-        "mobilenet_v2": _make_mobilenet_v2_block_model,
+        "mobilenet_v2": _make_mobilenet_block_model,
+        "mobilenet_v3_large": _make_mobilenet_block_model,
+        "mobilenet_v3_small": _make_mobilenet_block_model,
         "googlenet": _make_googlenet_block_model,
         "resnet50": _make_resnet50_block_model,
         "vgg16": _make_vgg16_block_model,
         "alexnet": _make_alexnet_block_model,
         "tiny_yolo": _make_tiny_yolo_block_model,
+        "shufflenet_v2": _make_shufflenet_v2_block_model,
+        "efficientnet_b0": _make_efficientnet_b0_block_model,
     }
     try:
         return builders[model_name](base_model, torch_mod)
