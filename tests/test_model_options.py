@@ -16,7 +16,7 @@ def _profile(granularity: str) -> ModelProfile:
 
 def test_cli_accepts_new_models_and_granularities():
     parser = build_parser()
-    for model in ["mobilenet_v2", "googlenet", "resnet50", "vgg16"]:
+    for model in ["mobilenet_v2", "googlenet", "resnet50", "vgg16", "alexnet", "tiny_yolo"]:
         for granularity in ["node", "node_filtered", "block"]:
             args = parser.parse_args(
                 [

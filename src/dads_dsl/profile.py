@@ -8,7 +8,7 @@ from typing import Any, Optional
 
 from .types import ModelProfile, ModelProfileNode
 
-AVAILABLE_MODELS = ("mobilenet_v2", "googlenet", "resnet50", "vgg16")
+AVAILABLE_MODELS = ("mobilenet_v2", "googlenet", "resnet50", "vgg16", "alexnet", "tiny_yolo")
 PARTITION_GRANULARITIES = ("node", "node_filtered", "block")
 
 PASS_THROUGH_FUNCTIONS = {"getitem", "getattr"}
@@ -37,6 +37,7 @@ FILTERED_MODULE_TYPES = {
     "Hardsigmoid",
     "Hardswish",
     "Identity",
+    "LeakyReLU",
     "ReLU",
     "ReLU6",
     "SELU",
@@ -66,6 +67,7 @@ FILTERED_FUNCTIONS = {
     "hardtanh",
     "hardsigmoid",
     "hardswish",
+    "leaky_relu",
     "relu",
     "relu6",
     "sigmoid",
@@ -242,7 +244,42 @@ def validate_partition_granularity(partition_granularity: str) -> str:
     return value
 
 
-def _resolve_model_builder(model_name: str, torchvision_models) -> Any:
+def _make_tiny_yolo_model(torch_mod: Any) -> Any:
+    nn = torch_mod.nn
+
+    def conv_bn_leaky(in_channels: int, out_channels: int, kernel_size: int = 3) -> Any:
+        padding = kernel_size // 2
+        return nn.Sequential(
+            nn.Conv2d(in_channels, out_channels, kernel_size=kernel_size, padding=padding, bias=False),
+            nn.BatchNorm2d(out_channels),
+            nn.LeakyReLU(0.1, inplace=True),
+        )
+
+    class TinyYolo(nn.Module):
+        def __init__(self, num_classes: int = 20, anchors: int = 3):
+            super().__init__()
+            output_channels = anchors * (num_classes + 5)
+            self.stage1 = nn.Sequential(conv_bn_leaky(3, 16), nn.MaxPool2d(2, 2))
+            self.stage2 = nn.Sequential(conv_bn_leaky(16, 32), nn.MaxPool2d(2, 2))
+            self.stage3 = nn.Sequential(conv_bn_leaky(32, 64), nn.MaxPool2d(2, 2))
+            self.stage4 = nn.Sequential(conv_bn_leaky(64, 128), nn.MaxPool2d(2, 2))
+            self.stage5 = nn.Sequential(conv_bn_leaky(128, 256), nn.MaxPool2d(2, 2))
+            self.neck = conv_bn_leaky(256, 512)
+            self.head = nn.Conv2d(512, output_channels, kernel_size=1)
+
+        def forward(self, x):
+            x = self.stage1(x)
+            x = self.stage2(x)
+            x = self.stage3(x)
+            x = self.stage4(x)
+            x = self.stage5(x)
+            x = self.neck(x)
+            return self.head(x)
+
+    return TinyYolo()
+
+
+def _resolve_model_builder(model_name: str, torchvision_models, torch_mod: Any) -> Any:
     builders = {
         "mobilenet_v2": lambda: torchvision_models.mobilenet_v2(weights=None),
         "googlenet": lambda: torchvision_models.googlenet(
@@ -252,6 +289,8 @@ def _resolve_model_builder(model_name: str, torchvision_models) -> Any:
         ),
         "resnet50": lambda: torchvision_models.resnet50(weights=None),
         "vgg16": lambda: torchvision_models.vgg16(weights=None),
+        "alexnet": lambda: torchvision_models.alexnet(weights=None),
+        "tiny_yolo": lambda: _make_tiny_yolo_model(torch_mod),
     }
     try:
         return builders[model_name]
@@ -484,12 +523,52 @@ def _make_vgg16_block_model(base_model: Any, torch_mod: Any) -> tuple[Any, set[s
     return VGGBlockModel(base_model), leaf_modules
 
 
+def _make_alexnet_block_model(base_model: Any, torch_mod: Any) -> tuple[Any, set[str]]:
+    nn = torch_mod.nn
+    feature_layers = list(base_model.features.children())
+
+    class AlexNetHead(nn.Module):
+        def __init__(self, model):
+            super().__init__()
+            self.avgpool = model.avgpool
+            self.classifier = model.classifier
+
+        def forward(self, x):
+            x = self.avgpool(x)
+            x = torch_mod.flatten(x, 1)
+            return self.classifier(x)
+
+    class AlexNetBlockModel(nn.Module):
+        def __init__(self, model):
+            super().__init__()
+            self.features_block1 = nn.Sequential(*feature_layers[0:3])
+            self.features_block2 = nn.Sequential(*feature_layers[3:6])
+            self.features_block3 = nn.Sequential(*feature_layers[6:13])
+            self.head = AlexNetHead(model)
+
+        def forward(self, x):
+            x = self.features_block1(x)
+            x = self.features_block2(x)
+            x = self.features_block3(x)
+            return self.head(x)
+
+    leaf_modules = {"features_block1", "features_block2", "features_block3", "head"}
+    return AlexNetBlockModel(base_model), leaf_modules
+
+
+def _make_tiny_yolo_block_model(base_model: Any, torch_mod: Any) -> tuple[Any, set[str]]:
+    leaf_modules = {"stage1", "stage2", "stage3", "stage4", "stage5", "neck", "head"}
+    return base_model, leaf_modules
+
+
 def _make_block_model(model_name: str, base_model: Any, torch_mod: Any) -> tuple[Any, set[str]]:
     builders = {
         "mobilenet_v2": _make_mobilenet_v2_block_model,
         "googlenet": _make_googlenet_block_model,
         "resnet50": _make_resnet50_block_model,
         "vgg16": _make_vgg16_block_model,
+        "alexnet": _make_alexnet_block_model,
+        "tiny_yolo": _make_tiny_yolo_block_model,
     }
     try:
         return builders[model_name](base_model, torch_mod)
@@ -499,7 +578,7 @@ def _make_block_model(model_name: str, base_model: Any, torch_mod: Any) -> tuple
 
 def build_partition_model(model_name: str, torchvision_models: Any, torch_mod: Any, partition_granularity: str = "node") -> tuple[Any, set[str]]:
     partition_granularity = validate_partition_granularity(partition_granularity)
-    base_model = _resolve_model_builder(model_name, torchvision_models)()
+    base_model = _resolve_model_builder(model_name, torchvision_models, torch_mod)()
     base_model.eval()
     if partition_granularity in {"node", "node_filtered"}:
         return base_model, set()

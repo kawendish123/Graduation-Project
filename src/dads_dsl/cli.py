@@ -32,7 +32,7 @@ def _get_input_shape(config: dict[str, Any]) -> list[int]:
 def _get_partition_granularity(config: dict[str, Any]) -> str:
     value = str(config.get("partition_granularity", "node"))
     if value not in PARTITION_GRANULARITIES:
-        raise ValueError("config field 'partition_granularity' must be 'node' or 'block'.")
+        raise ValueError("config field 'partition_granularity' must be 'node', 'node_filtered', or 'block'.")
     return value
 
 

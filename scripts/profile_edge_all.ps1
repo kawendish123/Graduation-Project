@@ -7,7 +7,7 @@ $env:NUMEXPR_NUM_THREADS = "1"
 $env:TORCH_NUM_THREADS = "1"
 
 $PY = "D:\Program4Python\anaconda\envs\pytorch\python.exe"
-$models = @("mobilenet_v2", "googlenet", "resnet50", "vgg16")
+$models = @("mobilenet_v2", "googlenet", "resnet50", "vgg16", "alexnet", "tiny_yolo")
 $loads = @(0, 10, 20, 30, 40, 50, 60)
 
 foreach ($model in $models) {

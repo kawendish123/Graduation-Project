@@ -59,3 +59,57 @@ def test_googlenet_profile_has_branch_and_solves(tmp_path):
     assert payload["transmission_stage_ms"] >= 0
     serialized = json.dumps(payload)
     assert "transmission_nodes" in serialized
+
+
+@pytest.mark.slow
+@pytest.mark.parametrize(
+    ("model_name", "expected_ops"),
+    [
+        ("alexnet", {"Conv2d", "MaxPool2d", "Linear"}),
+        ("tiny_yolo", {"Conv2d", "MaxPool2d"}),
+    ],
+)
+def test_new_models_node_filtered_profile_exports(model_name, expected_ops):
+    profile = profile_model(
+        model_name,
+        ProfileRunConfig(
+            input_shape=(1, 3, 64, 64),
+            edge_warmup_runs=0,
+            edge_profile_runs=1,
+            cloud_warmup_runs=0,
+            cloud_profile_runs=1,
+            cloud_device="cpu",
+            partition_granularity="node_filtered",
+        ),
+    )
+
+    op_types = {node.op_type for node in profile.nodes}
+    assert expected_ops.issubset(op_types)
+    assert "BatchNorm2d" not in op_types
+    assert "LeakyReLU" not in op_types
+    assert "ReLU" not in op_types
+
+
+@pytest.mark.slow
+@pytest.mark.parametrize(
+    ("model_name", "expected_ids"),
+    [
+        ("alexnet", {"features_block1", "features_block2", "features_block3", "head"}),
+        ("tiny_yolo", {"stage1", "stage2", "stage3", "stage4", "stage5", "neck", "head"}),
+    ],
+)
+def test_new_models_block_profile_exports_expected_blocks(model_name, expected_ids):
+    profile = profile_model(
+        model_name,
+        ProfileRunConfig(
+            input_shape=(1, 3, 64, 64),
+            edge_warmup_runs=0,
+            edge_profile_runs=1,
+            cloud_warmup_runs=0,
+            cloud_profile_runs=1,
+            cloud_device="cpu",
+            partition_granularity="block",
+        ),
+    )
+
+    assert expected_ids.issubset({node.id for node in profile.nodes})

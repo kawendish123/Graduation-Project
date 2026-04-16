@@ -27,6 +27,10 @@ class ReLU:
     pass
 
 
+class LeakyReLU:
+    pass
+
+
 class FakeNode:
     def __init__(self, name, op, target, inputs=None):
         self.name = name
@@ -93,3 +97,21 @@ def test_node_filtered_keeps_cat_as_dag_merge_node():
     assert "Conv2d" in kept_types
     assert "cat" in kept_types
     assert any(node.name in keep_names and _op_type(node, traced) == "cat" for node in traced.graph.nodes)
+
+
+def test_node_filtered_folds_leaky_relu_into_upstream_conv():
+    conv = FakeNode("conv", "call_module", "conv")
+    leaky_relu = FakeNode("leaky_relu", "call_module", "leaky_relu", [conv])
+    head = FakeNode("head", "call_module", "head", [leaky_relu])
+    traced = FakeTraced(
+        [conv, leaky_relu, head],
+        {"conv": Conv2d(), "leaky_relu": LeakyReLU(), "head": Conv2d()},
+    )
+    outputs = {node.name: FakeTensor() for node in traced.graph.nodes}
+    keep_names = _initial_keep_names(traced, outputs, "node_filtered")
+    keep_names = _promote_ambiguous_filtered_nodes(traced, keep_names, outputs)
+
+    assert "conv" in keep_names
+    assert "head" in keep_names
+    assert "leaky_relu" not in keep_names
+    assert _folded_nodes_by_predecessor(traced, keep_names, outputs)["conv"] == ["leaky_relu"]

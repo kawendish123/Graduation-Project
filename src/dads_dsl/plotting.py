@@ -131,7 +131,7 @@ def plot_estimate_latency(csv_path: str | Path, output_dir: str | Path, plot_for
                 label=STRATEGY_LABELS.get(strategy, strategy),
             )
 
-        ax.set_xscale("log", base=10)
+        # ax.set_xscale("log", base=10)
         ax.set_xlabel("Bandwidth (Mbps)")
         ax.set_ylabel("Estimated Total Latency (ms)")
         ax.set_title(f"{model_name} estimated latency under CPU load {float(load_target):g}%")

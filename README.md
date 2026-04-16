@@ -146,3 +146,19 @@ start "" /wait /affinity 1 python .\run_dads_dsl.py profile-cache --role edge --
 
 
 python.exe .\run_dads_dsl.py estimate-experiment --config configs\estimate_vgg16_block.json
+
+
+边缘：
+powershell -ExecutionPolicy Bypass -File .\scripts\profile_edge_all_node_filtered.ps1
+
+云：
+powershell -ExecutionPolicy Bypass -File .\scripts\profile_cloud_all_node_filtered.ps1
+
+算法：
+python.exe .\run_dads_dsl.py estimate-experiment --config configs\estimate_mobilenet_v2_node_filtered.json
+
+python.exe .\run_dads_dsl.py estimate-experiment --config configs\estimate_resnet50_node_filtered.json
+
+python.exe .\run_dads_dsl.py estimate-experiment --config configs\estimate_googlenet_node_filtered.json
+
+python.exe .\run_dads_dsl.py estimate-experiment --config configs\estimate_vgg16_node_filtered.json

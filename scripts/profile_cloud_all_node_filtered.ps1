@@ -1,7 +1,7 @@
 $ErrorActionPreference = "Stop"
 
 $PY = "D:\Program4Python\anaconda\envs\pytorch\python.exe"
-$models = @("mobilenet_v2", "googlenet", "resnet50", "vgg16")
+$models = @("mobilenet_v2", "googlenet", "resnet50", "vgg16", "alexnet", "tiny_yolo")
 
 foreach ($model in $models) {
   Write-Host "Profiling node_filtered cloud model=$model"
