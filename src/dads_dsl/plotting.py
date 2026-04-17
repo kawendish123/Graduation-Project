@@ -56,6 +56,44 @@ def _float_value(row: dict[str, str], key: str) -> float:
     return float(value)
 
 
+def _uses_edge_condition(rows: list[dict[str, str]]) -> bool:
+    return any(row.get("edge_condition") for row in rows)
+
+
+def _condition_key(row: dict[str, str]) -> str:
+    return row.get("edge_condition") or row.get("cpu_load_target", "")
+
+
+def _condition_order(row: dict[str, str]) -> float:
+    if row.get("edge_condition") and row.get("edge_condition_order") not in {None, ""}:
+        return float(row["edge_condition_order"])
+    return float(row.get("cpu_load_target", "0"))
+
+
+def _condition_keys(rows: list[dict[str, str]]) -> list[str]:
+    orders: dict[str, float] = {}
+    for row in rows:
+        key = _condition_key(row)
+        orders[key] = min(orders.get(key, _condition_order(row)), _condition_order(row))
+    return sorted(orders, key=lambda key: orders[key])
+
+
+def _condition_title(label: str, uses_edge_condition: bool) -> str:
+    if uses_edge_condition:
+        return label
+    return f"CPU load {float(label):g}%"
+
+
+def _condition_axis_label(uses_edge_condition: bool) -> str:
+    return "Edge Condition" if uses_edge_condition else "CPU Load Target (%)"
+
+
+def _condition_filename_part(label: str, uses_edge_condition: bool) -> str:
+    if uses_edge_condition:
+        return _safe_token(label)
+    return f"load{_safe_token(label)}"
+
+
 def plot_experiment_latency(csv_path: str | Path, output_dir: str | Path, plot_format: str = "png") -> list[str]:
     plt = _load_pyplot()
     if plt is None:
@@ -65,16 +103,18 @@ def plot_experiment_latency(csv_path: str | Path, output_dir: str | Path, plot_f
     if not rows:
         return []
 
+    uses_edge_condition = _uses_edge_condition(rows)
     grouped: dict[str, dict[str, list[dict[str, str]]]] = defaultdict(lambda: defaultdict(list))
     for row in rows:
-        grouped[row["cpu_load_target"]][row["strategy"]].append(row)
+        grouped[_condition_key(row)][row["strategy"]].append(row)
 
     output_path = Path(output_dir)
     output_path.mkdir(parents=True, exist_ok=True)
     model_name = rows[0].get("model", "model")
     outputs = []
 
-    for load_target, by_strategy in sorted(grouped.items(), key=lambda item: float(item[0])):
+    condition_order = {label: index for index, label in enumerate(_condition_keys(rows))}
+    for condition_label, by_strategy in sorted(grouped.items(), key=lambda item: condition_order[item[0]]):
         fig, ax = plt.subplots(figsize=(8, 5))
         for strategy in STRATEGY_ORDER:
             strategy_rows = sorted(by_strategy.get(strategy, []), key=lambda item: float(item["bandwidth_mbps"]))
@@ -95,12 +135,12 @@ def plot_experiment_latency(csv_path: str | Path, output_dir: str | Path, plot_f
         ax.set_xscale("log", base=10)
         ax.set_xlabel("Bandwidth (Mbps)")
         ax.set_ylabel("Actual Total Latency (ms)")
-        ax.set_title(f"{model_name} latency under CPU load {float(load_target):g}%")
+        ax.set_title(f"{model_name} latency under {_condition_title(condition_label, uses_edge_condition)}")
         ax.grid(True, which="both", linestyle="--", linewidth=0.5, alpha=0.5)
         ax.legend()
         fig.tight_layout()
 
-        filename = f"{_safe_token(model_name)}_load{_safe_token(load_target)}_latency.{plot_format}"
+        filename = f"{_safe_token(model_name)}_{_condition_filename_part(condition_label, uses_edge_condition)}_latency.{plot_format}"
         destination = output_path / filename
         fig.savefig(destination, dpi=200)
         plt.close(fig)
@@ -119,21 +159,22 @@ def plot_estimate_speedup_heatmap(csv_path: str | Path, output_dir: str | Path, 
     if not rows:
         return []
 
+    uses_edge_condition = _uses_edge_condition(rows)
     by_condition: dict[tuple[str, str], dict[str, dict[str, str]]] = defaultdict(dict)
     for row in rows:
-        by_condition[(row["cpu_load_target"], row["bandwidth_mbps"])][row["strategy"]] = row
+        by_condition[(_condition_key(row), row["bandwidth_mbps"])][row["strategy"]] = row
 
-    load_targets = sorted({key[0] for key in by_condition}, key=float)
+    condition_labels = _condition_keys(rows)
     bandwidths = sorted({key[1] for key in by_condition}, key=float)
-    if not load_targets or not bandwidths:
+    if not condition_labels or not bandwidths:
         return []
 
     matrix: list[list[float]] = []
     finite_values: list[float] = []
-    for load_target in load_targets:
+    for condition_label in condition_labels:
         line: list[float] = []
         for bandwidth in bandwidths:
-            strategies = by_condition.get((load_target, bandwidth), {})
+            strategies = by_condition.get((condition_label, bandwidth), {})
             if not {"dsl", "pure_edge", "pure_cloud"}.issubset(strategies):
                 value = math.nan
             else:
@@ -154,7 +195,7 @@ def plot_estimate_speedup_heatmap(csv_path: str | Path, output_dir: str | Path, 
     output_path.mkdir(parents=True, exist_ok=True)
     model_name = rows[0].get("model", "model")
 
-    fig, ax = plt.subplots(figsize=(max(8, len(bandwidths) * 0.65), max(4.5, len(load_targets) * 0.45)))
+    fig, ax = plt.subplots(figsize=(max(8, len(bandwidths) * 0.65), max(4.5, len(condition_labels) * 0.45)))
     try:
         from matplotlib.colors import TwoSlopeNorm
 
@@ -172,10 +213,10 @@ def plot_estimate_speedup_heatmap(csv_path: str | Path, output_dir: str | Path, 
 
     ax.set_xticks(range(len(bandwidths)))
     ax.set_xticklabels([f"{float(item):g}" for item in bandwidths], rotation=45, ha="right")
-    ax.set_yticks(range(len(load_targets)))
-    ax.set_yticklabels([f"{float(item):g}" for item in load_targets])
+    ax.set_yticks(range(len(condition_labels)))
+    ax.set_yticklabels([str(item) if uses_edge_condition else f"{float(item):g}" for item in condition_labels])
     ax.set_xlabel("Bandwidth (Mbps)")
-    ax.set_ylabel("CPU Load Target (%)")
+    ax.set_ylabel(_condition_axis_label(uses_edge_condition))
     ax.set_title(f"{model_name} DSL speedup over best pure baseline")
 
     for row_index, line in enumerate(matrix):
@@ -208,16 +249,18 @@ def plot_estimate_stage_breakdown(
     if not rows:
         return []
 
+    uses_edge_condition = _uses_edge_condition(rows)
     grouped: dict[str, list[dict[str, str]]] = defaultdict(list)
     for row in rows:
-        grouped[row["cpu_load_target"]].append(row)
+        grouped[_condition_key(row)].append(row)
 
     output_path = Path(output_dir)
     output_path.mkdir(parents=True, exist_ok=True)
     model_name = rows[0].get("model", "model")
     outputs = []
 
-    for load_target, load_rows in sorted(grouped.items(), key=lambda item: float(item[0])):
+    condition_order = {label: index for index, label in enumerate(_condition_keys(rows))}
+    for condition_label, load_rows in sorted(grouped.items(), key=lambda item: condition_order[item[0]]):
         sorted_rows = sorted(load_rows, key=lambda item: float(item["bandwidth_mbps"]))
         labels = [f"{_float_value(row, 'bandwidth_mbps'):g}" for row in sorted_rows]
         edge_values = [_float_value(row, "estimated_edge_ms") for row in sorted_rows]
@@ -236,12 +279,18 @@ def plot_estimate_stage_breakdown(
         ax.set_xticklabels(labels, rotation=45, ha="right")
         ax.set_xlabel("Bandwidth (Mbps)")
         ax.set_ylabel("Estimated Latency (ms)")
-        ax.set_title(f"{model_name} {STRATEGY_LABELS.get(strategy, strategy)} stage breakdown under CPU load {float(load_target):g}%")
+        ax.set_title(
+            f"{model_name} {STRATEGY_LABELS.get(strategy, strategy)} stage breakdown under "
+            f"{_condition_title(condition_label, uses_edge_condition)}"
+        )
         ax.grid(True, axis="y", linestyle="--", linewidth=0.5, alpha=0.5)
         ax.legend()
         fig.tight_layout()
 
-        filename = f"{_safe_token(model_name)}_load{_safe_token(load_target)}_{_safe_token(strategy)}_stage_breakdown.{plot_format}"
+        filename = (
+            f"{_safe_token(model_name)}_{_condition_filename_part(condition_label, uses_edge_condition)}_"
+            f"{_safe_token(strategy)}_stage_breakdown.{plot_format}"
+        )
         destination = output_path / filename
         fig.savefig(destination, dpi=200)
         plt.close(fig)
@@ -274,10 +323,9 @@ def plot_granularity_comparison(
     if not rows_by_granularity:
         return []
 
-    load_targets = sorted(
-        {row["cpu_load_target"] for rows in rows_by_granularity.values() for row in rows},
-        key=float,
-    )
+    all_rows = [row for rows in rows_by_granularity.values() for row in rows]
+    uses_edge_condition = _uses_edge_condition(all_rows)
+    condition_labels = _condition_keys(all_rows)
     output_path = Path(output_dir)
     output_path.mkdir(parents=True, exist_ok=True)
     first_rows = next(iter(rows_by_granularity.values()))
@@ -286,11 +334,11 @@ def plot_granularity_comparison(
     markers = ["o", "s", "^", "D", "v", "P", "X"]
     linestyles = ["-", "--", "-.", ":"]
 
-    for load_target in load_targets:
+    for condition_label in condition_labels:
         fig, ax = plt.subplots(figsize=(8, 5))
         for index, (granularity, rows) in enumerate(rows_by_granularity.items()):
             selected_rows = [
-                row for row in rows if abs(float(row["cpu_load_target"]) - float(load_target)) < 1e-9
+                row for row in rows if _condition_key(row) == condition_label
             ]
             if not selected_rows:
                 continue
@@ -308,12 +356,18 @@ def plot_granularity_comparison(
 
         ax.set_xlabel("Bandwidth (Mbps)")
         ax.set_ylabel("Estimated Total Latency (ms)")
-        ax.set_title(f"{model_name} {STRATEGY_LABELS.get(strategy, strategy)} latency by granularity under CPU load {float(load_target):g}%")
+        ax.set_title(
+            f"{model_name} {STRATEGY_LABELS.get(strategy, strategy)} latency by granularity under "
+            f"{_condition_title(condition_label, uses_edge_condition)}"
+        )
         ax.grid(True, linestyle="--", linewidth=0.5, alpha=0.5)
         ax.legend(title="Granularity")
         fig.tight_layout()
 
-        filename = f"{_safe_token(model_name)}_load{_safe_token(load_target)}_{_safe_token(strategy)}_granularity_comparison.{plot_format}"
+        filename = (
+            f"{_safe_token(model_name)}_{_condition_filename_part(condition_label, uses_edge_condition)}_"
+            f"{_safe_token(strategy)}_granularity_comparison.{plot_format}"
+        )
         destination = output_path / filename
         fig.savefig(destination, dpi=200)
         plt.close(fig)
@@ -370,16 +424,18 @@ def plot_estimate_latency(csv_path: str | Path, output_dir: str | Path, plot_for
     if not rows:
         return []
 
+    uses_edge_condition = _uses_edge_condition(rows)
     grouped: dict[str, dict[str, list[dict[str, str]]]] = defaultdict(lambda: defaultdict(list))
     for row in rows:
-        grouped[row["cpu_load_target"]][row["strategy"]].append(row)
+        grouped[_condition_key(row)][row["strategy"]].append(row)
 
     output_path = Path(output_dir)
     output_path.mkdir(parents=True, exist_ok=True)
     model_name = rows[0].get("model", "model")
     outputs = []
 
-    for load_target, by_strategy in sorted(grouped.items(), key=lambda item: float(item[0])):
+    condition_order = {label: index for index, label in enumerate(_condition_keys(rows))}
+    for condition_label, by_strategy in sorted(grouped.items(), key=lambda item: condition_order[item[0]]):
         fig, ax = plt.subplots(figsize=(8, 5))
         for strategy in STRATEGY_ORDER:
             strategy_rows = sorted(by_strategy.get(strategy, []), key=lambda item: float(item["bandwidth_mbps"]))
@@ -397,12 +453,12 @@ def plot_estimate_latency(csv_path: str | Path, output_dir: str | Path, plot_for
         # ax.set_xscale("log", base=10)
         ax.set_xlabel("Bandwidth (Mbps)")
         ax.set_ylabel("Estimated Total Latency (ms)")
-        ax.set_title(f"{model_name} estimated latency under CPU load {float(load_target):g}%")
+        ax.set_title(f"{model_name} estimated latency under {_condition_title(condition_label, uses_edge_condition)}")
         ax.grid(True, which="both", linestyle="--", linewidth=0.5, alpha=0.5)
         ax.legend()
         fig.tight_layout()
 
-        filename = f"{_safe_token(model_name)}_load{_safe_token(load_target)}_estimated_latency.{plot_format}"
+        filename = f"{_safe_token(model_name)}_{_condition_filename_part(condition_label, uses_edge_condition)}_estimated_latency.{plot_format}"
         destination = output_path / filename
         fig.savefig(destination, dpi=200)
         plt.close(fig)
@@ -420,6 +476,7 @@ def plot_estimate_latency_by_bandwidth(csv_path: str | Path, output_dir: str | P
     if not rows:
         return []
 
+    uses_edge_condition = _uses_edge_condition(rows)
     grouped: dict[str, dict[str, list[dict[str, str]]]] = defaultdict(lambda: defaultdict(list))
     for row in rows:
         grouped[row["bandwidth_mbps"]][row["strategy"]].append(row)
@@ -431,11 +488,20 @@ def plot_estimate_latency_by_bandwidth(csv_path: str | Path, output_dir: str | P
 
     for bandwidth_mbps, by_strategy in sorted(grouped.items(), key=lambda item: float(item[0])):
         fig, ax = plt.subplots(figsize=(8, 5))
+        x_labels: list[str] = []
         for strategy in STRATEGY_ORDER:
-            strategy_rows = sorted(by_strategy.get(strategy, []), key=lambda item: float(item["cpu_load_target"]))
+            strategy_rows = sorted(
+                by_strategy.get(strategy, []),
+                key=lambda item: _condition_order(item),
+            )
             if not strategy_rows:
                 continue
-            loads = [float(item["cpu_load_target"]) for item in strategy_rows]
+            if uses_edge_condition:
+                loads = list(range(len(strategy_rows)))
+                if not x_labels:
+                    x_labels = [_condition_key(item) for item in strategy_rows]
+            else:
+                loads = [float(item["cpu_load_target"]) for item in strategy_rows]
             totals = [float(item["estimated_total_ms"]) for item in strategy_rows]
             ax.plot(
                 loads,
@@ -444,14 +510,18 @@ def plot_estimate_latency_by_bandwidth(csv_path: str | Path, output_dir: str | P
                 **STRATEGY_STYLES.get(strategy, {}),
             )
 
-        ax.set_xlabel("CPU Load Target (%)")
+        if uses_edge_condition:
+            ax.set_xticks(range(len(x_labels)))
+            ax.set_xticklabels(x_labels)
+        ax.set_xlabel(_condition_axis_label(uses_edge_condition))
         ax.set_ylabel("Estimated Total Latency (ms)")
         ax.set_title(f"{model_name} estimated latency at {float(bandwidth_mbps):g} Mbps")
         ax.grid(True, linestyle="--", linewidth=0.5, alpha=0.5)
         ax.legend()
         fig.tight_layout()
 
-        filename = f"{_safe_token(model_name)}_bw{_safe_token(bandwidth_mbps)}_load_sweep_estimated_latency.{plot_format}"
+        sweep_name = "condition_sweep" if uses_edge_condition else "load_sweep"
+        filename = f"{_safe_token(model_name)}_bw{_safe_token(bandwidth_mbps)}_{sweep_name}_estimated_latency.{plot_format}"
         destination = output_path / filename
         fig.savefig(destination, dpi=200)
         plt.close(fig)

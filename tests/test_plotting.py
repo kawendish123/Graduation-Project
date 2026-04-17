@@ -166,3 +166,36 @@ def test_plot_granularity_comparison_writes_one_file_per_load(tmp_path):
     else:
         assert len(outputs) == 1
         assert (tmp_path / "plots" / "toy_load0_dsl_granularity_comparison.png").exists()
+
+
+def test_plot_estimate_functions_support_scaled_edge_conditions(tmp_path):
+    csv_path = tmp_path / "estimate_scaled.csv"
+    csv_path.write_text(
+        "\n".join(
+            [
+                "model,bandwidth_mbps,cpu_load_target,edge_latency_mode,edge_condition,edge_slowdown_factor,edge_condition_order,strategy,estimated_edge_ms,estimated_transfer_ms,estimated_cloud_ms,estimated_total_ms",
+                "toy,10.0000,,scaled,Edge-High,1.0000,0,dsl,1.0000,2.0000,3.0000,6.0000",
+                "toy,10.0000,,scaled,Edge-High,1.0000,0,pure_edge,10.0000,0.0000,0.0000,10.0000",
+                "toy,10.0000,,scaled,Edge-High,1.0000,0,pure_cloud,0.0000,7.0000,1.0000,8.0000",
+                "toy,10.0000,,scaled,Edge-Medium,4.0000,1,dsl,4.0000,2.0000,3.0000,9.0000",
+                "toy,10.0000,,scaled,Edge-Medium,4.0000,1,pure_edge,40.0000,0.0000,0.0000,40.0000",
+                "toy,10.0000,,scaled,Edge-Medium,4.0000,1,pure_cloud,0.0000,7.0000,1.0000,8.0000",
+            ]
+        ),
+        encoding="utf-8",
+    )
+
+    outputs = []
+    outputs.extend(plot_estimate_latency(csv_path, tmp_path / "plots"))
+    outputs.extend(plot_estimate_latency_by_bandwidth(csv_path, tmp_path / "plots"))
+    outputs.extend(plot_estimate_speedup_heatmap(csv_path, tmp_path / "plots"))
+    outputs.extend(plot_estimate_stage_breakdown(csv_path, tmp_path / "plots"))
+
+    if importlib.util.find_spec("matplotlib") is None:
+        assert outputs == []
+    else:
+        assert (tmp_path / "plots" / "toy_Edge-High_estimated_latency.png").exists()
+        assert (tmp_path / "plots" / "toy_Edge-Medium_estimated_latency.png").exists()
+        assert (tmp_path / "plots" / "toy_bw10_condition_sweep_estimated_latency.png").exists()
+        assert (tmp_path / "plots" / "toy_dsl_speedup_heatmap.png").exists()
+        assert (tmp_path / "plots" / "toy_Edge-High_dsl_stage_breakdown.png").exists()
