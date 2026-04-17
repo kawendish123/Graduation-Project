@@ -191,10 +191,19 @@ def run_estimate_experiment(config: dict[str, Any]) -> dict[str, Any]:
 
     plot_outputs = []
     if plot_dir:
-        from .plotting import plot_estimate_latency, plot_estimate_latency_by_bandwidth
+        from .plotting import (
+            plot_estimate_latency,
+            plot_estimate_latency_by_bandwidth,
+            plot_estimate_speedup_heatmap,
+            plot_estimate_stage_breakdown,
+        )
 
         plot_outputs = plot_estimate_latency(report_csv, str(plot_dir), plot_format=plot_format)
         plot_outputs.extend(plot_estimate_latency_by_bandwidth(report_csv, str(plot_dir), plot_format=plot_format))
+        if bool(config.get("plot_heatmap", True)):
+            plot_outputs.extend(plot_estimate_speedup_heatmap(report_csv, str(plot_dir), plot_format=plot_format))
+        if bool(config.get("plot_stage_breakdown", True)):
+            plot_outputs.extend(plot_estimate_stage_breakdown(report_csv, str(plot_dir), plot_format=plot_format))
     print(f"Estimate experiment complete. CSV: {report_csv} JSON: {report_json}")
     if plot_outputs:
         print("Plots: " + ", ".join(plot_outputs))

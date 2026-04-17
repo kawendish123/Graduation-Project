@@ -1,0 +1,10 @@
+{
+  "command": "plot-granularity",
+  "strategy": "dsl",
+  "csvs": {
+    "block": "results/estimate_resnet50_block.csv",
+    "node_filtered": "results/estimate_resnet50_node_filtered.csv"
+  },
+  "plot_dir": "results/plots_granularity_resnet50",
+  "plot_format": "png"
+}

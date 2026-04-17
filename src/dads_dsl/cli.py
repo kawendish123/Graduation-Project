@@ -97,7 +97,10 @@ def build_parser() -> argparse.ArgumentParser:
     client_parser.add_argument("--debug-output")
     client_parser.add_argument("--partition-granularity", choices=list(PARTITION_GRANULARITIES), default="node")
 
-    config_parser = subparsers.add_parser("run-config", help="Run serve/client-run/experiment/estimate-experiment from a JSON config file")
+    config_parser = subparsers.add_parser(
+        "run-config",
+        help="Run serve/client-run/experiment/estimate-experiment/plot commands from a JSON config file",
+    )
     config_parser.add_argument("--config", required=True)
 
     experiment_parser = subparsers.add_parser("experiment", help="Run a DSL latency experiment sweep")
@@ -105,6 +108,12 @@ def build_parser() -> argparse.ArgumentParser:
 
     estimate_parser = subparsers.add_parser("estimate-experiment", help="Run an offline estimated DSL latency experiment sweep")
     estimate_parser.add_argument("--config", required=True)
+
+    plot_estimate_parser = subparsers.add_parser("plot-estimate", help="Generate estimate-experiment plots from an existing CSV")
+    plot_estimate_parser.add_argument("--config", required=True)
+
+    plot_granularity_parser = subparsers.add_parser("plot-granularity", help="Compare DSL latency across partition granularities")
+    plot_granularity_parser.add_argument("--config", required=True)
 
     return parser
 
@@ -289,7 +298,22 @@ def main(argv: Optional[list[str]] = None) -> int:
             run_estimate_experiment(config)
             return 0
 
-        parser.error("Config field 'command' must be 'serve', 'client-run', 'experiment', or 'estimate-experiment'.")
+        if config_command == "plot-estimate":
+            from .plotting import run_plot_estimate_config
+
+            run_plot_estimate_config(config)
+            return 0
+
+        if config_command == "plot-granularity":
+            from .plotting import run_plot_granularity_config
+
+            run_plot_granularity_config(config)
+            return 0
+
+        parser.error(
+            "Config field 'command' must be 'serve', 'client-run', 'experiment', "
+            "'estimate-experiment', 'plot-estimate', or 'plot-granularity'."
+        )
 
     if args.command == "experiment":
         try:
@@ -313,6 +337,30 @@ def main(argv: Optional[list[str]] = None) -> int:
         from .estimate import run_estimate_experiment
 
         run_estimate_experiment(config)
+        return 0
+
+    if args.command == "plot-estimate":
+        try:
+            config = _load_config(args.config)
+        except (OSError, json.JSONDecodeError, ValueError) as exc:
+            parser.error(str(exc))
+        if str(config.get("command", "plot-estimate")) != "plot-estimate":
+            parser.error("plot-estimate config field 'command' must be 'plot-estimate'.")
+        from .plotting import run_plot_estimate_config
+
+        run_plot_estimate_config(config)
+        return 0
+
+    if args.command == "plot-granularity":
+        try:
+            config = _load_config(args.config)
+        except (OSError, json.JSONDecodeError, ValueError) as exc:
+            parser.error(str(exc))
+        if str(config.get("command", "plot-granularity")) != "plot-granularity":
+            parser.error("plot-granularity config field 'command' must be 'plot-granularity'.")
+        from .plotting import run_plot_granularity_config
+
+        run_plot_granularity_config(config)
         return 0
 
     if args.command == "dsl":

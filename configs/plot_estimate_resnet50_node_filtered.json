@@ -1,0 +1,13 @@
+{
+  "command": "plot-estimate",
+  "csv": "results/estimate_resnet50_node_filtered.csv",
+  "plot_dir": "results/plots_estimate_resnet50_node_filtered",
+  "plot_format": "png",
+  "plots": [
+    "latency",
+    "load_sweep",
+    "speedup_heatmap",
+    "stage_breakdown"
+  ],
+  "strategy": "dsl"
+}
